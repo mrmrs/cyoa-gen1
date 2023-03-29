@@ -1,9 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import { Cormorant  as Font } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const font = Font({ weight: '400', subsets: ['latin'] })
 
 export default function Home() {
   return (
@@ -14,109 +13,41 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.js</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+      <main className={font.className}>
+        <header className='header'>
+          <h1 className='book-title'>The Generative Enigma: A Castle of Creative Conundrums</h1>
+        </header>
+        <article className='chapter'>
+          <header>
+            <h2 className='chapter-number'>Chapter 1</h2>       
+            <h3 className='chapter-title'>The enchanted entrance</h3>       
+          </header>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
+    <p>
+A dense fog enveloped the lonely road, as if to obscure the path of any curious traveler. The air hung heavy with an unseen weight, a palpable presence that tingled at the back of the neck, sending shivers down the spine. The silhouette of the castle loomed in the distance, its dark, brooding visage somehow alluring and foreboding simultaneously. Despite the tales and whispered warnings that shrouded this mysterious structure in fear, the intrepid adventurer could not resist the magnetic pull of the unknown.
+    </p>
+<p>
+Upon reaching the castle's entrance, the traveler noticed the stone walls adorned with intricate carvings, depicting scenes that seemed to dance and shimmer in the dim light of the setting sun. The iron gate groaned in protest as it swung open, revealing a grand foyer bathed in an ethereal glow. The air here was thick with age, the taste of a long-lost past lingering on every breath.
+</p>
+    <p>
+As the traveler ventured deeper into the castle, they were struck by the overwhelming sense of forgotten stories and hidden knowledge waiting to be discovered. The atmosphere of the castle seemed to hum with a creative energy, beckoning the visitor to unlock its secrets.
+</p>
+    <p>
+Before long, the traveler found themselves standing before a massive door, its surface etched with curious patterns and symbols. The designs seemed to writhe and contort before their very eyes, yet somehow, they could discern a single word: "Color." Instinctively, they reached out to touch the word, and as their fingers made contact, the symbols began to glow, illuminating the room with vibrant hues.
+</p>
+    <p>
+A voice echoed through the chamber, deep and resonant, yet strangely soothing. "To proceed, you must create a work of generative art using the element of color. Choose wisely, for your choice will determine your path through these ancient walls."
+    </p>
 
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
+Three options lay before the traveler:
 
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
+Create a vibrant mosaic, harnessing the full spectrum of colors to bring life to an otherwise dull castle room. (Pages 6-9)
+Paint a dull landscape, using muted tones and somber shades to reflect the oppressive atmosphere of the castle. (Pages 10-12)
+Assemble a monochrome portrait, capturing the essence of the forgotten souls that once dwelled within these walls. (Pages 13-15)
+As the traveler pondered their choice, they could not shake the feeling that unseen eyes were watching them, waiting to witness the first step of their journey into the heart of the castle. The weight of the decision bore down on them, and with a deep breath, they made their choice, setting in motion a chain of events that would lead them through the labyrinthine corridors of the castle, each choice forging the path to their ultimate fate.
 
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
+In the world of the Generative Enigma, the line between reality and imagination was blurred, and the traveler was about to embark on a journey that would challenge their creativity and reshape their understanding of the world. As the haunting melodies of the castle whispered their secrets, the traveler prepared to face the unknown, guided by the creative force that dwelled within these ancient walls.
+        </article>
       </main>
     </>
   )

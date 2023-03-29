@@ -87,12 +87,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-rgb))
 }
 
 a {
@@ -104,4 +99,51 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+html {
+  font-family: georgia, serif;
+}
+
+.header {
+  display: none;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+  padding:  8px 8px;
+}
+
+.book-title {
+  font-style: italic;
+  font-size: 16px;
+  margin: 0;
+}
+
+
+
+.chapter {
+  padding: 0 32px;
+  max-width: 38em;
+  font-size: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.chapter header {
+  margin-top: 4em;
+  margin-bottom: 1em;
+}
+
+.chapter .chapter-number {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.chapter .chapter-title {
+  font-size: 24px;
+  font-weight: 400;
+}
+.chapter p {
+  text-indent: 1em;
 }
