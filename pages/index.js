@@ -23,15 +23,15 @@ export default function Home() {
             <h3 className='chapter-title'>The Rain</h3>       
           </header>
     <p>
-  You can't help but eavesdrop on the conversations around you as the train rolls towards the platform. Everyone seems to be talking about one thing. The storm of the century. "It's supposed to be a real gullywasher" says the man sitting behind you. "No way it will be worse than that frog-strangler we had in &apos;59", "they had to evacuate the whole town!" "They said it'll be the worst storm in 1000 years" "How do they know how bad the storms were a thousand years ago?" "I don't know how they know I just know they know". "I heard it's going to be the worst storm in years," you hear a woman say a few rows up. You shift uncomfortably in your seat. Wondering if you're really prepared for what's to come.
+  You can&apos;t help but eavesdrop on the conversations around you as the train rolls towards the platform. Everyone seems to be talking about one thing. The storm of the century. &quot;It&apos;s supposed to be a real gullywasher&quot; says the man sitting behind you. &quot;No way it will be worse than that frog-strangler we had in &apos;59&quot;, &quot;they had to evacuate the whole town!&quot; &quot;They said it&apos;ll be the worst storm in 1000 years&quot; &quot;How do they know how bad the storms were a thousand years ago?&quot; &quot;I don&apos;t know how they know I just know they know&quot;. &quot;I heard it&apos;s going to be the worst storm in years,&quot; you hear a woman say a few rows up. You shift uncomfortably in your seat. Wondering if you&apos;re really prepared for what&apos;s to come.
     </p>
 <p>
-  As you step off the train into the drizzling rain, you feel a sense of anticipation. There's something thrilling about being out in the midst of a storm. You just hope you make it to your aunt's before it gets too bad. You set out house, determined to brave whatever the weather has in store. The streets are nearly empty, with only a few other brave souls venturing out into the deluge. You check your pocketwatch and move it to the inside of your jacket to protect it from the rain. It's 2:12. You should be able to make it within 20 minutes if you don't get lost. 
+  As you step off the train into the drizzling rain, you feel a sense of anticipation. There&apos;s something thrilling about being out in the midst of a storm. You just hope you make it to your aunt&apos;s before it gets too bad. You set out house, determined to brave whatever the weather has in store. The streets are nearly empty, with only a few other brave souls venturing out into the deluge. You check your pocketwatch and move it to the inside of your jacket to protect it from the rain. It&apos;s 2:12. You should be able to make it within 20 minutes if you don&apos;t get lost. 
 </p> 
-<p> You begin to navigate the town's streets, making your way toward your Aunt's house. At every turn, the rain appears to gain confidence, transforming from an innocent drizzle into a persistent shower. "Well, this is just perfect," you muse, trying to shield yourself from the increasingly aggressive raindrops with one hand while clutching your luggage with the other.
+<p> You begin to navigate the town&apos;s streets, making your way toward your Aunt&apos;s house. At every turn, the rain appears to gain confidence, transforming from an innocent drizzle into a persistent shower. &quot;Well, this is just perfect,&quot; you muse, trying to shield yourself from the increasingly aggressive raindrops with one hand while clutching your luggage with the other.
 </p>
 <p>
-  As the rain intensifies, you try to recall if there was a more direct route to your aunt's house. The soggy map in your pocket is now about as helpful as a chocolate teapot. "If only I had listened to my mom when she insisted on teaching me the town's shortcuts," you lament, shaking your head at your own stubbornness. The rain is coming down harder now, and the wind is making it difficult to see.
+  As the rain intensifies, you try to recall if there was a more direct route to your aunt&apos;s house. The soggy map in your pocket is now about as helpful as a chocolate teapot. &quot;If only I had listened to my mom when she insisted on teaching me the town&apos;s shortcuts,&quot; you lament, shaking your head at your own stubbornness. The rain is coming down harder now, and the wind is making it difficult to see.
 </p>
 <p>
   A flickering light in a nearby window catches your eye. The warm, golden glow emanates from an old, dusty bookshop that appears to defy the storm outside, its windows adorned with a curious array of books, trinkets, and an owl perched on a stack of tomes.
@@ -40,20 +40,20 @@ export default function Home() {
 Seeking refuge from the weather, you push open the door, a bell chiming softly overhead. The musty scent of old paper, leather, and something else (maybe cinnamon?) fills your nostrils as you step inside. Your eyes linger on the owl, its head tilting curiously as it watches you.
     </p>
 <p>
-"You must be here for the storm," an elderly woman speaks from behind a counter, her voice warm and welcoming. You start to open your jacket to shake off the water you've collected since the station. She glances at the pocket watch hanging from your inside pocket coat. "That's a beautiful timepiece you have there," she comments, her eyes twinkling with interest.
+&quot;You must be here for the storm,&quot; an elderly woman speaks from behind a counter, her voice warm and welcoming. You start to open your jacket to shake off the water you&apos;ve collected since the station. She glances at the pocket watch hanging from your inside pocket coat. &quot;That&apos;s a beautiful timepiece you have there,&quot; she comments, her eyes twinkling with interest.
     </p>
-    <p>"Thanks, it was my great-grandfathers." you say, "I'm here to visit my aunt, she lives in his old house up on Sea Rd."</p>
+    <p>&quot;Thanks, it was my great-grandfathers.&quot; you say, &quot;I&apos;m here to visit my aunt, she lives in his old house up on Sea Rd.&quot;</p>
 <p>
-    Her eyes twinkle with the promise of adventure and intrigue. "It's a good thing you came in. You'll catch your death out there in this dreadful weather! Now give me that coat and I'll hang it by the fire to dry"
+    Her eyes twinkle with the promise of adventure and intrigue. &quot;It&apos;s a good thing you came in. You&apos;ll catch your death out there in this dreadful weather! Now give me that coat and I&apos;ll hang it by the fire to dry&quot;
 </p>
 <p>
 She disappears for a moment into the shadowy depths of the store, only to return with two books in her hands.
 </p>
 <p>
-  "Here," she says, offering you the books. "Choose wisely, for each holds a different tale."
+  &quot;Here,&quot; she says, offering you the books. &quot;Choose wisely, for each holds a different tale.&quot;
 </p>
 <p>
-As you hold the books, you notice that their covers seem to shift and change, as though telling a story of their own. The first book's cover shows a storm-tossed sea with a ship struggling against the waves, while the second book features a sunlit path leading into an enchanted forest. The decision is yours, and with it, the story that will unfold.
+As you hold the books, you notice that their covers seem to shift and change, as though telling a story of their own. The first book&apos;s cover shows a storm-tossed sea with a ship struggling against the waves, while the second book features a sunlit path leading into an enchanted forest. The decision is yours, and with it, the story that will unfold.
 </p>
 
 
