@@ -13,14 +13,50 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={font.className}>
+      <main>
         <header className='header'>
           <h1 className='book-title'>The Generative Enigma: A Castle of Creative Conundrums</h1>
         </header>
         <article className='chapter'>
           <header>
             <h2 className='chapter-number'>Chapter 1</h2>       
-            <h3 className='chapter-title'>The enchanted entrance</h3>       
+            <h3 className='chapter-title'>The Rain</h3>       
+          </header>
+<p>
+  You begin to navigate the town's streets, making your way toward your Aunt's house. At every turn, the rain appears to gain confidence, transforming from an innocent drizzle into a persistent shower. "Well, this is just perfect," you muse, trying to shield yourself from the increasingly aggressive raindrops with one hand while clutching your luggage with the other.
+</p>
+    <p>
+      As the rain intensifies, you try to recall if there was a more direct route to your aunt's house. The soggy map in your pocket is now about as helpful as a chocolate teapot. "If only I had listened to my mom when she insisted on teaching me the town's shortcuts," you lament, shaking your head at your own stubbornness. The wind picks up, and you fight to keep your balance and stay on course. 
+    </p>
+<p>
+    A flickering light in a nearby window catches your eye. The warm, golden glow emanates from an old, dusty bookshop that appears to defy the storm outside, its windows adorned with a curious array of books, trinkets, and an owl perched on a stack of tomes.
+</p>
+<p>
+Seeking refuge from the relentless rain, you push open the door, a bell chiming softly overhead. The musty scent of old paper and leather fills your nostrils as you step inside. Your eyes linger on the owl, its head tilting curiously as it watches you.
+    </p>
+<p>
+"You must be here for the storm," an elderly woman speaks from behind a counter, her voice warm and welcoming. She glances at the pocket watch that hangs from your coat – a gift from your mother, once belonging to her grandfather. "That's a beautiful timepiece you have there," she comments, her eyes twinkling with interest.
+    </p>
+<p>
+She disappears for a moment into the shadowy depths of the store, only to return with two books in her hands.
+</p>
+<p>
+  "Here," she says, offering you the books. "One for your journey, and one for your heart. Choose wisely, for each holds a different tale."
+</p>
+<p>
+As you hold the books, you notice that their covers seem to shift and change, as though telling a story of their own. The first book's cover shows a storm-tossed sea with a ship struggling against the waves, while the second book features a sunlit path leading into an enchanted forest. The decision is yours, and with it, the story that will unfold.
+</p>
+
+
+If you choose the first book, with the storm-tossed sea, turn to page 6.
+
+If you choose the second book, with the sunlit path, turn to page 12.
+
+        </article>
+        <article className='chapter'>
+          <header>
+            <h2 className='chapter-number'>Chapter 2</h2>       
+            <h3 className='chapter-title'>The Enchanted Entrance</h3>       
           </header>
 
     <p>
