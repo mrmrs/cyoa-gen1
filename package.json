@@ -9,10 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "canvas": "^2.11.0",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
+    "konva": "^8.4.3",
     "next": "13.2.4",
+    "next-transpile-modules": "^10.0.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-konva": "^18.2.5"
   }
 }
