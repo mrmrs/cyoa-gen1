@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Cormorant  as Font } from 'next/font/google'
-import BookCoverEnchantedMap from '../components/book-cover-enchanted-map'
+import EnchantedMapCover from '../components/book-cover-enchanted-map'
 
 const font = Font({ weight: '400', subsets: ['latin'] })
 
@@ -61,7 +61,7 @@ As you hold the books, you notice that their covers seem to shift and change, as
 If you choose the first book, with the storm-tossed sea, turn to page 6.
 
 If you choose the second book, with the sunlit path, turn to page 12.
-<div style={{maxWidth: '100%', height: 'auto', aspectRatio: '5/7', outline: '1px solid', marginTop: '2em'}}><BookCoverEnchantedMap /></div>
+<div style={{maxWidth: '100%', height: 'auto', aspectRatio: '5/7', outline: '1px solid', marginTop: '2em'}}><EnchantedMapCover /></div>
 
         </article>
         <article className='chapter'>
