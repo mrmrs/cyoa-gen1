@@ -1,35 +1,43 @@
 import React, { useEffect, useState } from 'react';
 
 const EnchantedMapCover = () => {
-  const [lines, setLines] = useState([]);
+  const [paths, setPaths] = useState([]);
   const [circles, setCircles] = useState([]);
+  const [labels, setLabels] = useState([]);
   const [paperTexture, setPaperTexture] = useState('');
 
   useEffect(() => {
-    const newLines = [];
+    const newPaths = [];
     const newCircles = [];
+    const newLabels = [];
 
-    const numPoints = 16;
+    const numPoints = 5;
     const padding = 50;
-    const width = 500;
-    const height = 700;
+    const width = 1000;
+    const height = 1400;
 
     const randomPoint = () => ({
       x: padding + Math.random() * (width - padding * 2),
       y: padding + Math.random() * (height - padding * 2),
     });
 
+    const placeNames = ['Alden', 'Bryston', 'Caventon', 'Darnia', 'Eldwick'];
+
     for (let i = 0; i < numPoints; i++) {
       const point = randomPoint();
       newCircles.push(point);
+      newLabels.push({ ...point, text: placeNames[i] });
 
       if (i > 0) {
-        newLines.push({ p1: newCircles[i - 1], p2: point });
+        const controlPoint = randomPoint();
+        const d = `M${newCircles[i - 1].x},${newCircles[i - 1].y} Q${controlPoint.x},${controlPoint.y} ${point.x},${point.y}`;
+        newPaths.push({ d });
       }
     }
 
-    setLines(newLines);
+    setPaths(newPaths);
     setCircles(newCircles);
+    setLabels(newLabels);
 
     const textureOptions = [
       '/path/to/texture1.png',
@@ -40,18 +48,17 @@ const EnchantedMapCover = () => {
   }, []);
 
   return (
-    <div style={{ position: 'relative', backgroundColor: '#f4e9d9', backgroundImage: `url(${paperTexture})` }}>
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox='0 0 500 700'>
-        {lines.map((line, index) => (
-          <line
-            key={`line-${index}`}
-            x1={line.p1.x}
-            y1={line.p1.y}
-            x2={line.p2.x}
-            y2={line.p2.y}
+    <div style={{ position: 'relative', width: '100%', height: '100%', backgroundColor: '#f4e9d9', backgroundImage: `url(${paperTexture})` }}>
+      <svg width="1000" height="1400" xmlns="http://www.w3.org/2000/svg" style={{maxWidth: '100%', height: '100%',}}>
+        {paths.map((path, index) => (
+          <path
+            key={`path-${index}`}
+            d={path.d}
+            fill="none"
             strokeWidth="2"
             strokeDasharray={Math.random() > 0.5 ? '5,5' : '2,6'}
             stroke="rgba(0, 0, 0, 0.5)"
+            style={{ animation: `dash 6s ${index * 1.2}s linear infinite` }}
           />
         ))}
         {circles.map((circle, index) => (
@@ -64,14 +71,34 @@ const EnchantedMapCover = () => {
             style={{ animation: `star-pulse 3s ${Math.random() * 3}s infinite` }}
           />
         ))}
-      </svg>
+        {labels.map((label, index) => (
+          <text
+            key={`label-${index}`}
+            x={label.x + 8}
+            y={label.y + 4}
+            fontFamily="serif"
+            fontSize="12"
+            fill="rgba(0, 0, 0, 0.7)"
+          >
+            {label.text}
+          </text>
+        ))}
+    </svg>
       <style>{`
         @keyframes star-pulse {
           0%, 100% {
-            opacity: 0;
+            opacity: 1;
           }
           50% {
-            opacity: 1;
+            opacity: 0.5;
+          }
+        }
+        @keyframes dash {
+          0% {
+            stroke-dashoffset: 100%;
+          }
+          100% {
+            stroke-dashoffset: 0;
           }
         }
       `}</style>
