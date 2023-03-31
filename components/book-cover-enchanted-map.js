@@ -1,77 +1,74 @@
-// components/EnchantedMapCover.js
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
-const generateStars = (numStars) => {
-  const stars = [];
-  for (let i = 0; i < numStars; i++) {
-    const x = getRandomInt(0, 100);
-    const y = getRandomInt(0, 100);
-    const r = getRandomInt(1, 3);
-    stars.push({ x, y, r });
-  }
-  return stars;
-};
-
-const generateLines = (stars) => {
-  const lines = [];
-  for (let i = 0; i < stars.length; i += 2) {
-    if (stars[i + 1]) {
-      lines.push({ x1: stars[i].x, y1: stars[i].y, x2: stars[i + 1].x, y2: stars[i + 1].y });
-    }
-  }
-  return lines;
-};
-
-const BookCoverEnchantedMap = () => {
-  const [stars, setStars] = useState(generateStars(50));
-  const [lines, setLines] = useState(generateLines(stars));
-  const [color, setColor] = useState(`hsla(${getRandomInt(30, 50)}, ${getRandomInt(30, 50)}%, ${getRandomInt(20, 40)}%, 1)`);
+const EnchantedMapCover = () => {
+  const [lines, setLines] = useState([]);
+  const [circles, setCircles] = useState([]);
+  const [paperTexture, setPaperTexture] = useState('');
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setColor(`hsla(${getRandomInt(30, 50)}, ${getRandomInt(30, 50)}%, ${getRandomInt(20, 40)}%, 1)`);
-    }, 10000);
-    return () => clearInterval(interval);
+    const newLines = [];
+    const newCircles = [];
+
+    const numPoints = 16;
+    const padding = 50;
+    const width = 500;
+    const height = 700;
+
+    const randomPoint = () => ({
+      x: padding + Math.random() * (width - padding * 2),
+      y: padding + Math.random() * (height - padding * 2),
+    });
+
+    for (let i = 0; i < numPoints; i++) {
+      const point = randomPoint();
+      newCircles.push(point);
+
+      if (i > 0) {
+        newLines.push({ p1: newCircles[i - 1], p2: point });
+      }
+    }
+
+    setLines(newLines);
+    setCircles(newCircles);
+
+    const textureOptions = [
+      '/path/to/texture1.png',
+      '/path/to/texture2.png',
+      '/path/to/texture3.png',
+    ];
+    setPaperTexture(textureOptions[Math.floor(Math.random() * textureOptions.length)]);
   }, []);
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
-      {lines.map((line, idx) => (
-        <div
-          key={idx}
-          style={{
-            position: "absolute",
-            left: `${line.x1}%`,
-            top: `${line.y1}%`,
-            width: `${Math.abs(line.x2 - line.x1)}%`,
-            height: `${Math.abs(line.y2 - line.y1)}%`,
-            borderTop: `1px ${idx % 2 === 0 ? "dashed" : "dotted"} ${color}`,
-            transform: `rotate(${Math.atan2(line.y2 - line.y1, line.x2 - line.x1)}rad)`,
-            transformOrigin: "top left",
-          }}
-        />
-      ))}
-      {stars.map((star, idx) => (
-        <div
-          key={idx}
-          style={{
-            position: "absolute",
-            left: `${star.x}%`,
-            top: `${star.y}%`,
-            width: `${star.r * 2}px`,
-            height: `${star.r * 2}px`,
-            borderRadius: "50%",
-            backgroundColor: color,
-            animation: `star-pulse ${getRandomInt(5, 15)}s infinite`,
-          }}
-        />
-      ))}
-      <style jsx>{`
+    <div style={{ position: 'relative', backgroundColor: '#f4e9d9', backgroundImage: `url(${paperTexture})` }}>
+      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox='0 0 500 700'>
+        {lines.map((line, index) => (
+          <line
+            key={`line-${index}`}
+            x1={line.p1.x}
+            y1={line.p1.y}
+            x2={line.p2.x}
+            y2={line.p2.y}
+            strokeWidth="2"
+            strokeDasharray={Math.random() > 0.5 ? '5,5' : '2,6'}
+            stroke="rgba(0, 0, 0, 0.5)"
+          />
+        ))}
+        {circles.map((circle, index) => (
+          <circle
+            key={`circle-${index}`}
+            cx={circle.x}
+            cy={circle.y}
+            r="5"
+            fill="rgba(0, 0, 0, 0.5)"
+            style={{ animation: `star-pulse 3s ${Math.random() * 3}s infinite` }}
+          />
+        ))}
+      </svg>
+      <style>{`
         @keyframes star-pulse {
           0%, 100% {
-            opacity: 0.8;
+            opacity: 0;
           }
           50% {
             opacity: 1;
@@ -82,4 +79,4 @@ const BookCoverEnchantedMap = () => {
   );
 };
 
-export default BookCoverEnchantedMap;
+export default EnchantedMapCover;
