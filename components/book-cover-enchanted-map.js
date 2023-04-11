@@ -1,109 +1,181 @@
 import React, { useEffect, useState } from 'react';
+import { randomInt} from '../lib/random'
 
-const EnchantedMapCover = () => {
-  const [paths, setPaths] = useState([]);
-  const [circles, setCircles] = useState([]);
-  const [labels, setLabels] = useState([]);
-  const [paperTexture, setPaperTexture] = useState('');
+const EnchantedBookCover = () => {
 
-  useEffect(() => {
-    const newPaths = [];
-    const newCircles = [];
-    const newLabels = [];
+    const height = 1410 
+    const width = 1000
 
-    const numPoints = 5;
-    const padding = 50;
-    const width = 1000;
-    const height = 1400;
+    const stroke = 'inherit'
+    const strokeWidth = 8
+    const fill = 'transparent'
+    const unit = 6
 
-    const randomPoint = () => ({
-      x: padding + Math.random() * (width - padding * 2),
-      y: padding + Math.random() * (height - padding * 2),
-    });
-
-    const placeNames = ['Alden', 'Bryston', 'Caventon', 'Darnia', 'Eldwick'];
-
-    for (let i = 0; i < numPoints; i++) {
-      const point = randomPoint();
-      newCircles.push(point);
-      newLabels.push({ ...point, text: placeNames[i] });
-
-      if (i > 0) {
-        const controlPoint = randomPoint();
-        const d = `M${newCircles[i - 1].x},${newCircles[i - 1].y} Q${controlPoint.x},${controlPoint.y} ${point.x},${point.y}`;
-        newPaths.push({ d });
-      }
-    }
-
-    setPaths(newPaths);
-    setCircles(newCircles);
-    setLabels(newLabels);
-
-    const textureOptions = [
-      '/path/to/texture1.png',
-      '/path/to/texture2.png',
-      '/path/to/texture3.png',
-    ];
-    setPaperTexture(textureOptions[Math.floor(Math.random() * textureOptions.length)]);
-  }, []);
-
-  return (
-    <div style={{ position: 'relative', width: '100%', height: '100%', backgroundColor: '#f4e9d9', backgroundImage: `url(${paperTexture})` }}>
-      <svg width="1000" height="1400" xmlns="http://www.w3.org/2000/svg" style={{maxWidth: '100%', height: '100%',}}>
-        {paths.map((path, index) => (
-          <path
-            key={`path-${index}`}
-            d={path.d}
-            fill="none"
-            strokeWidth="2"
-            strokeDasharray={Math.random() > 0.5 ? '5,5' : '2,6'}
-            stroke="rgba(0, 0, 0, 0.5)"
-            style={{ animation: `dash 6s ${index * 1.2}s linear infinite` }}
-          />
-        ))}
-        {circles.map((circle, index) => (
-          <circle
-            key={`circle-${index}`}
-            cx={circle.x}
-            cy={circle.y}
-            r="5"
-            fill="rgba(0, 0, 0, 0.5)"
-            style={{ animation: `star-pulse 3s ${Math.random() * 3}s infinite` }}
-          />
-        ))}
-        {labels.map((label, index) => (
-          <text
-            key={`label-${index}`}
-            x={label.x + 8}
-            y={label.y + 4}
-            fontFamily="serif"
-            fontSize="12"
-            fill="rgba(0, 0, 0, 0.7)"
-          >
-            {label.text}
-          </text>
-        ))}
-    </svg>
-      <style>{`
-        @keyframes star-pulse {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-        @keyframes dash {
-          0% {
-            stroke-dashoffset: 100%;
-          }
-          100% {
-            stroke-dashoffset: 0;
-          }
-        }
-      `}</style>
-    </div>
+    return (
+      <div style={{ padding: '64px', backgroundColor: 'rgba(128,128,'+randomInt(0,255)+',1)', backgroundImage: 'url(https://mrmrs.github.io/photos/leather2.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'overlay'  }}>
+      <svg viewBox={'0 0 '+width+' '+height}  stroke='white' width='1000' height='1410' style={{ mixBlendMode: 'overlay', overflow: 'visible', display: 'block', width: '100%', height: 'auto' }}>
+        <rect 
+          strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+          strokeDashoffset={randomInt(0,100)+'%'} 
+          width={width - strokeWidth}
+          height={height - strokeWidth}
+          x='0'
+          y='0'
+          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite' }}
+      />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 1) - strokeWidth}
+        height={height - (unit * 8 * 1) - strokeWidth}
+        x={unit * 4 * 1}
+        y={unit * 4 * 1}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 2) - strokeWidth}
+        height={height - (unit * 8 * 2) - strokeWidth}
+        x={unit * 4 * 2}
+        y={unit * 4 * 2}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 3) - strokeWidth}
+        height={height - (unit * 8 * 3) - strokeWidth}
+        x={unit * 4 * 3}
+        y={unit * 4 * 3}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 4) - strokeWidth}
+        height={height - (unit * 8 * 4) - strokeWidth}
+        x={unit * 4 * 4}
+        y={unit * 4 * 4}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 5) - strokeWidth}
+        height={height - (unit * 8 * 5) - strokeWidth}
+        x={unit * 4 * 5}
+        y={unit * 4 * 5}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,200)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 6) - strokeWidth}
+        height={height - (unit * 8 * 6) - strokeWidth}
+        x={unit * 4 * 6}
+        y={unit * 4 * 6}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 7) - strokeWidth}
+        height={height - (unit * 8 * 7) - strokeWidth}
+        x={unit * 4 * 7}
+        y={unit * 4 * 7}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 8) - strokeWidth}
+        height={height - (unit * 8 * 8) - strokeWidth}
+        x={unit * 4 * 8}
+        y={unit * 4 * 8}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 9) - strokeWidth}
+        height={height - (unit * 8 * 9) - strokeWidth}
+        x={unit * 4 * 9}
+        y={unit * 4 * 9}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 10) - strokeWidth}
+        height={height - (unit * 8 * 10) - strokeWidth}
+        x={unit * 4 * 10}
+        y={unit * 4 * 10}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 11) - strokeWidth}
+        height={height - (unit * 8 * 11) - strokeWidth}
+        x={unit * 4 * 11}
+        y={unit * 4 * 11}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 12) - strokeWidth}
+        height={height - (unit * 8 * 12) - strokeWidth}
+        x={unit * 4 * 12}
+        y={unit * 4 * 12}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 13) - strokeWidth}
+        height={height - (unit * 8 * 13) - strokeWidth}
+        x={unit * 4 * 13}
+        y={unit * 4 * 13}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 14) - strokeWidth}
+        height={height - (unit * 8 * 14) - strokeWidth}
+        x={unit * 4 * 14}
+        y={unit * 4 * 14}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
+    />
+      <rect 
+        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDashoffset={randomInt(0,100)+'%'} 
+        width={width - (unit * 8 * 15) - strokeWidth}
+        height={height - (unit * 8 * 15) - strokeWidth}
+        x={unit * 4 * 15}
+        y={unit * 4 * 15}
+        fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
+        style={{ animation: 'dash 10s alternate ease-in-out infinite forwards' }}
+    />
+      </svg>
+      </div>
   );
 };
 
-export default EnchantedMapCover;
+export default EnchantedBookCover;

@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Cormorant  as Font } from 'next/font/google'
-import EnchantedMapCover from '../components/book-cover-enchanted-map'
+import { Cardo  as Font } from 'next/font/google'
+import EnchantedBookCover from '../components/book-cover-enchanted-map'
+import EnchantedBookCover2 from '../components/book-cover-2'
+
 
 const font = Font({ weight: '400', subsets: ['latin'] })
 
@@ -14,57 +16,103 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className={font.className}>
         <header className='header'>
           <h1 className='book-title'>The Generative Enigma: A Castle of Creative Conundrums</h1>
         </header>
         <article className='chapter'>
           <header>
             <h2 className='chapter-number'>Chapter 1</h2>       
-            <h3 className='chapter-title'>The Rain</h3>       
+            <h3 className='chapter-title'>The Storm</h3>       
           </header>
-    <p>
-  You can&apos;t help but eavesdrop on the conversations around you as the train rolls towards the platform. Everyone seems to be talking about one thing. The storm of the century. &quot;It&apos;s supposed to be a real gullywasher&quot; says the man sitting behind you. &quot;No way it will be worse than that frog-strangler we had in &apos;59&quot;, &quot;they had to evacuate the whole town!&quot; &quot;They said it&apos;ll be the worst storm in 1000 years&quot; &quot;How do they know how bad the storms were a thousand years ago?&quot; &quot;I don&apos;t know how they know I just know they know&quot;. &quot;I heard it&apos;s going to be the worst storm in years,&quot; you hear a woman say a few rows up. You shift uncomfortably in your seat. Wondering if you&apos;re really prepared for what&apos;s to come.
+<p>
+  You can't say the train conductor didn't warn you. "It's going to be the storm of the century they say. Maybe the worst in a thousand years."
+</p>
+<p>
+  "Can't be worse than '59" you heard a passenger comment under their breath.
+</p>
+<p>
+The first drops of rain fell as you stepped off the train. It was hardly drizzling when you left the station and walking hadn't seemed like the worst idea at the time. But now you're starting to think you had made a mistake. The drizzle had turned into a downpour and you were getting soaked. 
+
+You pull your jacket closer around you. "This is ridiculous," you mutter, "I can't believe I brought an umbrella instead of a boat"
+
+
+That's when you spotted the old bookshop, tucked away in a corner of the village. The lights were on, and through the rain-streaked windows, you could see the shadowy outline of the bookshelves and the flickering flames of a fireplace. Without a second thought, you pushed open the door and stepped inside.
+The air inside was musty and thick with the smell of old books, but it was warm and inviting, a welcome relief from the raging storm outside. You shook yourself like a wet dog, sending droplets of water flying in all directions.
+"Goodness gracious me, what a sight!" The voice came from behind a counter, and you turned to see an old woman peering at you through thick spectacles. She was small and plump, with a mass of gray hair tied up in a bun.
+"Sorry," you said, feeling embarrassed. "I didn't mean to make a mess."
+"Nonsense," the woman said, her eyes twinkling. "A bit of water never hurt anyone. Now come closer, my dear, and let me get a good look at you."
+You approached the counter, and the woman studied you intently. "You're not from around here, are you?"
+"Can I help you with something?" she asked, her eyes roving over the shelves behind her.
+"I was just looking for a place to wait out the storm," you said. "I don't want to be caught out in it."
+"Ah, well, you've come to the right place," she said, reaching under the counter and pulling out a thick woolen blanket. "Wrap yourself up in this and make yourself comfortable. I'll put the kettle on and we can have a cup of tea while we wait for the storm to pass."
+You couldn't help but feel grateful for the woman's kindness. As you settled into a cozy armchair by the fire, she bustled about, making tea and bringing out plates of biscuits. You felt a sense of peace settle over you, and for a moment, the raging storm outside seemed like a world away.
+As you sipped your tea and nibbled on a biscuit, the old woman began to chat away, telling you all sorts of stories and anecdotes about the village and its inhabitants. You listened with rapt attention, fascinated by her colorful descriptions of the local characters and their exploits.
     </p>
-<p>
-  As you step off the train into the drizzling rain, you feel a sense of anticipation. There&apos;s something thrilling about being out in the midst of a storm. You just hope you make it to your aunt&apos;s before it gets too bad. You set out house, determined to brave whatever the weather has in store. The streets are nearly empty, with only a few other brave souls venturing out into the deluge. You check your pocketwatch and move it to the inside of your jacket to protect it from the rain. It&apos;s 2:12. You should be able to make it within 20 minutes if you don&apos;t get lost. 
-</p> 
-<p> You begin to navigate the town&apos;s streets, making your way toward your Aunt&apos;s house. At every turn, the rain appears to gain confidence, transforming from an innocent drizzle into a persistent shower. &quot;Well, this is just perfect,&quot; you muse, trying to shield yourself from the increasingly aggressive raindrops with one hand while clutching your luggage with the other.
-</p>
-<p>
-  As the rain intensifies, you try to recall if there was a more direct route to your aunt&apos;s house. The soggy map in your pocket is now about as helpful as a chocolate teapot. &quot;If only I had listened to my mom when she insisted on teaching me the town&apos;s shortcuts,&quot; you lament, shaking your head at your own stubbornness. The rain is coming down harder now, and the wind is making it difficult to see.
-</p>
-<p>
-  A flickering light in a nearby window catches your eye. The warm, golden glow emanates from an old, dusty bookshop that appears to defy the storm outside, its windows adorned with a curious array of books, trinkets, and an owl perched on a stack of tomes.
-</p>
-<p>
-Seeking refuge from the weather, you push open the door, a bell chiming softly overhead. The musty scent of old paper, leather, and something else (maybe cinnamon?) fills your nostrils as you step inside. Your eyes linger on the owl, its head tilting curiously as it watches you.
-    </p>
-<p>
-&quot;You must be here for the storm,&quot; an elderly woman speaks from behind a counter, her voice warm and welcoming. You start to open your jacket to shake off the water you&apos;ve collected since the station. She glances at the pocket watch hanging from your inside pocket coat. &quot;That&apos;s a beautiful timepiece you have there,&quot; she comments, her eyes twinkling with interest.
-    </p>
-    <p>&quot;Thanks, it was my great-grandfathers.&quot; you say, &quot;I&apos;m here to visit my aunt, she lives in his old house up on Sea Rd.&quot;</p>
-<p>
-    Her eyes twinkle with the promise of adventure and intrigue. &quot;It&apos;s a good thing you came in. You&apos;ll catch your death out there in this dreadful weather! Now give me that coat and I&apos;ll hang it by the fire to dry&quot;
-</p>
-<p>
-She disappears for a moment into the shadowy depths of the store, only to return with two books in her hands.
-</p>
-<p>
-  &quot;Here,&quot; she says, offering you the books. &quot;Choose wisely, for each holds a different tale.&quot;
-</p>
-<p>
-As you hold the books, you notice that their covers seem to shift and change, as though telling a story of their own. The first book&apos;s cover shows a storm-tossed sea with a ship struggling against the waves, while the second book features a sunlit path leading into an enchanted forest. The decision is yours, and with it, the story that will unfold.
-</p>
 
 
-If you choose the first book, with the storm-tossed sea, turn to page 6.
+<p>
+  "I've always found books to be the best companions in times like these. "
+  </p>
+  <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em' }}>
+    <EnchantedBookCover />
+    <EnchantedBookCover2 />
+  </section>
 
-If you choose the second book, with the sunlit path, turn to page 12.
-<div style={{maxWidth: '100%', height: 'auto', aspectRatio: '5/7', outline: '1px solid', marginTop: '2em'}}><EnchantedMapCover /></div>
 
+<div style={{display: 'none'}}>
+Hello there, dear," the old woman behind the counter says, her eyes twinkling with amusement. "What brings you out in this dreadful weather?"
+"My aunt's house is just up the road, and I didn't think the weather would be this bad," you reply.
+The old woman nods sympathetically. "I know, dear. It's the storm of the century. But don't worry, you're safe here. Now, let me take your coat and dry it by the fire. And while you're here, would you like to browse some books? I have quite the selection."
+As you browse through the shelves, you can't help but notice the odd assortment of books. Some are old and tattered, while others seem to have been recently added. One book in particular catches your eye, a thick leather-bound tome with strange symbols etch
+
+You slip and slide, struggling to keep your footing
+
+"Easy there," a voice says from the shadows. "I'm not here to hurt you." You squint into the darkness, trying to make out the stranger's face. "I'm just looking for some shelter from this damned storm."
+
+The old woman handed you the second book and pointed towards the back of the store. "Take this path," she said, "and follow it through the woods. It will lead you to where you need to go."
+You hesitated for a moment, but the storm outside was raging, and you had nowhere else to go. You took the book and followed the old woman's instructions. The path was narrow, the trees bending under the weight of the rain, but you could see just enough to keep moving forward.
+
+It's pouring down rain as you make your way towards your Aunt's house. The weather is so terrible that you can barely see two feet in front of you. You pull your coat closer to your body, wishing you had listened to your mother and brought an umbrella.
+As you walk, you notice a small, cozy bookstore on the corner of the street. The sign above the door reads "Belladonna's Books." You decide to take refuge from the storm inside.
+
+Here's an expanded version as Shel Silverstein:
+You could tell it was going to be a big one from the way the sky was growling and the trees were swaying.
+
+You were startled by the sound of a voice behind you. "Can I help you with anything?" you turned to see an old woman peering at you curiously. Her eyes were bright and her smile was warm, but you sensed there was something unusual about her. "I'm just looking," you replied, trying to hide your curiosity.
+
+"My mother used to always say that the secret to a good pie is a dash of cinnamon"
+
+
+
+
+"Welcome, dear," a voice calls from the back of the store. You make your way down the narrow aisle and find an elderly woman seated behind a counter, surrounded by stacks of books and various trinkets. "The storm has caught you, hasn't it?"
+
+"I've always found books to be the best companions in times like these."
+
+
+
+You meander through the store, running your fingers over the spines of books, pausing to read the titles and descriptions. As you reach the back of the store, your attention is drawn to a small section of books that appear older and more mysterious than the others. You reach out to take one of the books from the shelf, but before you can, the woman's voice interrupts you.
+"Ah, those books are not for sale," she says, her eyes meeting yours. "They are special. They hold secrets and stories that are not meant for just anyone."
+Intrigued, you ask her about the books. She leans in conspiratorially and tells you that they are books of magic and mystery, books that hold the power to transport the reader to other worlds and times. She tells you that she has lived a long life, and that she has been the keeper of these books for as long as she can remember.
+
+
+The old woman raises an eyebrow. "You never know, dear. The storm has a way of bringing out the magic in things."
+You're not sure what she means by that, but you shrug it off and continue browsing. You're just about to leave when the old woman hands you two books.
+
+The old woman directs you to a narrow, winding path that leads through the forest. She tells you that it's a shortcut to your aunt's house, but warns you to be careful as the trail can be treacherous, especially in bad weather. She hands you a sturdy walking stick and tells you that it might come in handy.
+You set out down the path, the sound of raindrops pattering against the leaves overhead. The air is thick with the scent of damp earth and pine needles. As you round a bend in the trail, you see a figure up ahead, huddled under a tree. It's a young girl, no more than ten years old, and she's shivering in her soaking wet clothes.
+You ask the girl if she needs help, and she nods gratefully. She tells you that she was out playing in the woods when the storm hit, and she got separated from her family. You offer her your coat and the two of you set out together, the walking stick thudding against the muddy ground as you make your way deeper into the forest.
+
+
+As you make your way down the winding path, you hear the sound of rushing water in the distance. You follow the sound and soon come across a fast-flowing river, swollen with rainwater. There's no way to cross it, and you're stranded on the wrong side.
+Just when you think all is lost, you hear a voice calling out to you from across the river. It's a gruff, elderly man with a thick beard and a weather-beaten face. He tells you that he has a small boat that he can use to ferry you across the river, but warns you that the journey will be dangerous. You decide to take your chances, and soon find yourself clinging to the sides of the tiny boat as it bobs and weaves through the rapids.
+    </div>
+          <footer>
+
+          </footer>
         </article>
-        <article className='chapter'>
+        <article className='chapter' style={{display: 'none'}}>
           <header>
             <h2 className='chapter-number'>Chapter 2</h2>       
             <h3 className='chapter-title'>The Enchanted Entrance</h3>       
