@@ -66,10 +66,17 @@ As you sipped your tea and nibbled on a biscuit, the old woman began to chat awa
 
 <p>
   &quot;I&apos;ve always found books to be the best companions in times like these. &quot;
-  </p>
+</p>
+
   <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em' }} onClick={(e) => regenerateClick()}>
-    <EnchantedBookCover bgColor={randomColor()} />
-    <EnchantedBookCover2 />
+    <div>
+      <EnchantedBookCover bgColor={randomColor()} />
+      <a style={{ display: 'block', padding: '8px 0'}} href='#'>Take this book</a>
+    </div>
+    <div>
+      <EnchantedBookCover2 />
+      <a style={{ display: 'block', padding: '8px 0'}} href='#'>Take this book</a>
+    </div>
   </section>
 
 
