@@ -12,10 +12,10 @@ const EnchantedBookCover = () => {
     const unit = 6
 
     return (
-      <div style={{ padding: '32px', backgroundColor: 'rgba(128,128,'+randomInt(0,255)+',1)', backgroundImage: 'url(https://mrmrs.github.io/photos/leather2.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'overlay'  }}>
+      <div style={{ padding: '32px', backgroundColor: 'rgba(128,128,'+randomInt(0,255)+',1)', backgroundImage: 'url(https://mrmrs.github.io/photos/leather.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'overlay'  }}>
       <svg viewBox={'0 0 '+width+' '+height}  stroke='white' width='1000' height='1410' style={{ mixBlendMode: 'overlay', overflow: 'visible', display: 'block', width: '100%', height: 'auto' }}>
         <rect 
-          strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+          strokeDasharray={'100% '+randomInt(0,60)+'%'} 
           strokeDashoffset={randomInt(0,100)+'%'} 
           width={width - strokeWidth}
           height={height - strokeWidth}
@@ -24,7 +24,7 @@ const EnchantedBookCover = () => {
           style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite' }}
       />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 1) - strokeWidth}
         height={height - (unit * 8 * 1) - strokeWidth}
@@ -34,7 +34,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 2) - strokeWidth}
         height={height - (unit * 8 * 2) - strokeWidth}
@@ -44,7 +44,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 3) - strokeWidth}
         height={height - (unit * 8 * 3) - strokeWidth}
@@ -54,7 +54,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 4) - strokeWidth}
         height={height - (unit * 8 * 4) - strokeWidth}
@@ -64,7 +64,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 5) - strokeWidth}
         height={height - (unit * 8 * 5) - strokeWidth}
@@ -74,7 +74,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,200)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,200)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 6) - strokeWidth}
         height={height - (unit * 8 * 6) - strokeWidth}
@@ -84,7 +84,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 7) - strokeWidth}
         height={height - (unit * 8 * 7) - strokeWidth}
@@ -94,7 +94,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 8) - strokeWidth}
         height={height - (unit * 8 * 8) - strokeWidth}
@@ -104,7 +104,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 9) - strokeWidth}
         height={height - (unit * 8 * 9) - strokeWidth}
@@ -114,7 +114,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 10) - strokeWidth}
         height={height - (unit * 8 * 10) - strokeWidth}
@@ -124,7 +124,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 11) - strokeWidth}
         height={height - (unit * 8 * 11) - strokeWidth}
@@ -134,7 +134,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 12) - strokeWidth}
         height={height - (unit * 8 * 12) - strokeWidth}
@@ -144,7 +144,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 13) - strokeWidth}
         height={height - (unit * 8 * 13) - strokeWidth}
@@ -154,7 +154,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 14) - strokeWidth}
         height={height - (unit * 8 * 14) - strokeWidth}
@@ -164,7 +164,7 @@ const EnchantedBookCover = () => {
           style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
-        strokeDasharray={'190% '+randomInt(0,60)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,60)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         width={width - (unit * 8 * 15) - strokeWidth}
         height={height - (unit * 8 * 15) - strokeWidth}
