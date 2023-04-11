@@ -153,3 +153,15 @@ html {
     stroke-dashoffset: 0%;
   }
 }
+
+@keyframes backgroundPulse {
+  0% {
+    background-size: 100%;  
+  }
+  50% {
+    background-size: 110%;
+  }
+  100% {
+    background-size: 100%;
+  }
+}

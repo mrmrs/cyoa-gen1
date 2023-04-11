@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { randomInt} from '../lib/random'
 
-const EnchantedBookCover = () => {
+const EnchantedBookCover = ({ fill = 'transparent', }) => {
 
     const height = 1410 
     const width = 1000
 
     const stroke = 'inherit'
-    const strokeWidth = 8
-    const fill = 'transparent'
+    const strokeWidth = randomInt(2,16)
     const unit = 6
 
     return (
-      <div style={{ padding: '32px', backgroundColor: 'rgba(128,128,'+randomInt(0,255)+',1)', backgroundImage: 'url(https://mrmrs.github.io/photos/leather2.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'overlay'  }}>
-      <svg viewBox={'0 0 '+width+' '+height}  stroke='white' width='1000' height='1410' style={{ mixBlendMode: 'overlay', overflow: 'visible', display: 'block', width: '100%', height: 'auto' }}>
+      <div style={{ transition: 'background-color .5s ease-in', padding: '32px', backgroundColor: 'rgba(128,128,'+randomInt(0,255)+',1)', backgroundImage: 'url(https://mrmrs.github.io/photos/leather2.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'overlay'  }}>
+      <svg viewBox={'0 0 '+width+' '+height}  stroke='white' width='1000' height='1410' style={{ transition: 'all .5s ease-in', mixBlendMode: 'overlay', overflow: 'visible', display: 'block', width: '100%', height: 'auto' }}>
         <rect 
           strokeDasharray={'100% '+randomInt(0,60)+'%'} 
           strokeDashoffset={randomInt(0,100)+'%'} 

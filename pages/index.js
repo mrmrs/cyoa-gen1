@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
+import randomColor from 'random-hex-color'
 import { Cardo  as Font } from 'next/font/google'
 import EnchantedBookCover from '../components/book-cover-enchanted-map'
 import EnchantedBookCover2 from '../components/book-cover-2'
@@ -8,6 +10,17 @@ import EnchantedBookCover2 from '../components/book-cover-2'
 const font = Font({ weight: '400', subsets: ['latin'] })
 
 export default function Home() {
+
+  // Book 1 & 2
+  const [bgColor, setBgColor] = useState(randomColor())
+
+  const [bgColor2, setBgColor2] = useState(randomColor())
+
+  const regenerateClick = () => {
+    setBgColor(randomColor())
+    setBgColor2(randomColor())
+  }
+
   return (
     <>
       <Head>
@@ -20,19 +33,19 @@ export default function Home() {
         <header className='header'>
           <h1 className='book-title'>The Generative Enigma: A Castle of Creative Conundrums</h1>
         </header>
-        <article className='chapter'>
+        <article className='chapter' style={{ paddingBottom: '256px' }}>
           <header>
             <h2 className='chapter-number'>Chapter 1</h2>       
             <h3 className='chapter-title'>The Storm</h3>       
           </header>
 <p>
-  You can&apos;t say the train conductor didn&apos;t warn you. &quot;It&apos;s going to be the storm of the century they say. Maybe the worst in a thousand years.&quot;
+  You can&apos;t say the train conductor didn&apos;t warn you.
+</p> 
+<p>
+  &quot;It&apos;s going to be the storm of the century they say. Maybe the worst in a thousand years.&quot;
 </p>
 <p>
-  &quot;Can&apos;t be worse than &apos;59&quot; you heard a passenger comment under their breath.
-</p>
-<p>
-The first drops of rain fell as you stepped off the train. It was hardly drizzling when you left the station and walking hadn&apos;t seemed like the worst idea at the time. But now you&apos;re starting to think you had made a mistake. The drizzle had turned into a downpour and you were getting soaked. 
+  It was hardly drizzling when you left the station and walking hadn&apos;t seemed like the worst idea at the time. But now you&apos;re starting to think you had made a mistake. The light drizzle had turned into a downpour and you were getting soaked. 
 
 You pull your jacket closer around you. &quot;This is ridiculous,&quot; you mutter, &quot;I can&apos;t believe I brought an umbrella instead of a boat&quot;
 
@@ -54,8 +67,8 @@ As you sipped your tea and nibbled on a biscuit, the old woman began to chat awa
 <p>
   &quot;I&apos;ve always found books to be the best companions in times like these. &quot;
   </p>
-  <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em' }}>
-    <EnchantedBookCover />
+  <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em' }} onClick={(e) => regenerateClick()}>
+    <EnchantedBookCover bgColor={randomColor()} />
     <EnchantedBookCover2 />
   </section>
 
