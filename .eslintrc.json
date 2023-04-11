@@ -3,6 +3,6 @@
   "rules": {
     "avoidEscape": 0,
     "quotes": "off",
-    "react/no-unescaped-entites": 0
+    "react/no-unescaped-entites": "off"
   }
 }
