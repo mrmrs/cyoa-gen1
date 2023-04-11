@@ -150,6 +150,6 @@ html {
 
 @keyframes dash {
   to {
-    stroke-dashoffset: 0;
+    stroke-dashoffset: 0%;
   }
 }
