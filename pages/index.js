@@ -71,11 +71,11 @@ As you sipped your tea and nibbled on a biscuit, the old woman began to chat awa
   <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em' }} onClick={(e) => regenerateClick()}>
     <div>
       <EnchantedBookCover bgColor={randomColor()} />
-      <a style={{ display: 'block', padding: '8px 0'}} href='#'>Take this book</a>
+      <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
     </div>
     <div>
       <EnchantedBookCover2 />
-      <a style={{ display: 'block', padding: '8px 0'}} href='#'>Take this book</a>
+      <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
     </div>
   </section>
 
