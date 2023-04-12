@@ -15,14 +15,14 @@ export default function Home() {
   // Book 1 & 2
   const [bgColor, setBgColor] = useState( 'rgba('+randomInt(0,255)+',128, 128,1)')
   const [bgColor2, setBgColor2] = useState(randomColor())
-  const [maxLimit, setMaxLimit] = useState(randomInt(50,150))
+  const [maxLimit, setMaxLimit] = useState(randomInt(50,400))
   const [strokeWidth, setStrokeWidth] = useState(randomInt(4,32))
 
   const regenerateClick = () => {
     setBgColor( 'rgba('+randomInt(0,255)+',128, 128,1)')
     setBgColor2(randomColor())
-    setMaxLimit(randomInt(50,150))
-    setStrokeWidth(randomInt(4,16))
+    setMaxLimit(randomInt(50,400))
+    setStrokeWidth(randomInt(4,32))
   }
 
   return (
@@ -72,7 +72,7 @@ As you sipped your tea and nibbled on a biscuit, the old woman began to chat awa
   &quot;I&apos;ve always found books to be the best companions in times like these. &quot;
 </p>
 
-  <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em' }} onClick={(e) => regenerateClick()}>
+  <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1em' }} onClick={(e) => regenerateClick()}>
     <div>
       <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} />
       <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
