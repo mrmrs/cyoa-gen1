@@ -159,7 +159,6 @@ const EnchantedBookCover2 = () => {
         cx={width / 2}
         cy={height / 2}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-        style={{ animation: 'dash 10s alternate ease-in-out infinite forwards' }}
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       </svg>
