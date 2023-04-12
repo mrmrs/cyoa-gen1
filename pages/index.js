@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import randomColor from 'random-hex-color'
 import { Cardo  as Font } from 'next/font/google'
+import { randomInt } from '../lib/random'
 import EnchantedBookCover from '../components/book-cover-enchanted-map'
 import EnchantedBookCover2 from '../components/book-cover-2'
 
@@ -12,13 +13,16 @@ const font = Font({ weight: '400', subsets: ['latin'] })
 export default function Home() {
 
   // Book 1 & 2
-  const [bgColor, setBgColor] = useState(randomColor())
-
+  const [bgColor, setBgColor] = useState( 'rgba('+randomInt(0,255)+',128, 128,1)')
   const [bgColor2, setBgColor2] = useState(randomColor())
+  const [maxLimit, setMaxLimit] = useState(randomInt(50,150))
+  const [strokeWidth, setStrokeWidth] = useState(randomInt(4,32))
 
   const regenerateClick = () => {
-    setBgColor(randomColor())
+    setBgColor( 'rgba('+randomInt(0,255)+',128, 128,1)')
     setBgColor2(randomColor())
+    setMaxLimit(randomInt(50,150))
+    setStrokeWidth(randomInt(4,16))
   }
 
   return (
@@ -70,11 +74,11 @@ As you sipped your tea and nibbled on a biscuit, the old woman began to chat awa
 
   <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1em' }} onClick={(e) => regenerateClick()}>
     <div>
-      <EnchantedBookCover bgColor={randomColor()} />
+      <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} />
       <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
     </div>
     <div>
-      <EnchantedBookCover2 />
+      <EnchantedBookCover2 maxLimit={maxLimit} strokeWidth={strokeWidth} bgColor={bgColor} />
       <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
     </div>
   </section>

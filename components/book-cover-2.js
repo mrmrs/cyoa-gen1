@@ -2,21 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { randomInt} from '../lib/random'
 
 
-const EnchantedBookCover2 = () => {
+const EnchantedBookCover2 = ({ bgColor, color = 'red', maxLimit = randomInt(50,150), strokeWidth = randomInt(4,24)}) => {
 
     const height = 1410 
     const width = 1000
 
     const stroke = 'inherit'
-    const strokeWidth = randomInt(4,24)
     const fill = 'transparent'
     const unit = 4
 
     return (
-      <div style={{ transition: 'background-color 1s ease-in', padding: '32px', backgroundColor: 'rgba('+randomInt(0,255)+',128, 128,1)', backgroundImage: 'url(https://mrmrs.github.io/photos/leather2.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'overlay'  }}>
+      <div style={{ transition: 'background-color 1s ease-in', padding: '32px', backgroundColor: bgColor, backgroundImage: 'url(https://mrmrs.github.io/photos/leather2.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'darken'  }}>
       <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{transition: 'all 1s ease-in', mixBlendMode: 'overlay', overflow: 'hidden', display: 'block', width: '100%', height: 'auto' }}>
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 1) - strokeWidth}
         cx={width / 2}
@@ -25,7 +24,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 2) - strokeWidth}
         cx={width / 2}
@@ -34,7 +33,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 3) - strokeWidth}
         cx={width / 2}
@@ -43,7 +42,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 4) - strokeWidth}
         cx={width / 2}
@@ -52,7 +51,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 5) - strokeWidth}
         cx={width / 2}
@@ -61,7 +60,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 6) - strokeWidth}
         //cx={unit * 4 * 1}
@@ -72,7 +71,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 7) - strokeWidth}
         cx={width / 2}
@@ -81,7 +80,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 8) - strokeWidth}
         cx={width / 2}
@@ -90,7 +89,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 9) - strokeWidth}
         cx={width / 2}
@@ -99,7 +98,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 10) - strokeWidth}
         cx={width / 2}
@@ -108,7 +107,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 11) - strokeWidth}
         cx={width / 2}
@@ -117,7 +116,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 12) - strokeWidth}
         cx={width / 2}
@@ -126,7 +125,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 13) - strokeWidth}
         cx={width / 2}
@@ -135,7 +134,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 14) - strokeWidth}
         cx={width / 2}
@@ -144,7 +143,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 15) - strokeWidth}
         cx={width / 2}
@@ -153,7 +152,7 @@ const EnchantedBookCover2 = () => {
         style={{ transition: 'stroke-width .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       <circle 
-        strokeDasharray={'100% '+randomInt(0,100)+'%'} 
+        strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
         r={ width / 2 - (unit * 8 * 16) - strokeWidth}
         cx={width / 2}
