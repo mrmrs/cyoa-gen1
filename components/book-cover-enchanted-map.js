@@ -12,7 +12,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
 
     return (
       <div style={{ transition: 'background-color 1s ease-in', padding: '32px', backgroundColor: 'rgba(128,128,'+randomInt(0,255)+',1)', backgroundImage: 'url(https://mrmrs.github.io/photos/leather2.jpg)', backgroundSize: 'cover', backgroundBlendMode: 'overlay'  }}>
-      <svg viewBox={'0 0 '+width+' '+height}  stroke='white' width='1000' height='1410' style={{ transition: 'all 1s ease-in', mixBlendMode: 'overlay', overflow: 'visible', display: 'block', width: '100%', height: 'auto' }}>
+      <svg viewBox={'0 0 '+width+' '+height}  stroke='white' width='1000' height='1410' style={{ transition: 'all .5s ease-in', mixBlendMode: 'overlay', overflow: 'visible', display: 'block', width: '100%', height: 'auto' }}>
         <rect 
           strokeDasharray={'100% '+randomInt(0,60)+'%'} 
           strokeDashoffset={randomInt(0,100)+'%'} 
@@ -20,7 +20,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
           height={height - strokeWidth}
           x='0'
           y='0'
-          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite' }}
       />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -30,7 +30,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 1}
         y={unit * 4 * 1}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -40,7 +40,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 2}
         y={unit * 4 * 2}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -50,7 +50,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 3}
         y={unit * 4 * 3}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -60,7 +60,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 4}
         y={unit * 4 * 4}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -70,7 +70,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 5}
         y={unit * 4 * 5}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,200)+'%'} 
@@ -80,7 +80,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 6}
         y={unit * 4 * 6}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -90,7 +90,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 7}
         y={unit * 4 * 7}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -100,7 +100,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 8}
         y={unit * 4 * 8}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -110,7 +110,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 9}
         y={unit * 4 * 9}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-          style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -120,7 +120,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 10}
         y={unit * 4 * 10}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-        style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -130,7 +130,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 11}
         y={unit * 4 * 11}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-        style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -140,7 +140,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 12}
         y={unit * 4 * 12}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-        style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -150,7 +150,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 13}
         y={unit * 4 * 13}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-        style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -160,7 +160,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 14}
         y={unit * 4 * 14}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-        style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+          style={{ animation: 'dash 10s alternate ease-in-out infinite' }}
     />
       <rect 
         strokeDasharray={'100% '+randomInt(0,60)+'%'} 
@@ -170,7 +170,7 @@ const EnchantedBookCover = ({ fill = 'transparent', }) => {
         x={unit * 4 * 15}
         y={unit * 4 * 15}
         fill={fill} stroke={stroke} strokeWidth={strokeWidth} 
-        style={{ fill: fill, stroke: stroke, strokeWidth: strokeWidth, animation: 'dash 10s alternate ease-in-out alternate-reverse infinite', transition: 'stroke-width .5s ease' }}
+        style={{ animation: 'dash 10s alternate ease-in-out infinite forwards' }}
     />
       </svg>
       </div>
