@@ -165,3 +165,9 @@ html {
     background-size: 100%;
   }
 }
+
+.chapter svg rect,
+.chapter svg circle,
+.chapter svg path {
+  transition: stroke-width 1s ease;
+}
