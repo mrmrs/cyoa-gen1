@@ -18,6 +18,7 @@ export default function Home() {
   const [bgColor2, setBgColor2] = useState(randomColor())
   const [maxLimit, setMaxLimit] = useState(randomInt(50,400))
   const [strokeWidth, setStrokeWidth] = useState(randomInt(8,16))
+  const [colorsInt, setColorsInt] = useState(randomInt(0,100))
   const [palette, setPalette] = useState(
     [
       bgColor,
@@ -45,43 +46,44 @@ export default function Home() {
     setMaxLimit(randomInt(50,400))
     setStrokeWidth(randomInt(8,16))
     const baseColor = randomColor()
-    const randomColors = randomInt(1,100)
+    setColorsInt(randomInt(1,100))
+    const newPalette = chroma.scale([baseColor, randomColor()]).mode('lab').colors(16)
     setPalette(
-      randomColors > 50?
+      colorsInt > 50?
       [
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
-        randomColor(),
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
       ] : [
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
-        baseColor,
+        newPalette[0],
+        newPalette[1],
+        newPalette[2],
+        newPalette[3],
+        newPalette[4],
+        newPalette[5],
+        newPalette[6],
+        newPalette[7],
+        newPalette[8],
+        newPalette[9],
+        newPalette[10],
+        newPalette[11],
+        newPalette[12],
+        newPalette[13],
+        newPalette[14],
+        newPalette[15],
       ]
     )
   }
@@ -104,12 +106,11 @@ export default function Home() {
             <h3 className='chapter-title'>The Train, the Storm, &amp; the Bookshop</h3>       
           </header>
     <p>
-    The elderly woman smiles as she places two books on the timeworn desk between you. 
-    Both books have seen better days, their covers weathered and pages yellowed, but each possesses its own unique charm. As you look more closesly you see the covers seem alive, almost in sync with eachother. Changing every time you touch them.
+    The old woman smiles as she places two books on the timeworn desk between you. 
+    Both books have seen better days, their covers weathered and pages yellowed, yet each holds a distint allure. As you examping them more closely, you notice the covers appear to be alive, shiftig in tandem as if connected by some otherworldly force.  
     </p>
-
     <p>
-      &quot;I&apos;ve always found books to be the best companion at times like these. You may take one of these with you, my dear, but only one&quot; she says,
+      &quot;I&apos;ve always found books to be the best companions at times like these. You can take one of these with you, my dear, but only one,&quot; she says.
     </p>
     <p>
       Which book do you take?
