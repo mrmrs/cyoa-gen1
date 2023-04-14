@@ -140,9 +140,14 @@ html {
 }
 
 .chapter .chapter-title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
+  text-transform: uppercase;
+  border-bottom: 1px solid black;
+  padding-bottom: 1em;
+  margin-bottom: 2em;
 }
+
 .chapter p {
   margin-bottom: 1em;
   line-height: 1.3;

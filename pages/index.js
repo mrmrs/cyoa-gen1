@@ -101,8 +101,33 @@ export default function Home() {
         <article className='chapter' style={{ paddingBottom: '256px' }}>
           <header>
             <h2 className='chapter-number'>Chapter 1</h2>       
-            <h3 className='chapter-title'>The Storm</h3>       
+            <h3 className='chapter-title'>The Train, the Storm, &amp; the Bookshop</h3>       
           </header>
+    <p>
+
+The elderly woman smiles as she places two books on the timeworn desk between you. <br />"I've always found books to be the best companion at times like these"<br />
+    Both books have seen better days, their covers weathered and pages yellowed, but each possesses its own unique charm. As you look more closesly you see the covers seem alive, almost in sync with eachother. Changing every time you touch them.
+    </p>
+
+    <p>
+      "You may take one of these books with you, my dear," she says,
+    </p>
+    <p>
+      Which book do you take?
+    </p>
+  <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1em' }} onClick={(e) => regenerateClick()}>
+    <div>
+      <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
+    </div>
+    <div>
+      <EnchantedBookCover2 maxLimit={maxLimit} strokeWidth={strokeWidth} bgColor={bgColor} colors={palette} />
+      <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
+    </div>
+  </section>
+
+
+<div style={{display: 'none'}}>
 <p>
   You can&apos;t say the train conductor didn&apos;t warn you.
 </p> 
@@ -133,19 +158,6 @@ As you sipped your tea and nibbled on a biscuit, the old woman began to chat awa
   &quot;I&apos;ve always found books to be the best companions in times like these. &quot;
 </p>
 
-  <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1em' }} onClick={(e) => regenerateClick()}>
-    <div>
-      <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
-    </div>
-    <div>
-      <EnchantedBookCover2 maxLimit={maxLimit} strokeWidth={strokeWidth} bgColor={bgColor} colors={palette} />
-      <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
-    </div>
-  </section>
-
-
-<div style={{display: 'none'}}>
 Hello there, dear,&quot; the old woman behind the counter says, her eyes twinkling with amusement. &quot;What brings you out in this dreadful weather?&quot;
 &quot;My aunt&apos;s house is just up the road, and I didn&apos;t think the weather would be this bad,&quot; you reply.
 The old woman nods sympathetically. &quot;I know, dear. It&apos;s the storm of the century. But don&apos;t worry, you&apos;re safe here. Now, let me take your coat and dry it by the fire. And while you&apos;re here, would you like to browse some books? I have quite the selection.&quot;
