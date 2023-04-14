@@ -109,7 +109,7 @@ export default function Home() {
     </p>
 
     <p>
-      "I've always found books to be the best companion at times like these. You may take one of these with you, my dear, but only one" she says,
+      &quot;I&apos;ve always found books to be the best companion at times like these. You may take one of these with you, my dear, but only one&quot; she says,
     </p>
     <p>
       Which book do you take?
