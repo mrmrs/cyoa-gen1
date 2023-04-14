@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
 import randomColor from 'random-hex-color'
+import chroma from 'chroma-js'
 import { Cardo  as Font } from 'next/font/google'
 import { randomInt } from '../lib/random'
 import EnchantedBookCover from '../components/book-cover-enchanted-map'
@@ -13,16 +14,76 @@ const font = Font({ weight: '400', subsets: ['latin'] })
 export default function Home() {
 
   // Book 1 & 2
-  const [bgColor, setBgColor] = useState( 'rgba('+randomInt(0,255)+',128, 128,1)')
+  const [bgColor, setBgColor] = useState('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
   const [bgColor2, setBgColor2] = useState(randomColor())
   const [maxLimit, setMaxLimit] = useState(randomInt(50,400))
-  const [strokeWidth, setStrokeWidth] = useState(randomInt(4,32))
+  const [strokeWidth, setStrokeWidth] = useState(randomInt(8,16))
+  const [palette, setPalette] = useState(
+    [
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+      bgColor,
+    ]
+  )
 
   const regenerateClick = () => {
-    setBgColor( 'rgba('+randomInt(0,255)+',128, 128,1)')
+    setBgColor('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
     setBgColor2(randomColor())
     setMaxLimit(randomInt(50,400))
-    setStrokeWidth(randomInt(4,32))
+    setStrokeWidth(randomInt(8,16))
+    const baseColor = randomColor()
+    const randomColors = randomInt(1,100)
+    setPalette(
+      randomColors > 50?
+      [
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+        randomColor(),
+      ] : [
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+        baseColor,
+      ]
+    )
   }
 
   return (
@@ -74,11 +135,11 @@ As you sipped your tea and nibbled on a biscuit, the old woman began to chat awa
 
   <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1em' }} onClick={(e) => regenerateClick()}>
     <div>
-      <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} />
+      <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
     </div>
     <div>
-      <EnchantedBookCover2 maxLimit={maxLimit} strokeWidth={strokeWidth} bgColor={bgColor} />
+      <EnchantedBookCover2 maxLimit={maxLimit} strokeWidth={strokeWidth} bgColor={bgColor} colors={palette} />
       <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
     </div>
   </section>
