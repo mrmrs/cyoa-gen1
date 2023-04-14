@@ -104,13 +104,12 @@ export default function Home() {
             <h3 className='chapter-title'>The Train, the Storm, &amp; the Bookshop</h3>       
           </header>
     <p>
-
-The elderly woman smiles as she places two books on the timeworn desk between you. <br />"I've always found books to be the best companion at times like these"<br />
+    The elderly woman smiles as she places two books on the timeworn desk between you. 
     Both books have seen better days, their covers weathered and pages yellowed, but each possesses its own unique charm. As you look more closesly you see the covers seem alive, almost in sync with eachother. Changing every time you touch them.
     </p>
 
     <p>
-      "You may take one of these books with you, my dear," she says,
+      "I've always found books to be the best companion at times like these. You may take one of these with you, my dear, but only one" she says,
     </p>
     <p>
       Which book do you take?
