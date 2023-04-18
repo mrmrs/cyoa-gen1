@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import randomColor from 'random-hex-color'
 import chroma from 'chroma-js'
+import {sample} from 'lodash'
 import { Cardo  as Font } from 'next/font/google'
 import { randomInt } from '../lib/random'
 import EnchantedBookCover from '../components/book-cover-enchanted-map'
@@ -19,6 +20,7 @@ export default function Home() {
   const [maxLimit, setMaxLimit] = useState(randomInt(50,400))
   const [strokeWidth, setStrokeWidth] = useState(randomInt(8,16))
   const [colorsInt, setColorsInt] = useState(randomInt(0,100))
+  const [mode, setMode] = useState(sample(['lab', 'lch']))
   const [palette, setPalette] = useState(
     [
       bgColor,
@@ -47,9 +49,10 @@ export default function Home() {
     setStrokeWidth(randomInt(8,16))
     const baseColor = randomColor()
     setColorsInt(randomInt(1,100))
-    const newPalette = chroma.scale([baseColor, randomColor()]).mode('lab').colors(16)
+    const newPalette = colorsInt < 30? chroma.scale([randomColor(), baseColor, randomColor(), randomColor()]).mode(mode).colors(16) : chroma.scale([chroma(baseColor).darken(4), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16)
+    setMode(sample(['lch', 'lab']))
     setPalette(
-      colorsInt > 50?
+      colorsInt > 80?
       [
         baseColor,
         baseColor,

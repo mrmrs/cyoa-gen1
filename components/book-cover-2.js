@@ -12,7 +12,7 @@ const EnchantedBookCover2 = ({ colors, bgColor, color = 'red', maxLimit = random
     const unit = 4
 
     return (
-      <div style={{ transition: 'background-color 1s ease-in', padding: '32px', backgroundColor: bgColor, backgroundImage: 'url(https://mrmrs.github.io/photos/leather2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center center', backgroundBlendMode: 'none'  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{transition: 'all 1s ease-in', mixBlendMode: 'overlay', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
+      <div style={{ transition: 'background-color 1s ease-in', backgroundColor: bgColor, backgroundImage: 'url(https://mrmrs.github.io/photos/leather2.jpg)', backgroundSize: '110%', backgroundPosition: 'center center', backgroundBlendMode: 'none'  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{padding: '48px', transition: 'all 1s ease-in', backgroundColor: 'rgba(250,250,24,.95)',backgroundBlendMode: 'darken',  mixBlendMode: 'overlay', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
       <circle 
         strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
