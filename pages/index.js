@@ -46,13 +46,20 @@ export default function Home() {
     setBgColor('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
     setBgColor2(randomColor())
     setMaxLimit(randomInt(50,400))
-    setStrokeWidth(randomInt(8,16))
+    setStrokeWidth(sample([4,4,4,4,6,8,8,8,8,16,64]))
     const baseColor = randomColor()
     setColorsInt(randomInt(1,100))
-    const newPalette = colorsInt < 30? chroma.scale([randomColor(), baseColor, randomColor(), randomColor()]).mode(mode).colors(16) : chroma.scale([chroma(baseColor).darken(4), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16)
+    const newPalette = sample([
+      chroma.scale([randomColor(), baseColor, randomColor(), randomColor()]).mode(mode).colors(16),
+      chroma.scale([chroma(baseColor).darken(3), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16),
+      chroma.scale([chroma(baseColor).brighten(4), baseColor, chroma(baseColor).darken(3)]).mode(mode).colors(16),
+      [ '#FF355E', '#FD5B78', '#FF6037', '#FF9966', '#FFCC33', '#CCFF00', '#66FF66', '#AAF0D1', '#50BFE6', '#FF6EFF', '#732E6C', '#363958', '#5E2D79', '#4B0082', '#2E0854', '#FF9933'  ],
+      [ '#FF4F4F', '#FF7A4F', '#FFAE4F', '#FFD84F', '#E5FF4F', '#B2FF4F', '#7FFF4F', '#4FFF6B', '#4FFFA5', '#4FFFDF', '#4FD8FF', '#4FA7FF', '#4F76FF', '#644FFF', '#B24FFF', '#FF4FF7', ],
+  [ '#E63946', '#F1C453', '#A8DADC', '#457B9D', '#1D3557', '#FFB6B9', '#CB997E', '#6D6875', '#2A9D8F', '#E9C46A', '#F4A261', '#5EAAA8', '#DD6E42', '#4F5D75', '#9A8C98', '#C08497', ],
+    ])
     setMode(sample(['lch', 'lab']))
     setPalette(
-      colorsInt > 80?
+      colorsInt > 90?
       [
         baseColor,
         baseColor,
