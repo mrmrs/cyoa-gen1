@@ -151,7 +151,7 @@ export default function Home() {
     <p>
       Which book do you take?
     </p>
-  <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1em' }} onClick={(e) => regenerateClick()}>
+<section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1em' }} onClick={(e) => regenerateClick()}>
     <div>
       <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
@@ -161,7 +161,6 @@ export default function Home() {
       <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
     </div>
   </section>
-
 
 <div style={{display: 'none'}}>
 <p>
@@ -245,6 +244,8 @@ Just when you think all is lost, you hear a voice calling out to you from across
 
           </footer>
         </article>
+
+  
         <article className='chapter' style={{display: 'none'}}>
           <header>
             <h2 className='chapter-number'>Chapter 2</h2>       
