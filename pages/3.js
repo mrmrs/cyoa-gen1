@@ -13,13 +13,12 @@ import EnchantedBookCover2 from '../components/book-cover-2'
 const font = Font({ weight: '400', subsets: ['latin'] })
 
 export default function Home() {
-  const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
 
   // Book 1 & 2
   const [bgColor, setBgColor] = useState('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
   const [bgColor2, setBgColor2] = useState(randomColor())
   const [maxLimit, setMaxLimit] = useState(randomInt(50,400))
-  const [strokeWidth, setStrokeWidth] = useState(sample([4,4,4,4,6,6,6,6,6,8,8,16,64]))
+  const [strokeWidth, setStrokeWidth] = useState(randomInt(8,16))
   const [colorsInt, setColorsInt] = useState(randomInt(0,100))
   const [mode, setMode] = useState(sample(['lab', 'lch']))
   const [palette, setPalette] = useState(
@@ -44,8 +43,6 @@ export default function Home() {
   )
 
   const regenerateClick = () => {
-    setGeneratedDesignCount(generatedDesignCount+1)
-    //console.log(generatedDesignCount)
     setBgColor('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
     setBgColor2(randomColor())
     setMaxLimit(randomInt(50,400))
@@ -56,31 +53,8 @@ export default function Home() {
       chroma.scale([randomColor(), baseColor, randomColor(), randomColor()]).mode(mode).colors(16),
       chroma.scale([chroma(baseColor).darken(3), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16),
       chroma.scale([chroma(baseColor).brighten(4), baseColor, chroma(baseColor).darken(3)]).mode(mode).colors(16),
-      chroma.scale(['#ff4f4f', baseColor, '#644fff']).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(208,100%,20%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(208,60%,20%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(260,100%,20%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(260,60%,20%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([ '#FF4F4F', '#FF7A4F', '#7FFF4F', '#4FD8FF', '#644FFF' ]).mode(mode).colors(16),
       [ '#FF355E', '#FD5B78', '#FF6037', '#FF9966', '#FFCC33', '#CCFF00', '#66FF66', '#AAF0D1', '#50BFE6', '#FF6EFF', '#732E6C', '#363958', '#5E2D79', '#4B0082', '#2E0854', '#FF9933'  ],
-      [ 
-        '#FF4F4F', 
-        '#644FFF', 
-        '#FF7A4F', 
-        '#4FD8FF', 
-        '#FFD84F', 
-        '#4FA7FF', 
-        '#E5FF4F', 
-        '#4FFFDF', 
-        '#B2FF4F', 
-        '#B24FFF', 
-        '#7FFF4F', 
-        '#FF4FF7', 
-        '#4FFF6B', 
-        '#4F76FF', 
-        '#4FFFA5', 
-        '#FFAE4F', 
-      ],
+      [ '#FF4F4F', '#FF7A4F', '#FFAE4F', '#FFD84F', '#E5FF4F', '#B2FF4F', '#7FFF4F', '#4FFF6B', '#4FFFA5', '#4FFFDF', '#4FD8FF', '#4FA7FF', '#4F76FF', '#644FFF', '#B24FFF', '#FF4FF7', ],
   [ '#E63946', '#F1C453', '#A8DADC', '#457B9D', '#1D3557', '#FFB6B9', '#CB997E', '#6D6875', '#2A9D8F', '#E9C46A', '#F4A261', '#5EAAA8', '#DD6E42', '#4F5D75', '#9A8C98', '#C08497', ],
     ])
     setMode(sample(['lch', 'lab']))
