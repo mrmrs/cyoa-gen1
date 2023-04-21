@@ -151,7 +151,7 @@ export default function Home() {
     <p>
       Which book do you take?
     </p>
-<section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1em' }} onClick={(e) => regenerateClick()}>
+<section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '0rem' }} onClick={(e) => regenerateClick()}>
     <div>
       <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
