@@ -143,7 +143,7 @@ export default function Home() {
           </header>
     <p>
     The old woman smiles as she places two books on the timeworn desk between you. 
-    Both books have seen better days, their covers weathered and pages yellowed, yet each holds a distint allure. As you examping them more closely, you notice the covers appear to be alive, shiftig in tandem as if connected by some otherworldly force.  
+    Both books have seen better days, their covers weathered and pages yellowed, yet each holds a distint allure. As you examping them more closely, you notice the covers appear to be alive, shifting in tandem as if connected by some otherworldly force.  
     </p>
     <p>
       &quot;I&apos;ve always found books to be the best companions at times like these. You can take one of these with you, my dear, but only one,&quot; she says.
