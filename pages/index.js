@@ -9,11 +9,42 @@ import { randomInt } from '../lib/random'
 import EnchantedBookCover from '../components/book-cover-enchanted-map'
 import EnchantedBookCover2 from '../components/book-cover-2'
 
+const messages = [
+"There are three primary colors: red, blue, and yellow. All other colors can be created by mixing these three.",
+"Colors can affect our emotions and mood, with warm colors like red and orange evoking energy, while cool colors like blue and green promote calmness.",
+"The color wheel, invented by Sir Isaac Newton, is a visual representation of the relationships between colors.",
+"Complementary colors are those that are opposite each other on the color wheel, such as blue and orange or red and green.",
+"Colors can be described by their hue, saturation, and brightness, which are the main components of color theory.",
+"Tetrachromacy is a rare condition in which a person has four types of color receptors in their eyes, allowing them to see more colors than the average person.",
+"The most common geometric shapes are circles, squares, triangles, and rectangles.",
+"Polygons are shapes with straight sides, and the number of sides determines their specific name, such as pentagon (5 sides) or hexagon (6 sides).",
+"The golden ratio is a mathematical concept often found in nature and art, where the proportion of two quantities is approximately 1.618.",
+"Sacred geometry is the study of geometric shapes and their symbolic meanings in various spiritual and religious contexts.",
+"A Mobius strip is a shape with only one surface and one edge, often used as a symbol of infinity.",
+"Tessellations are patterns formed by repeating shapes that fit together perfectly without any gaps or overlaps.",
+"A fractal is a geometric shape that can be divided into smaller parts, each of which is a reduced-scale copy of the whole.",
+"The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, often found in nature and art.",
+"Anamorphic art uses geometric shapes and perspective to create illusions that can only be seen from specific viewpoints.",
+"The Pantone Color Matching System is a standardized system for identifying and matching colors used in various industries.",
+"Color blindness is a condition where a person has difficulty distinguishing certain colors, most commonly red and green.",
+"Negative space is the area surrounding the main subject of a design or artwork, often used to create interesting shapes and compositions.",
+"The rule of thirds is a compositional principle that divides an image into a 3x3 grid, suggesting that placing subjects along the lines or intersections creates a more balanced and visually appealing composition.",
+"The RGB color model is used in electronic displays and represents colors as a combination of red, green, and blue light.",
+"The CMYK color model is used in printing and represents colors as a combination of cyan, magenta, yellow, and black ink.",
+"Monochromatic color schemes use different shades, tints, and tones of a single color for a harmonious and visually appealing effect.",
+"Analogous color schemes use colors that are adjacent to each other on the color wheel, creating a sense of harmony and unity.",
+"A trapezoid is a quadrilateral with at least one pair of parallel sides.",
+"The study of shapes and their properties is called geometry, a branch of mathematics.",
+"A sphere is a three-dimensional shape with all points equidistant from a central point.",
+"A cube is a three-dimensional shape with six equal square faces.",
+"The Platonic solids are a group of five regular polyhedra, including the tetrahedron, cube, octahedron, dodecahedron, and icosahedron.",
+]
 
 const font = Font({ weight: '400', subsets: ['latin'] })
 
 export default function Home() {
   const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
+  const [messageIndex, setMessageIndex] = useState(-1)
 
   // Book 1 & 2
   const [bgColor, setBgColor] = useState('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
@@ -44,7 +75,13 @@ export default function Home() {
   )
 
   const regenerateClick = () => {
-    setGeneratedDesignCount(generatedDesignCount+1)
+    const newCount = generatedDesignCount +1
+    setGeneratedDesignCount(newCount)
+
+    if (newCount % 10 === 0) {
+      setMessageIndex((messageIndex + 1 ) % messages.length)
+    }
+
     //console.log(generatedDesignCount)
     setBgColor('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
     setBgColor2(randomColor())
@@ -132,7 +169,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={font.className}>
+      <main className={font.className} style={{ position: 'relative' }}>
         <header className='header'>
           <h1 className='book-title'>The Generative Enigma: A Castle of Creative Conundrums</h1>
         </header>
@@ -151,6 +188,7 @@ export default function Home() {
     <p>
       Which book do you take?
     </p>
+    <div style={{ position: 'relative' }}>
 <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '0rem' }} onClick={(e) => regenerateClick()}>
     <div>
       <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
@@ -161,6 +199,23 @@ export default function Home() {
       <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
     </div>
   </section>
+ {messageIndex >= 0 && <p style={{
+     position: 'sticky',
+     right: 0,
+     left: 0,
+     top: 0,
+     padding: '16px',
+     fontSize: '16px',
+     marginBottom: 0,
+     marginTop: '4em',
+     fontStyle: 'italic',
+     maxWidth: '34em',
+     marginLeft: 'auto', 
+     marginRight: 'auto',
+ }}>
+   {messages[messageIndex]}
+   </p>}
+    </div>
 
 <div style={{display: 'none'}}>
 <p>
