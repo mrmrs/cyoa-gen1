@@ -189,7 +189,7 @@ export default function Home() {
    <kbd style={{ padding: '16px',height: '64px', width: '64px', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{generatedDesignCount}</kbd> <p style={{ textAlign: 'right', flexGrow: 1, paddingRight: '16px', }}>{messages[messageIndex]}</p>
    </header>}
           
-<section style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
+<section style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
       <Sketch1 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch2 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch3 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
