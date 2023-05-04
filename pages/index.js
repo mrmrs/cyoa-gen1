@@ -10,6 +10,7 @@ import EnchantedBookCover from '../components/book-cover-enchanted-map'
 import EnchantedBookCover2 from '../components/book-cover-2'
 
 const messages = [
+"As you touch the book you realize the possibilities ahead are endless...",
 "There are three primary colors: red, blue, and yellow. All other colors can be created by mixing these three.",
 "Colors can affect our emotions and mood, with warm colors like red and orange evoking energy, while cool colors like blue and green promote calmness.",
 "The color wheel, invented by Sir Isaac Newton, is a visual representation of the relationships between colors.",
@@ -78,7 +79,7 @@ export default function Home() {
     const newCount = generatedDesignCount +1
     setGeneratedDesignCount(newCount)
 
-    if (newCount % 10 === 0) {
+    if (newCount % 10 === 0 || newCount === 1) {
       setMessageIndex((messageIndex + 1 ) % messages.length)
     }
 
@@ -90,14 +91,17 @@ export default function Home() {
     const baseColor = randomColor()
     setColorsInt(randomInt(1,100))
     const newPalette = sample([
+      chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
+      chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
+      chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
       chroma.scale([randomColor(), baseColor, randomColor(), randomColor()]).mode(mode).colors(16),
-      chroma.scale([chroma(baseColor).darken(3), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16),
-      chroma.scale([chroma(baseColor).brighten(4), baseColor, chroma(baseColor).darken(3)]).mode(mode).colors(16),
+      chroma.scale([chroma(baseColor).darken(4), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16),
+      chroma.scale([chroma(baseColor).brighten(4), baseColor, chroma(baseColor).darken(4)]).mode(mode).colors(16),
       chroma.scale(['#ff4f4f', baseColor, '#644fff']).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(208,100%,20%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(208,60%,20%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(260,100%,20%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(260,60%,20%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
+      chroma.scale([chroma('hsla(208,100%,10%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
+      chroma.scale([chroma('hsla(208,60%,10%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
+      chroma.scale([chroma('hsla(260,100%,10%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
+      chroma.scale([chroma('hsla(260,60%,10%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
       chroma.scale([ '#FF4F4F', '#FF7A4F', '#7FFF4F', '#4FD8FF', '#644FFF' ]).mode(mode).colors(16),
       [ '#FF355E', '#FD5B78', '#FF6037', '#FF9966', '#FFCC33', '#CCFF00', '#66FF66', '#AAF0D1', '#50BFE6', '#FF6EFF', '#732E6C', '#363958', '#5E2D79', '#4B0082', '#2E0854', '#FF9933'  ],
       [ 
@@ -122,7 +126,7 @@ export default function Home() {
     ])
     setMode(sample(['lch', 'lab']))
     setPalette(
-      colorsInt > 90?
+      colorsInt > 94?
       [
         baseColor,
         baseColor,
