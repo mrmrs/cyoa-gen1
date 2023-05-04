@@ -4,7 +4,6 @@ import Image from 'next/image'
 import randomColor from 'random-hex-color'
 import chroma from 'chroma-js'
 import {sample} from 'lodash'
-import { Cardo  as Font } from 'next/font/google'
 import { randomInt } from '../lib/random'
 import Sketch1 from '../components/sketch-1'
 import Sketch1a from '../components/sketch-1a'
@@ -18,6 +17,7 @@ import Sketch8 from '../components/sketch-8'
 import Sketch9 from '../components/sketch-9'
 import Sketch10 from '../components/sketch-10'
 import Sketch11 from '../components/sketch-11'
+import Sketch12 from '../components/sketch-12'
 
 const messages = [
 "It seems the possibilities are endless",
@@ -50,8 +50,6 @@ const messages = [
 "A cube is a three-dimensional shape with six equal square faces.",
 "The Platonic solids are a group of five regular polyhedra, including the tetrahedron, cube, octahedron, dodecahedron, and icosahedron.",
 ]
-
-const font = Font({ weight: '400', subsets: ['latin'] })
 
 export default function Home() {
   const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
@@ -99,11 +97,11 @@ export default function Home() {
       setMessageIndex((messageIndex + 1 ) % messages.length)
     }
 
-    //console.log(generatedDesignCount)
     setBgColor('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
     setBgColor2(randomColor())
     setMaxLimit(randomInt(50,400))
     setStrokeWidth(sample([4,4,4,4,6,8,8,8,8,16,64]))
+
     //grid
     setRows(randomInt(1,32))
     setCols(randomInt(1,32))
@@ -119,28 +117,10 @@ export default function Home() {
       chroma.scale(['#ff4f4f', baseColor, '#644fff']).mode(mode).colors(16),
       chroma.scale([chroma('hsla(208,100%,10%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
       chroma.scale([chroma('hsla(208,60%,10%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(260,100%,10%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(260,60%,10%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
+      chroma.scale([chroma('hsla(290,100%,10%,1)'), chroma('hsla(320,100%,90%,1)')]).mode(mode).colors(16),
+      chroma.scale([chroma('hsla(260,60%,10%,1)'), chroma('hsla(290,60%,90%,1)')]).mode(mode).colors(16),
       chroma.scale([ '#FF4F4F', '#FF7A4F', '#7FFF4F', '#4FD8FF', '#644FFF' ]).mode(mode).colors(16),
       [ '#FF355E', '#FD5B78', '#FF6037', '#FF9966', '#FFCC33', '#CCFF00', '#66FF66', '#AAF0D1', '#50BFE6', '#FF6EFF', '#732E6C', '#363958', '#5E2D79', '#4B0082', '#2E0854', '#FF9933'  ],
-      [ 
-        '#FF4F4F', 
-        '#644FFF', 
-        '#FF7A4F', 
-        '#4FD8FF', 
-        '#FFD84F', 
-        '#4FA7FF', 
-        '#E5FF4F', 
-        '#4FFFDF', 
-        '#B2FF4F', 
-        '#B24FFF', 
-        '#7FFF4F', 
-        '#FF4FF7', 
-        '#4FFF6B', 
-        '#4F76FF', 
-        '#4FFFA5', 
-        '#FFAE4F', 
-      ],
   [ '#E63946', '#F1C453', '#A8DADC', '#457B9D', '#1D3557', '#FFB6B9', '#CB997E', '#6D6875', '#2A9D8F', '#E9C46A', '#F4A261', '#5EAAA8', '#DD6E42', '#4F5D75', '#9A8C98', '#C08497', ],
     ])
     setMode(sample(['lch', 'lab']))
@@ -192,7 +172,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={font.className} style={{ position: 'relative' }}>
+      <main style={{ position: 'relative' }}>
  {messageIndex >= 0 && <header style={{
      position: 'sticky',
      right: 0,
@@ -209,7 +189,7 @@ export default function Home() {
    <kbd style={{ padding: '16px',height: '64px', width: '64px', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{generatedDesignCount}</kbd> <p style={{ textAlign: 'right', flexGrow: 1, paddingRight: '16px', }}>{messages[messageIndex]}</p>
    </header>}
           
-<section style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
+<section style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(480px, 1fr))', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
       <Sketch1 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch2 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch3 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
@@ -220,13 +200,9 @@ export default function Home() {
       <Sketch8 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch9 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch10 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch11 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}
-      rows={rows} cols={cols}
-    />
-  </section>
-
-
-
+      <Sketch11 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+      <Sketch12 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+    </section>
       </main>
     </>
   )
