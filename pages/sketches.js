@@ -5,6 +5,8 @@ import randomColor from 'random-hex-color'
 import chroma from 'chroma-js'
 import {sample} from 'lodash'
 import { randomInt } from '../lib/random'
+import Sketch0 from '../components/sketch-0'
+import Sketch0a from '../components/sketch-0a'
 import Sketch1 from '../components/sketch-1'
 import Sketch1a from '../components/sketch-1a'
 import Sketch2 from '../components/sketch-2'
@@ -17,6 +19,7 @@ import Sketch8 from '../components/sketch-8'
 import Sketch9 from '../components/sketch-9'
 import Sketch10 from '../components/sketch-10'
 import Sketch11 from '../components/sketch-11'
+import Sketch11a from '../components/sketch-11a'
 import Sketch12 from '../components/sketch-12'
 
 const messages = [
@@ -174,22 +177,27 @@ export default function Home() {
       </Head>
       <main style={{ position: 'relative' }}>
  {messageIndex >= 0 && <header style={{
-     position: 'sticky',
+     position: 'fixed',
      right: 0,
      left: 0,
      top: 0,
      fontSize: '16px',
      margin: 0,
      fontFamily: 'monospace',
-     color: 'white',
-     background: 'black',
+     color: 'black',
+     background: 'white',
      display: 'flex',
      alignItems: 'center',
+     borderBottom: '1px solid black',
+
  }}>
-   <kbd style={{ padding: '16px',height: '64px', width: '64px', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{generatedDesignCount}</kbd> <p style={{ textAlign: 'right', flexGrow: 1, paddingRight: '16px', }}>{messages[messageIndex]}</p>
+   <kbd style={{ padding: '16px',height: '64px', width: '96px', color: 'white', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{generatedDesignCount}</kbd> 
+   <p style={{ textAlign: 'right', flexGrow: 1, paddingRight: '16px', whiteSpace: 'nowrap', marginLeft: '4rem',  }}>{messages[messageIndex]}</p>
    </header>}
           
-<section style={{ marginTop: '1rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
+<section className='cols-2 cols-4 cols-8' style={{ marginTop: '5rem', display: 'grid', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
+      <Sketch0 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch0a strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch1 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch2 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch3 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
@@ -201,6 +209,7 @@ export default function Home() {
       <Sketch9 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch10 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch11 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+      <Sketch11a strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
       <Sketch12 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
     </section>
       </main>

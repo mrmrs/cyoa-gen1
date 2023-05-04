@@ -24,7 +24,7 @@ const RandomGrid = ({
     const columns = cols || getRandom(2, 32);
     const row = rows || getRandom(2, 32);
     const isSymmetrical = symmetrical !== undefined ? symmetrical : Math.random() < 0.9;
-    const columnWidth = cellWidth || width / columns;
+    const columnWidth = cellWidth || (width - strokeWidth) / columns;
     const rowHeight = isSymmetrical ? columnWidth : cellHeight || height / row;
 
     let grid = '';
@@ -45,11 +45,11 @@ const RandomGrid = ({
     const pathElem = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     pathElem.setAttributeNS(null, 'd', gridPath);
     pathElem.setAttributeNS(null, 'fill', 'none');
-    pathElem.setAttributeNS(null, 'stroke', colors[randomInt(0,colors.length-1)]);
+    pathElem.setAttributeNS(null, 'stroke', 'currentColor');
     pathElem.setAttributeNS(null, 'stroke-width', strokeWidth);
     pathElem.setAttributeNS(null, 'stroke-dashoffset', strokeDashoffset);
     pathElem.setAttributeNS(null, 'stroke-dasharray', strokeDasharray);
-    pathElem.setAttributeNS(null, 'style', ' transition: all .5s ease;animation: dash 10s alternate ease-in-out infinite forwards; ');
+    pathElem.setAttributeNS(null, 'style', 'color: inherit; transition: all .5s ease;animation: dash 10s alternate ease-in-out infinite forwards; ');
     
     // Clear the group's children before appending a new path element
     while (groupRef.current.firstChild) {
