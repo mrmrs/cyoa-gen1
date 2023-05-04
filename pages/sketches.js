@@ -17,6 +17,7 @@ import Sketch7 from '../components/sketch-7'
 import Sketch8 from '../components/sketch-8'
 import Sketch9 from '../components/sketch-9'
 import Sketch10 from '../components/sketch-10'
+import Sketch11 from '../components/sketch-11'
 
 const messages = [
 "It seems the possibilities are endless",
@@ -55,6 +56,12 @@ const font = Font({ weight: '400', subsets: ['latin'] })
 export default function Home() {
   const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
   const [messageIndex, setMessageIndex] = useState(-1)
+
+  const [rows, setRows] = useState(randomInt(2,16))
+  const [cols, setCols] = useState(randomInt(2,16))
+  const [symmetrical, setSymmetrical] = useState(false)
+  const [cellWidth, setCellWidth] = useState(1000/cols)
+  const [cellHeight, setCellHeight] = useState(1400/rows)
 
   // Book 1 & 2
   const [bgColor, setBgColor] = useState('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
@@ -97,6 +104,9 @@ export default function Home() {
     setBgColor2(randomColor())
     setMaxLimit(randomInt(50,400))
     setStrokeWidth(sample([4,4,4,4,6,8,8,8,8,16,64]))
+    //grid
+    setRows(randomInt(1,32))
+    setCols(randomInt(1,32))
     const baseColor = randomColor()
     setColorsInt(randomInt(1,100))
     const newPalette = sample([
@@ -210,6 +220,9 @@ export default function Home() {
       <Sketch8 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch9 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch10 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch11 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}
+      rows={rows} cols={cols}
+    />
   </section>
 
 

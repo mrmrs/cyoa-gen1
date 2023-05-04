@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { Noise } from 'noisejs'
+import randomColor from 'random-hex-color'
 import { randomInt} from '../lib/random'
+import RandomGrid from './random-grid'
 
 function getRandom(min, max) {
   return Math.random() * (max - min) + min;
@@ -46,46 +49,6 @@ function generateRandomShape() {
       const y3 = getRandom(-0.4 * canvasHeight, canvasHeight - 0.6 * canvasHeight);
       return `M${x1},${y1} L${x2},${y2} L${x3},${y3} Z`;
   }
-}
-function generateSquigglyLinePath() {
-  const canvasWidth = 1000;
-  const canvasHeight = 1400;
-  const numPoints = 10;
-  const points = [];
-
-  for (let i = 0; i < numPoints; i++) {
-    const edge = Math.floor(Math.random() * 4);
-    let x, y;
-
-    switch (edge) {
-      case 0: // top edge
-        x = getRandom(0, canvasWidth);
-        y = 0;
-        break;
-      case 1: // right edge
-        x = canvasWidth;
-        y = getRandom(0, canvasHeight);
-        break;
-      case 2: // bottom edge
-        x = getRandom(0, canvasWidth);
-        y = canvasHeight;
-        break;
-      case 3: // left edge
-        x = 0;
-        y = getRandom(0, canvasHeight);
-        break;
-    }
-
-    points.push({ x: x.toFixed(2), y: y.toFixed(2) });
-  }
-
-  const pathCommands = points.map((point, index) => {
-    const controlPoint1 = points[(index + 1) % points.length];
-    const controlPoint2 = points[(index + 2) % points.length];
-    return `C${controlPoint1.x},${controlPoint1.y} ${controlPoint2.x},${controlPoint2.y} ${point.x},${point.y}`;
-  });
-
-  return `M${points[0].x},${points[0].y} ${pathCommands.join(' ')} Z`;
 }
 
 function generateRandomStrokeDashArray() {
@@ -142,7 +105,7 @@ function generateRandomBezierPath() {
   return `M${points[0].x},${points[0].y} ${pathCommands.join(' ')}`;
 }
 
-const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150), strokeWidth = randomInt(4,24)}) => {
+const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150), strokeWidth = randomInt(4,24), cols, rows, symmetrical, cellWidth, cellHeight}) => {
 
     const boolStroke = randomInt(0,10)
     const height = 1410 
@@ -181,43 +144,9 @@ const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
 
     return (
       <div style={{ transition: 'background-color 1s ease-in', backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> 
+      
       <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{ padding: '48px', transition: 'all 1s ease-in', backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
-      {[...Array(randomInt(1,16))].map((x,i) =>
-      <path
-        key={i}
-        d={generateRandomShape()}
-        //strokeDasharray='100% 100% 100% 100%'
-        //strokeDashoffset='-100%'
-        //strokeOpacity={randomInt(100,100)+'%'}
-        stroke={fill} 
-        fill={colors[randomInt(0,colors.length -1)]} 
-        strokeWidth={strokeScale[randomInt(0,strokeScale.length-1)]} 
-        style={{ mixBlendMode: blendModes[randomInt(0,blendModes.length-1)], transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
-    />
-      )}
-      {[...Array(randomInt(1,16))].map((x,i) =>
-      <path
-        key={x+i}
-        d={generateRandomSmoothBezierPath()}
-        strokeDasharray='100% 100% 100% 100%'
-        strokeDashoffset='-100%'
-        strokeOpacity={randomInt(100,100)+'%'}
-        fill={fill} stroke={colors[randomInt(0,colors.length -1)]} 
-        strokeWidth={strokeScale[randomInt(0,strokeScale.length-1)]} 
-        style={{ mixBlendMode: blendModes[randomInt(0,blendModes.length-1)], transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
-    />
-      )}
-
-      <path
-        d={generateSquigglyLinePath()}
-        //strokeDasharray='100% 100% 100% 100%'
-        //strokeDashoffset='-100%'
-        strokeOpacity={randomInt(100,100)+'%'}
-        fill={fill} stroke={colors[randomInt(0,colors.length -1)]} 
-        strokeWidth='16'
-        style={{ display: 'none', mixBlendMode: blendModes[randomInt(0,blendModes.length-1)], transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
-    />
-
+       <RandomGrid cols={cols} rows={rows} symmetrical={false} cellWidth={cellWidth} cellHeight={cellHeight} strokeDashoffset='0' strokeWidth='2' strokeDasharray='0' colors={colors} />
       </svg>
       </div>
   );
