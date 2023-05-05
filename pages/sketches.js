@@ -21,7 +21,6 @@ import Sketch10 from '../components/sketch-10'
 import Sketch11 from '../components/sketch-11'
 import Sketch11a from '../components/sketch-11a'
 import Sketch12 from '../components/sketch-12'
-import Sketch13 from '../components/sketch-13'
 import Sketch14 from '../components/sketch-14'
 import Sketch15 from '../components/sketch-15'
 import Sketch16 from '../components/sketch-16'
@@ -216,7 +215,6 @@ export default function Home() {
       <Sketch10 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch11 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
       <Sketch11a strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch13  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
       <Sketch12 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
       <Sketch14  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
       <Sketch15  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
