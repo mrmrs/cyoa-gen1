@@ -1,10 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import RandomGrid from './random-grid'
+import { Noise } from 'noisejs'
 import { randomInt} from '../lib/random'
 
 function getRandom(min, max) {
   return Math.random() * (max - min) + min;
 }
+
+const RandomTopography = ({ width = 1000, height = 1410, contourLevels = 10 }) => {
+  const noise = new Noise(Math.random());
+  const scale = 0.01;
+
+  const getContourPath = (level) => {
+    const stepX = contourLevels;
+    const stepY = contourLevels;
+
+    let path = '';
+
+    for (let y = 0; y <= height; y += stepY) {
+      for (let x = 0; x <= width; x += stepX) {
+        const elevation = noise.perlin2(x * scale, y * scale);
+        if (Math.abs(elevation - level) < 0.01) {
+          path += `M${x},${y} L${x + stepX},${y} L${x + stepX},${y + stepY} L${x},${y + stepY} Z`;
+        }
+      }
+    }
+
+    return path;
+  };
+
+  const contours = Array.from({ length: contourLevels, stroke: 'black', strokeWidth: '0.5' }, (_, i) => {
+    const level = (i + 1) / (contourLevels + 1);
+    const path = getContourPath(level);
+    return (
+      <path key={i} d={path} fill="none" stroke="currentColor" strokeWidth="0.5" />
+    );
+  });
+
+  return <g style={{color: 'inherit'}}>{contours}</g>;
+};
 
 function generateRandomShape() {
   const canvasWidth = 1000;
@@ -143,7 +177,7 @@ function generateRandomBezierPath() {
   return `M${points[0].x},${points[0].y} ${pathCommands.join(' ')}`;
 }
 
-const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150), strokeWidth = randomInt(4,24)}) => {
+const Sketch13 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150), strokeWidth = randomInt(4,24)}) => {
 
     const boolStroke = randomInt(0,10)
     const height = 1410 
@@ -199,49 +233,10 @@ const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
         height: 'auto', 
         aspectRatio: '100/141' 
       }}>
-      <g style={{color: colors[randomInt(0,colors.length-1)]}}><RandomGrid /></g>
-      {[...Array(randomInt(1,16))].map((x,i) =>
-      <path
-        key={i}
-        d={generateRandomShape()}
-        //strokeDasharray='100% 100% 100% 100%'
-        //strokeDashoffset='-100%'
-        //strokeOpacity={randomInt(100,100)+'%'}
-        stroke={fill} 
-        fill={colors[randomInt(0,colors.length -1)]} 
-        strokeWidth={strokeScale[randomInt(0,strokeScale.length-1)]} 
-        style={{ mixBlendMode: blendModes[randomInt(0,blendModes.length-1)], 
-            transition: 'all .5s ease', 
-            animation: 'dash 10s alternate ease-in-out infinite forwards' 
-        }}
-    />
-      )}
-      {[...Array(randomInt(1,16))].map((x,i) =>
-      <path
-        key={x+i}
-        d={generateRandomSmoothBezierPath()}
-        strokeDasharray='100% 100% 100% 100%'
-        strokeDashoffset='-100%'
-        strokeOpacity={randomInt(100,100)+'%'}
-        fill={fill} stroke={colors[randomInt(0,colors.length -1)]} 
-        strokeWidth={strokeScale[randomInt(0,strokeScale.length-1)]} 
-        style={{ mixBlendMode: blendModes[randomInt(0,blendModes.length-1)], transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
-    />
-      )}
-
-      <path
-        d={generateSquigglyLinePath()}
-        //strokeDasharray='100% 100% 100% 100%'
-        //strokeDashoffset='-100%'
-        strokeOpacity={randomInt(100,100)+'%'}
-        fill={fill} stroke={colors[randomInt(0,colors.length -1)]} 
-        strokeWidth='16'
-        style={{ display: 'none', mixBlendMode: blendModes[randomInt(0,blendModes.length-1)], transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
-    />
-
+        <RandomTopography contourLevels={32} />
       </svg>
       </div>
   );
 };
 
-export default Sketch9;
+export default Sketch13;
