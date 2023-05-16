@@ -5,26 +5,9 @@ import randomColor from 'random-hex-color'
 import chroma from 'chroma-js'
 import {sample} from 'lodash'
 import { randomInt } from '../lib/random'
-import Sketch0 from '../components/sketch-0'
-import Sketch0a from '../components/sketch-0a'
-import Sketch1 from '../components/sketch-1'
-import Sketch1a from '../components/sketch-1a'
-import Sketch2 from '../components/sketch-2'
-import Sketch3 from '../components/sketch-3'
-import Sketch4 from '../components/sketch-4'
-import Sketch5 from '../components/sketch-5'
-import Sketch6 from '../components/sketch-6'
-import Sketch7 from '../components/sketch-7'
-import Sketch8 from '../components/sketch-8'
-import Sketch9 from '../components/sketch-9'
-import Sketch10 from '../components/sketch-10'
-import Sketch11 from '../components/sketch-11'
-import Sketch11a from '../components/sketch-11a'
-import Sketch12 from '../components/sketch-12'
-import Sketch14 from '../components/sketch-14'
-import Sketch15 from '../components/sketch-15'
-import Sketch16 from '../components/sketch-16'
-import Sketch18 from '../components/sketch-18'
+import Logo1 from '../components/logo-1'
+import Logo1a from '../components/logo-1a'
+import Logo1b from '../components/logo-1b'
 
 const messages = [
 "It seems the possibilities are endless...",
@@ -180,7 +163,13 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main style={{ position: 'relative' }}>
+      <main style={{ 
+        position: 'relative', 
+        backgroundSize: '16px 16px',
+        backgroundImage: 'linear-gradient(to right, hsla(204,4%,90%,100%) 1px, transparent 1px), linear-gradient(to bottom, hsla(204,4%,90%,100%) 1px, transparent 1px)'
+        
+
+      }}>
  {messageIndex >= 0 && <header style={{
      position: 'fixed',
      right: 0,
@@ -201,26 +190,10 @@ export default function Home() {
    <p style={{ textAlign: 'right', flexGrow: 1, paddingRight: '16px', whiteSpace: 'nowrap', marginLeft: '4rem',  }}>{messages[messageIndex]}</p>
    </header>}
           
-<section className='cols-2 cols-4-m cols-4-l' style={{ marginBottom: '4rem', marginTop: '5rem', display: 'grid', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
-      <Sketch0 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch0a strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch1 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch2 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch3 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch4 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch5 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-     <Sketch6 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch7 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch8 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch9 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch10 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch11 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch11a strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch12 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch14  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch15  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch16  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch18  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+<section style={{ marginBottom: '4rem', marginTop: '5rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 64px)',padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
+      <Logo1 bgColor={palette[0]} colors={palette} />
+      <Logo1a bgColor={palette[0]} colors={palette} />
+      <Logo1b bgColor={palette[0]} colors={palette} />
     </section>
       </main>
     </>

@@ -9,7 +9,7 @@ function getRandom(min, max) {
 
 const RandomTopography = ({ width = 1000, height = 1410, contourLevels = 10 }) => {
   const noise = new Noise(Math.random());
-  const scale = 0.01;
+  const scale = .1;
 
   const getContourPath = (level) => {
     const stepX = contourLevels;
@@ -29,99 +29,16 @@ const RandomTopography = ({ width = 1000, height = 1410, contourLevels = 10 }) =
     return path;
   };
 
-  const contours = Array.from({ length: contourLevels, stroke: 'black', strokeWidth: '0.5' }, (_, i) => {
+  const contours = Array.from({ length: contourLevels, stroke: 'black', strokeWidth: '1' }, (_, i) => {
     const level = (i + 1) / (contourLevels + 1);
     const path = getContourPath(level);
     return (
-      <path key={i} d={path} fill="none" stroke="currentColor" strokeWidth="0.5" />
+      <path key={i} d={path} fill="none" stroke="currentColor" strokeWidth={1} />
     );
   });
 
   return <g style={{color: 'inherit'}}>{contours}</g>;
 };
-
-function generateRandomShape() {
-  const canvasWidth = 1000;
-  const canvasHeight = 1400;
-  const shapes = [
-    {
-      type: 'rect',
-      width: getRandom(100, 500),
-      height: getRandom(100, 500),
-    },
-    {
-      type: 'circle',
-      radius: getRandom(50, 250),
-    },
-    {
-      type: 'triangle',
-    },
-  ];
-
-  const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
-
-  switch (randomShape.type) {
-    case 'rect':
-      const x = getRandom(-0.4 * randomShape.width, canvasWidth - 0.6 * randomShape.width);
-      const y = getRandom(-0.4 * randomShape.height, canvasHeight - 0.6 * randomShape.height);
-      const w = randomShape.width;
-      const h = randomShape.height;
-      return `M${x},${y} L${x + w},${y} L${x + w},${y + h} L${x},${y + h} Z`;
-    case 'circle':
-      const cx = getRandom(0.6 * randomShape.radius, canvasWidth - 0.6 * randomShape.radius);
-      const cy = getRandom(0.6 * randomShape.radius, canvasHeight - 0.6 * randomShape.radius);
-      const r = randomShape.radius;
-      return `M${cx},${cy - r} A${r},${r} 0 1,0 ${cx},${cy + r} A${r},${r} 0 1,0 ${cx},${cy - r}`;
-    case 'triangle':
-      const x1 = getRandom(-0.4 * canvasWidth, canvasWidth - 0.6 * canvasWidth);
-      const y1 = getRandom(-0.4 * canvasHeight, canvasHeight - 0.6 * canvasHeight);
-      const x2 = getRandom(-0.4 * canvasWidth, canvasWidth - 0.6 * canvasWidth);
-      const y2 = getRandom(-0.4 * canvasHeight, canvasHeight - 0.6 * canvasHeight);
-      const x3 = getRandom(-0.4 * canvasWidth, canvasWidth - 0.6 * canvasWidth);
-      const y3 = getRandom(-0.4 * canvasHeight, canvasHeight - 0.6 * canvasHeight);
-      return `M${x1},${y1} L${x2},${y2} L${x3},${y3} Z`;
-  }
-}
-function generateSquigglyLinePath() {
-  const canvasWidth = 1000;
-  const canvasHeight = 1400;
-  const numPoints = 10;
-  const points = [];
-
-  for (let i = 0; i < numPoints; i++) {
-    const edge = Math.floor(Math.random() * 4);
-    let x, y;
-
-    switch (edge) {
-      case 0: // top edge
-        x = getRandom(0, canvasWidth);
-        y = 0;
-        break;
-      case 1: // right edge
-        x = canvasWidth;
-        y = getRandom(0, canvasHeight);
-        break;
-      case 2: // bottom edge
-        x = getRandom(0, canvasWidth);
-        y = canvasHeight;
-        break;
-      case 3: // left edge
-        x = 0;
-        y = getRandom(0, canvasHeight);
-        break;
-    }
-
-    points.push({ x: x.toFixed(2), y: y.toFixed(2) });
-  }
-
-  const pathCommands = points.map((point, index) => {
-    const controlPoint1 = points[(index + 1) % points.length];
-    const controlPoint2 = points[(index + 2) % points.length];
-    return `C${controlPoint1.x},${controlPoint1.y} ${controlPoint2.x},${controlPoint2.y} ${point.x},${point.y}`;
-  });
-
-  return `M${points[0].x},${points[0].y} ${pathCommands.join(' ')} Z`;
-}
 
 function generateRandomStrokeDashArray() {
   const numSegments = Math.floor(Math.random() * 2) + 2; // Generate a random number of segments between 3 and 7
@@ -136,47 +53,6 @@ function generateRandomStrokeDashArray() {
   return dashArray.join(', ');
 }
 
-function generateRandomSmoothBezierPath() {
-  const canvasWidth = 1000;
-  const canvasHeight = 1410;
-  const numPoints = Math.floor(Math.random() * 2) + 2; // Generate a random number of points between 10 and 20
-  const points = [];
-
-  for (let i = 0; i < numPoints; i++) {
-    const x = Math.random() * canvasWidth;
-    const y = Math.random() * canvasHeight;
-    points.push({ x: x.toFixed(2), y: y.toFixed(2) });
-  }
-
-  const pathCommands = points.map((point, index) => {
-    const controlPoint1 = points[(index + 1) % points.length];
-    const controlPoint2 = points[(index + 2) % points.length];
-    return `C${controlPoint1.x},${controlPoint1.y} ${controlPoint2.x},${controlPoint2.y} ${point.x},${point.y}`;
-  });
-
-  return `M${points[0].x},${points[0].y} ${pathCommands.join(' ')}`;
-}
-
-function generateRandomBezierPath() {
-  const canvasWidth = 1000;
-  const canvasHeight = 1410;
-  const numPoints = Math.floor(Math.random() * randomInt(2,16)) + randomInt(2,16); // Generate a random number of points between 10 and 20
-  const points = [];
-
-  for (let i = 0; i < numPoints; i++) {
-    const x = Math.random() * canvasWidth;
-    const y = Math.random() * canvasHeight;
-    points.push({ x: x.toFixed(2), y: y.toFixed(2) });
-  }
-
-  const pathCommands = points.map((point, index) => {
-    const controlPoint = points[(index + 1) % points.length];
-    return `Q${controlPoint.x},${controlPoint.y} ${point.x},${point.y}`;
-  });
-
-  return `M${points[0].x},${points[0].y} ${pathCommands.join(' ')}`;
-}
-
 const Sketch13 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150), strokeWidth = randomInt(4,24)}) => {
 
     const boolStroke = randomInt(0,10)
@@ -186,8 +62,6 @@ const Sketch13 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150)
     const stroke = 'inherit'
     const fill = 'transparent'
     const unit = 4
-
-
 
     const strokeDashArrays = [
      '20,20', 
@@ -211,11 +85,12 @@ const Sketch13 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150)
     const strokeDashArray = strokeDashArrays[randomInt(0,strokeDashArrays.length-1)]
     const strokeDashArrayAlt = generateRandomStrokeDashArray()
     const strokeScale = [0,1,2,3,4,8,12,16,24, 32,48, 64,128,256,512,1024]
-    const blendModes = ['none', ] //'overlay', 'multiply', 'darken']
+    const contourScale = [32,64,128,256,384]
+    const blendModes = ['darken', ] //'overlay', 'multiply', 'darken']
 
 
     return (
-      <div style={{ transition: 'background-color 1s ease-in', backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> 
+      <div style={{ transition: 'background-color 1s ease-in', backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'multiply', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> 
       <svg 
       viewBox={'0 0 '+width+' '+height} 
       width='1000' height='1410' 
@@ -231,9 +106,10 @@ const Sketch13 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150)
         display: 'block', 
         width: '100%', 
         height: 'auto', 
-        aspectRatio: '100/141' 
+        aspectRatio: '100/141',
+        color: colors[randomInt(0,colors.length-1)]
       }}>
-        <RandomTopography contourLevels={32} />
+        <RandomTopography contourLevels={contourScale[randomInt(0,contourScale.length-1)]} />
       </svg>
       </div>
   );
