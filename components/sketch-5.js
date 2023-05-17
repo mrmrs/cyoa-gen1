@@ -11,7 +11,7 @@ const Sketch5 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
     const unit = 4
 
     return (
-      <div style={{ transition: 'background-color 1s ease-in', backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{ margin: '10%', transition: 'all 1s ease-in', backgroundColor: 'rgba(250,250,24,0)', backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
+      <div className='transitions' style={{ backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{ margin: '10%', transition: 'all 1s ease-in', backgroundColor: 'rgba(250,250,24,0)', backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
       {[...Array(96)].map((x,i) =>
       <circle 
         key={i+x+i}
@@ -21,7 +21,7 @@ const Sketch5 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
         cx={width / 2}
         cy={height / 2}
         fill={fill} stroke={colors[randomInt(0,colors.length -1)]} strokeWidth={strokeWidth * 2} 
-        style={{ transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
+        className='transitions animation-dash'
     />
       )}
       </svg>

@@ -66,7 +66,7 @@ const Sketch8 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
 
 
     return (
-      <div style={{ transition: 'background-color 1s ease-in', backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{ margin: '10%', transition: 'all 1s ease-in', backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
+      <div className='transitions' style={{ backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' className='transitions' style={{ margin: '10%',  backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
       {[...Array(randomInt(1,16))].map((x,i) =>
       <polyline 
         key={i}
@@ -76,7 +76,7 @@ const Sketch8 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
         fill={fill} stroke={colors[randomInt(0,colors.length -1)]} 
         strokeWidth={strokeScale[randomInt(0,strokeScale.length-1)]} 
         strokeLinejoin='bevel'
-        style={{ transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
+        className='transitions animation-dash'
     />
 
       )}

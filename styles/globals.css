@@ -177,6 +177,14 @@ html {
   }
 }
 
+.animation-dash {
+  animation: dash 10s alternate ease-in-out infinite forwards;
+}
+
+.transitions {
+  transition: fill 1s ease-in, stroke 1s ease-in, color 1s ease-in, background-color 1s ease-in;
+}
+
 .chapter svg rect,
 .chapter svg circle,
 .chapter svg path {

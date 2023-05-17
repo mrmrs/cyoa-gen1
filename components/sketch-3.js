@@ -24,7 +24,7 @@ const Sketch2 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
           y2={unit * 4 * i}
           x2={width}
           fill={fill} stroke={colors[randomInt(0,colors.length-1)]} strokeWidth={strokeWidth * 2} 
-          style={{ mixBlendMode: 'none', transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite backwards' }}
+          className='transitions animation-dash'
       />
       )}
       </svg>

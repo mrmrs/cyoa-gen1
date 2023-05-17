@@ -201,7 +201,7 @@ export default function Home() {
    <p style={{ textAlign: 'right', flexGrow: 1, paddingRight: '16px', whiteSpace: 'nowrap', marginLeft: '4rem',  }}>{messages[messageIndex]}</p>
    </header>}
           
-<section className='cols-2 cols-4-m cols-4-l' style={{ marginBottom: '4rem', marginTop: '5rem', display: 'grid', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
+<section className='cols-2 cols-4-m cols-8-l' style={{ marginBottom: '4rem', marginTop: '5rem', display: 'grid', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
       <Sketch0 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch0a strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch1 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
