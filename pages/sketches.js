@@ -24,8 +24,34 @@ import Sketch12 from '../components/sketch-12'
 import Sketch14 from '../components/sketch-14'
 import Sketch15 from '../components/sketch-15'
 import Sketch16 from '../components/sketch-16'
-import Sketch18 from '../components/sketch-18'
+import Sketch20 from '../components/sketch-20'
 
+function generateGeometricPalette() {
+  const palette = [];
+  
+  // Generate random hue for the initial color
+  const initialHue = Math.floor(Math.random() * 360);
+  
+  for (let i = 0; i < 16; i++) {
+    // Generate random hue and saturation variations
+    const hueVariation = Math.random() * 180;
+    const saturationVariation = Math.random() * 70;
+    const lightnessVariation = Math.random() * 60;
+    
+    // Calculate hue, saturation, and lightness values
+    const hue = (initialHue + hueVariation + 180) % 360;
+    const saturation = 30 + saturationVariation;
+    const lightness = 30 + lightnessVariation;
+    
+    // Convert HSL to hexadecimal color code
+    const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    
+    // Push the color to the palette
+    palette.push(color);
+  }
+  
+  return palette;
+}
 const messages = [
 "It seems the possibilities are endless...",
 "...this system can generate more unique art pieces than there are atoms in the universe",
@@ -116,20 +142,26 @@ export default function Home() {
     const baseColor = randomColor()
     setColorsInt(randomInt(1,100))
     const newPalette = sample([
-      chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
-      chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
-      chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
-      chroma.scale([randomColor(), baseColor, randomColor(), randomColor()]).mode(mode).colors(16),
-      chroma.scale([chroma(baseColor).darken(4), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16),
-      chroma.scale([chroma(baseColor).brighten(4), baseColor, chroma(baseColor).darken(4)]).mode(mode).colors(16),
-      chroma.scale(['#ff4f4f', baseColor, '#644fff']).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(208,100%,10%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(208,60%,10%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(290,100%,10%,1)'), chroma('hsla(320,100%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(260,60%,10%,1)'), chroma('hsla(290,60%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([ '#FF4F4F', '#FF7A4F', '#7FFF4F', '#4FD8FF', '#644FFF' ]).mode(mode).colors(16),
-      [ '#FF355E', '#FD5B78', '#FF6037', '#FF9966', '#FFCC33', '#CCFF00', '#66FF66', '#AAF0D1', '#50BFE6', '#FF6EFF', '#732E6C', '#363958', '#5E2D79', '#4B0082', '#2E0854', '#FF9933'  ],
-  [ '#E63946', '#F1C453', '#A8DADC', '#457B9D', '#1D3557', '#FFB6B9', '#CB997E', '#6D6875', '#2A9D8F', '#E9C46A', '#F4A261', '#5EAAA8', '#DD6E42', '#4F5D75', '#9A8C98', '#C08497', ],
+      //chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
+      //chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
+      //chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
+      //chroma.scale([randomColor(), baseColor, randomColor(), randomColor()]).mode(mode).colors(16),
+      //chroma.scale([chroma(baseColor).darken(4), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16),
+      //chroma.scale([chroma(baseColor).brighten(4), baseColor, chroma(baseColor).darken(4)]).mode(mode).colors(16),
+      //chroma.scale(['#ff4f4f', baseColor, '#644fff']).mode(mode).colors(16),
+      //chroma.scale([chroma('hsla(208,100%,10%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
+      //chroma.scale([chroma('hsla(208,60%,10%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
+      //chroma.scale([chroma('hsla(290,100%,10%,1)'), chroma('hsla(320,100%,90%,1)')]).mode(mode).colors(16),
+      //chroma.scale([chroma('hsla(260,60%,10%,1)'), chroma('hsla(290,60%,90%,1)')]).mode(mode).colors(16),
+      //chroma.scale([ '#FF4F4F', '#FF7A4F', '#7FFF4F', '#4FD8FF', '#644FFF' ]).mode(mode).colors(16),
+      generateGeometricPalette(),
+      //[ '#FF355E', '#FD5B78', '#FF6037', '#FF9966', '#FFCC33', '#CCFF00', '#66FF66', '#AAF0D1', '#50BFE6', '#FF6EFF', '#732E6C', '#363958', '#5E2D79', '#4B0082', '#2E0854', '#FF9933'  ],
+      //[ '#E63946', '#F1C453', '#A8DADC', '#457B9D', '#1D3557', '#FFB6B9', '#CB997E', '#6D6875', '#2A9D8F', '#E9C46A', '#F4A261', '#5EAAA8', '#DD6E42', '#4F5D75', '#9A8C98', '#C08497', ],
+      //[ "#FCFAEE", "#FFFBF0", "#FEF8E6", "#FFEDD3", "#F9E0C7", "#F0D4BB", "#E2C8B0", "#D7BCA5", "#CAB09A", "#BDA48F", "#AF997F", "#A18E6F", "#927F5B", "#836F47", "#745F33", "#654E1F" ], // midsommar
+      //[ "#FF5252", "#FF4081", "#E040FB", "#7C4DFF", "#536DFE", "#448AFF", "#40C4FF", "#18FFFF", "#64FFDA", "#69F0AE", "#B2FF59", "#EEFF41", "#FFFF00", "#FFD740", "#FFAB40", "#FF6E40" ],
+      //[ "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF9800", "#FF5722" ],
+      //[ "#FF5252", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#00BCD4", "#009688", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF5722", "#795548", "#607D8B", "#9E9E9E" ]
+
     ])
     setMode(sample(['lch', 'lab']))
     setPalette(
@@ -220,7 +252,6 @@ export default function Home() {
       <Sketch14  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
       <Sketch15  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
       <Sketch16  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch18  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
     </section>
       </main>
     </>

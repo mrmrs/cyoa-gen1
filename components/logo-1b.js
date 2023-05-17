@@ -36,8 +36,8 @@ const Logo1b = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150), 
   <svg 
     viewBox={'0 0 '+width+' '+height} 
     width={width} height={height} 
+    className='transitions'
     style={{ 
-      transition: 'all 1s ease-in', 
       backgroundColor: 'rgba(250,250,24,0)', 
       backgroundBlendMode: 'none',  
 //      mixBlendMode: 'multiply', 

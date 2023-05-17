@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { randomInt } from '../lib/random'
 
 const RandomGrid = ({
+  bgColor,
   colors = ['black', 'red'],
   width = 1000,
   height = 1400,
@@ -10,7 +11,7 @@ const RandomGrid = ({
   symmetrical,
   cellWidth,
   cellHeight,
-  strokeWidth = randomInt(1,16),
+  strokeWidth = 1,
   strokeDashoffset = '100%',
   strokeDasharray = '100% 100%',
 }) => {
@@ -45,11 +46,11 @@ const RandomGrid = ({
     const pathElem = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     pathElem.setAttributeNS(null, 'd', gridPath);
     pathElem.setAttributeNS(null, 'fill', 'none');
-    pathElem.setAttributeNS(null, 'stroke', 'currentColor');
+    pathElem.setAttributeNS(null, 'stroke', bgColor);
     pathElem.setAttributeNS(null, 'stroke-width', strokeWidth);
     pathElem.setAttributeNS(null, 'stroke-dashoffset', strokeDashoffset);
     pathElem.setAttributeNS(null, 'stroke-dasharray', strokeDasharray);
-    pathElem.setAttributeNS(null, 'style', 'color: inherit; transition: all .5s ease;animation: dash 10s alternate ease-in-out infinite forwards; ');
+    pathElem.setAttributeNS(null, 'style', 'color: inherit; transition: all 1s ease;animation: dash 10s alternate ease-in-out infinite forwards; ');
     
     // Clear the group's children before appending a new path element
     while (groupRef.current.firstChild) {

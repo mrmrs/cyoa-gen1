@@ -1,6 +1,8 @@
 import React from 'react';
 
 const PolarGraph = ({
+  colors,
+  bgColor,
   width = 1000,
   height = 1410,
   radialLines = 12,
@@ -30,14 +32,15 @@ const PolarGraph = ({
         cy={centerY}
         r={currentRadius}
         fill="none"
-        stroke={circleLineColor}
+        stroke={bgColor}
+        strokeWidth={1}
       />
     );
   });
 
   return (
     <g>
-      <path d={radialLinesArray.join(' ')} stroke={radialLineColor} fill="none" />
+      <path d={radialLinesArray.join(' ')} stroke={bgColor} strokeWidth={1} fill="none" />
       {circlesArray}
     </g>
   );

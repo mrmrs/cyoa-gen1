@@ -1,68 +1,45 @@
 import React, { useEffect, useState } from 'react';
 import { Noise } from 'noisejs'
 import randomColor from 'random-hex-color'
+import { Delaunay } from 'd3-delaunay';
 import { randomInt} from '../lib/random'
-import { Delaunay } from 'd3-delaunay'
-import PoissonDiskSampling from 'poisson-disk-sampling'
 
-const generatePoints = (width, height, minDistance, maxPoints) => {
-  const pds = new PoissonDiskSampling({
-    shape: [width, height],
-    minDistance,
-    maxPoints
-  });
-
-  return pds.fill();
-};
-
-const HatchedCircleDelaunay = ({
-  points = [[100, 100], [200, 200], [300, 100], [200, 300]],
-  hatchColor = "#000",
-  circleColor = "#000",
+const CubeGrid = ({
+  gridSize = 10,
+  cubeSize = 50,
+  rotationRange = [0, 360],
+  strokeColor = "#000",
 }) => {
   const randomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
 
-  const delaunay = Delaunay.from(points);
-  const triangles = delaunay.triangles;
+  const getRotation = () => {
+    return randomInt(...rotationRange);
+  };
 
-  const circleRadius = randomInt(50, 300);
-  const circleX = randomInt(circleRadius, 1000 - circleRadius);
-  const circleY = randomInt(circleRadius, 1410 - circleRadius);
+  const cubes = Array(gridSize).fill().map((_, i) => 
+    Array(gridSize).fill().map((_, j) => {
+      const x = i * cubeSize * 2;
+      const y = j * cubeSize * 2;
+      const rotation = getRotation();
+
+      return { x, y, rotation };
+    })
+  ).flat();
 
   return (
     <svg width="1000" height="1410" viewBox="0 0 1000 1410" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="hatch1" patternUnits="userSpaceOnUse" width="32" height="32">
-          <path d="M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2" style={{stroke: hatchColor, strokeWidth: 1 }}/>
-        </pattern>
-        <pattern id="hatch2" patternUnits="userSpaceOnUse" width="16" height="16">
-          <path d="M-2,2 l4,-4 M0,8 l8,-8 M6,10 l4,-4" style={{stroke: hatchColor, strokeWidth: 1 }}/>
-        </pattern>
-      </defs>
-
-      {Array(triangles.length / 3).fill().map((_, i) => {
-        const pointIndices = triangles.slice(i * 3, i * 3 + 3);
-        const trianglePoints = pointIndices.map(index => points[index]);
-        const [p1, p2, p3] = trianglePoints;
-        const hatchPattern = i % 3 === 0 ? "url(#hatch1)" : "url(#hatch2)";
-        return (
-          <polygon
-            key={i}
-            points={`${p1[0]},${p1[1]} ${p2[0]},${p2[1]} ${p3[0]},${p3[1]}`}
-            fill={hatchPattern}
-            stroke='black'
-            strokeWidth='4'
-          />
-        );
-      })}
-
-      <circle cx={circleX} cy={circleY} r={circleRadius} fill="url(#hatch1)" stroke={circleColor} />
+      {cubes.map((cube, i) => (
+        <g key={i} transform={`translate(${cube.x},${cube.y}) rotate(${cube.rotation})`}>
+          <rect x={-cubeSize/2} y={-cubeSize/2} width={cubeSize} height={cubeSize} fill="transparent" stroke={strokeColor} />
+          <polygon points={`0,${-cubeSize/2} ${cubeSize/2},0 0,${cubeSize/2}`} fill="transparent" stroke={strokeColor} />
+          <polygon points={`-${cubeSize/2},0 0,-${cubeSize/2} 0,${cubeSize/2}`} fill="transparent" stroke={strokeColor} />
+        </g>
+      ))}
     </svg>
   );
 };
-
 function generateRandomStrokeDashArray() {
   const numSegments = Math.floor(Math.random() * 8) + 2; // Generate a random number of segments between 3 and 7
   const maxValue = 500; // Maximum length for each segment
@@ -129,7 +106,7 @@ const Sketch14 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150)
 
     return (
       <div className='transitions' style={{  backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' className='transitions' style={{ margin: '10%', backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
-        <HatchedCircleDelaunay points={generatePoints(1000,1410,50,10)} hatchColor="#000" circleColor="#000" /> 
+      <CubeGrid colors={colors} />
       </svg>
       </div>
   );

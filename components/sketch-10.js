@@ -205,7 +205,8 @@ const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
         strokeOpacity={randomInt(100,100)+'%'}
         fill={fill} stroke={colors[randomInt(0,colors.length -1)]} 
         strokeWidth={strokeScale[randomInt(0,strokeScale.length-1)]} 
-        style={{ mixBlendMode: blendModes[randomInt(0,blendModes.length-1)], transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
+        className='transitions animation-dash'
+        style={{ mixBlendMode: blendModes[randomInt(0,blendModes.length-1)], }}
     />
       )}
 
@@ -216,7 +217,8 @@ const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
         strokeOpacity={randomInt(100,100)+'%'}
         fill={fill} stroke={colors[randomInt(0,colors.length -1)]} 
         strokeWidth='16'
-        style={{ display: 'none', mixBlendMode: blendModes[randomInt(0,blendModes.length-1)], transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
+        className='transitions animation-dash'
+        style={{ display: 'none', mixBlendMode: blendModes[randomInt(0,blendModes.length-1)] }}
     />
 
       </svg>

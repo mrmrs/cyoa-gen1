@@ -12,7 +12,7 @@ const EnchantedBookCover2 = ({ colors, bgColor, color = 'red', maxLimit = random
     const unit = 4
 
     return (
-      <div style={{ transition: 'background-color 1s ease-in', backgroundColor: 'white', backgroundImage: 'url(https://mrmrs.github.io/photos/book-cover-1.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'block'  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{ padding: '48px', transition: 'all 1s ease-in', backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'darken',  mixBlendMode: 'overlay', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', opacity: .95 }}>
+      <div className='transitions' style={{  backgroundColor: 'white', backgroundImage: 'url(https://mrmrs.github.io/photos/book-cover-1.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'block'  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' className='transitions' style={{ padding: '48px',  backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'darken',  mixBlendMode: 'overlay', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', opacity: .95 }}>
       <circle 
         strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
         strokeDashoffset={randomInt(0,100)+'%'} 
@@ -20,7 +20,7 @@ const EnchantedBookCover2 = ({ colors, bgColor, color = 'red', maxLimit = random
         cx={width / 2}
         cy={height / 2}
         fill={fill} stroke={colors[0]} strokeWidth={strokeWidth} 
-        style={{ transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
+        className='transitions animation-dash'
     />
       <circle 
         strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
@@ -29,7 +29,7 @@ const EnchantedBookCover2 = ({ colors, bgColor, color = 'red', maxLimit = random
         cx={width / 2}
         cy={height / 2}
         fill={fill} stroke={colors[1]} strokeWidth={strokeWidth} 
-        style={{ transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
+        className='transitions animation-dash'
     />
       <circle 
         strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
@@ -38,7 +38,7 @@ const EnchantedBookCover2 = ({ colors, bgColor, color = 'red', maxLimit = random
         cx={width / 2}
         cy={height / 2}
         fill={fill} stroke={colors[2]} strokeWidth={strokeWidth} 
-        style={{ transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
+        className='transitions animation-dash'
     />
       <circle 
         strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
@@ -47,7 +47,7 @@ const EnchantedBookCover2 = ({ colors, bgColor, color = 'red', maxLimit = random
         cx={width / 2}
         cy={height / 2}
         fill={fill} stroke={colors[3]} strokeWidth={strokeWidth} 
-        style={{ transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
+        className='transitions animation-dash'
     />
       <circle 
         strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 
@@ -56,7 +56,7 @@ const EnchantedBookCover2 = ({ colors, bgColor, color = 'red', maxLimit = random
         cx={width / 2}
         cy={height / 2}
         fill={fill} stroke={colors[4]} strokeWidth={strokeWidth} 
-        style={{ transition: 'all .5s ease', animation: 'dash 10s alternate ease-in-out infinite forwards' }}
+        className='transitions animation-dash'
     />
       <circle 
         strokeDasharray={'100% '+randomInt(0,maxLimit)+'%'} 

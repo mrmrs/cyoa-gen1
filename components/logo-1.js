@@ -36,8 +36,8 @@ const Logo1 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150), s
   <svg 
     viewBox={'0 0 '+width+' '+height} 
     width={width} height={height} 
+    className='transitions'
     style={{ 
-      transition: 'all 1s ease-in', 
       backgroundColor: 'rgba(250,250,24,0)', 
       backgroundBlendMode: 'none',  
       //mixBlendMode: 'multiply', 
@@ -47,8 +47,8 @@ const Logo1 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150), s
       height: 'auto', 
       opacity: 1, aspectRatio: '1' 
     }}>
-        <circle cx='64' cy='64' r={56} fill='transparent' strokeWidth={4} stroke={bgColor} strokeDasharray={generateRandomStrokeDashArray()} strokeDashoffset='100%' style={{ transition: 'fill 1s ease-in, stroke 1s ease-in', animation: 'dash 10s alternate ease-in-out infinite forwards' }}/>
-        <circle cx='64' cy='64' r={48} fill={bgColor} strokeWidth={0} style={{ transition: 'fill 1s ease-in' }}/>
+        <circle cx='64' cy='64' r={56} fill='transparent' strokeWidth={4} stroke={bgColor} strokeDasharray={generateRandomStrokeDashArray()} strokeDashoffset='100%' className='transitions animation-dash' />
+        <circle cx='64' cy='64' r={48} fill={bgColor} strokeWidth={0} className='transitions' />
       </svg>
       </div>
   );

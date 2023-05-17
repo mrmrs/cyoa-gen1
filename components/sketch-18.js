@@ -6,8 +6,10 @@ import randomColor from 'random-hex-color'
 import { randomInt} from '../lib/random'
 
 
-const Sphere = ({ radius = 250, precision = 2 }) => {
+const Sphere = ({ colors, radius = 250, precision = 2 }) => {
   const ref = useRef();
+
+  const initialColor = colors[randomInt(0,colors.length-1)]
 
   useEffect(() => {
     const svg = d3.select(ref.current);
@@ -21,7 +23,7 @@ const Sphere = ({ radius = 250, precision = 2 }) => {
     svg.append("path")
       .datum({type: "Sphere"})
       .attr("class", "sphere")
-      .attr("stroke", "blue")
+      .attr("stroke", initialColor)
       .attr("fill", "none")
       .attr("stroke-width", "1")
       .attr("d", geoPath(projection));
@@ -30,14 +32,14 @@ const Sphere = ({ radius = 250, precision = 2 }) => {
       .datum(d3.geoGraticule())
       .attr("class", "graticule")
       .attr("fill", "none")
-      .attr("stroke", "blue")
+      .attr("stroke", initialColor)
       .attr("stroke-width", "1")
       .attr("d", geoPath(projection));
 
     svg.append("path")
       .datum(d3.geoGraticule().outline())
       .attr("class", "graticuleOutline")
-      .attr("stroke", "blue")
+      .attr("stroke", initialColor)
       .attr("fill", "none")
       .attr("stroke-width", "1")
       .attr("d", geoPath(projection));
@@ -114,9 +116,9 @@ const Sketch14 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150)
     const strokeScale = [64,128,256,512,1024]
 
     return (
-      <div style={{ transition: 'background-color 1s ease-in', backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{ margin: '10%', transition: 'all 1s ease-in', backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
-      <Sphere precision={10} radius={96} />
-      
+      <div style={{ transition: 'background-color 1s ease-in', backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{ margin: '10%', transition: 'all 1s ease-in', backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'flex', width: '100%', height: 'auto', }}>
+      <Sphere precision={10} radius={96} colors={colors} />
+      <Sphere precision={10} radius={256} colors={colors} />
       </svg>
       </div>
   );

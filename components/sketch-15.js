@@ -5,7 +5,7 @@ import { randomInt} from '../lib/random'
 
 
 const Circle = ({ x, y, radius, fill, stroke, strokeWidth, strokeDasharray, ...props }) => {
-  return <circle cx={x} cy={y} r={radius} stroke={stroke} strokeWidth={strokeWidth} fill={fill} style={{ transition: 'all 1s ease-in' }}/>;
+  return <circle cx={x} cy={y} r={radius} stroke={stroke} strokeWidth={strokeWidth} fill={fill} className='transitions' />;
 };
 
 const CircleGridLayer = ({
@@ -137,7 +137,7 @@ const Sketch14 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150)
     const strokeScale = [0,2,4,8,16,32,64,128]
 
     return (
-      <div style={{ transition: 'background-color 1s ease-in', backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{ margin: '10%', transition: 'all 1s ease-in', backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
+      <div className='transitions' style={{ backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' className='transitions' style={{ margin: '10%', backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
         <CircleGrid colors={colors} cols={cols} rows={rows} verticalSpacing={randomInt(4,32)} horizontalSpacing={randomInt(4,32)} />
       </svg>
       </div>
