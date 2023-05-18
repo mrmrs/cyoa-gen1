@@ -141,14 +141,17 @@ const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
     const strokeDashArrayAlt = generateRandomStrokeDashArray()
     const strokeScale = [0,1,2,3,4,8,12,16,24, 32,48, 64,128,256,512,1024]
     const blendModes = ['darken', ] //'overlay', 'multiply', 'darken']
+  //
+  const gridColor = colors[randomInt(0,colors.length-1)]
 
 
     return (
       <div       className='transitions'
       style={{  backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> 
       
-      <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' className='transitions' style={{ padding: '10%',  backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'darken',  mixBlendMode: 'multiply', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
-       <RandomGrid cols={cols} rows={rows} symmetrical={false} cellWidth={cellWidth} cellHeight={cellHeight} strokeDashoffset='0' strokeWidth='2' strokeDasharray='0' colors={colors} bgColor={colors[randomInt(0,colors.length-1)]} />
+      <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' className='transitions' style={{ padding: '10%',  backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'multiply', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
+       <RandomGrid cols={cols} rows={rows} symmetrical={false} cellWidth={cellWidth} cellHeight={cellHeight} strokeDashoffset='0' strokeWidth='2' strokeDasharray='0' colors={colors} bgColor={gridColor} />
+       <RandomGrid cols={cols} rows={rows} symmetrical={false} cellWidth={cellWidth} cellHeight={cellHeight} strokeDashoffset='0' strokeWidth='2' strokeDasharray='0' colors={colors} bgColor={gridColor} />
       </svg>
       </div>
   );

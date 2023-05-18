@@ -6,7 +6,10 @@ import chroma from 'chroma-js'
 import {sample} from 'lodash'
 import { randomInt } from '../lib/random'
 import Sketch0 from '../components/sketch-0'
-import Sketch0a from '../components/sketch-0a'
+import Sketch0b from '../components/sketch-0b'
+import Sketch0c from '../components/sketch-0c'
+import Sketch0d from '../components/sketch-0d'
+import Sketch0e from '../components/sketch-0e'
 import Sketch1 from '../components/sketch-1'
 import Sketch1a from '../components/sketch-1a'
 import Sketch2 from '../components/sketch-2'
@@ -155,12 +158,12 @@ export default function Home() {
       //chroma.scale([chroma('hsla(260,60%,10%,1)'), chroma('hsla(290,60%,90%,1)')]).mode(mode).colors(16),
       //chroma.scale([ '#FF4F4F', '#FF7A4F', '#7FFF4F', '#4FD8FF', '#644FFF' ]).mode(mode).colors(16),
       generateGeometricPalette(),
-      //[ '#FF355E', '#FD5B78', '#FF6037', '#FF9966', '#FFCC33', '#CCFF00', '#66FF66', '#AAF0D1', '#50BFE6', '#FF6EFF', '#732E6C', '#363958', '#5E2D79', '#4B0082', '#2E0854', '#FF9933'  ],
-      //[ '#E63946', '#F1C453', '#A8DADC', '#457B9D', '#1D3557', '#FFB6B9', '#CB997E', '#6D6875', '#2A9D8F', '#E9C46A', '#F4A261', '#5EAAA8', '#DD6E42', '#4F5D75', '#9A8C98', '#C08497', ],
-      //[ "#FCFAEE", "#FFFBF0", "#FEF8E6", "#FFEDD3", "#F9E0C7", "#F0D4BB", "#E2C8B0", "#D7BCA5", "#CAB09A", "#BDA48F", "#AF997F", "#A18E6F", "#927F5B", "#836F47", "#745F33", "#654E1F" ], // midsommar
-      //[ "#FF5252", "#FF4081", "#E040FB", "#7C4DFF", "#536DFE", "#448AFF", "#40C4FF", "#18FFFF", "#64FFDA", "#69F0AE", "#B2FF59", "#EEFF41", "#FFFF00", "#FFD740", "#FFAB40", "#FF6E40" ],
-      //[ "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF9800", "#FF5722" ],
-      //[ "#FF5252", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#00BCD4", "#009688", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF5722", "#795548", "#607D8B", "#9E9E9E" ]
+      [ '#FF355E', '#FD5B78', '#FF6037', '#FF9966', '#FFCC33', '#CCFF00', '#66FF66', '#AAF0D1', '#50BFE6', '#FF6EFF', '#732E6C', '#363958', '#5E2D79', '#4B0082', '#2E0854', '#FF9933'  ],
+      [ '#E63946', '#F1C453', '#A8DADC', '#457B9D', '#1D3557', '#FFB6B9', '#CB997E', '#6D6875', '#2A9D8F', '#E9C46A', '#F4A261', '#5EAAA8', '#DD6E42', '#4F5D75', '#9A8C98', '#C08497', ],
+      [ "#FCFAEE", "#FFFBF0", "#FEF8E6", "#FFEDD3", "#F9E0C7", "#F0D4BB", "#E2C8B0", "#D7BCA5", "#CAB09A", "#BDA48F", "#AF997F", "#A18E6F", "#927F5B", "#836F47", "#745F33", "#654E1F" ], // midsommar
+      [ "#FF5252", "#FF4081", "#E040FB", "#7C4DFF", "#536DFE", "#448AFF", "#40C4FF", "#18FFFF", "#64FFDA", "#69F0AE", "#B2FF59", "#EEFF41", "#FFFF00", "#FFD740", "#FFAB40", "#FF6E40" ],
+      [ "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF9800", "#FF5722" ],
+      [ "#FF5252", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#00BCD4", "#009688", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF5722", "#795548", "#607D8B", "#9E9E9E" ]
 
     ])
     setMode(sample(['lch', 'lab']))
@@ -232,16 +235,57 @@ export default function Home() {
    <kbd style={{ padding: '16px',height: '64px', width: '96px', color: 'white', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{generatedDesignCount}</kbd> 
    <p style={{ textAlign: 'right', flexGrow: 1, paddingRight: '16px', whiteSpace: 'nowrap', marginLeft: '4rem',  }}>{messages[messageIndex]}</p>
    </header>}
-          
+      <svg height='0' width='0'>
+      <defs>
+        <linearGradient id='Gradient0' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[0]}  />
+          <stop offset='100%' stopColor={palette[1]}  />
+        </linearGradient>
+        <linearGradient id='Gradient1' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[2]}  />
+          <stop offset='100%' stopColor={palette[3]}  />
+        </linearGradient>
+        <linearGradient id='Gradient2' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[4]}  />
+          <stop offset='100%' stopColor={palette[5]}  />
+        </linearGradient>
+        <linearGradient id='Gradient3' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[6]}  />
+          <stop offset='100%' stopColor={palette[7]}  />
+        </linearGradient>
+        <linearGradient id='Gradient4' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[8]}  />
+          <stop offset='100%' stopColor={palette[9]}  />
+        </linearGradient>
+        <linearGradient id='Gradient5' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[10]}  />
+          <stop offset='100%' stopColor={palette[11]}  />
+        </linearGradient>
+        <linearGradient id='Gradient6' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[12]}  />
+          <stop offset='100%' stopColor={palette[13]}  />
+        </linearGradient>
+        <linearGradient id='Gradient7' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[14]}  />
+          <stop offset='100%' stopColor={palette[15]}  />
+        </linearGradient>
+        <linearGradient id='Gradient8' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[0]}  />
+          <stop offset='100%' stopColor={palette[15]}  />
+        </linearGradient>
+      </defs>
+    </svg>    
 <section className='cols-2 cols-4-m cols-8-l' style={{ marginBottom: '4rem', marginTop: '5rem', display: 'grid', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
       <Sketch0 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch0a strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch0b strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch0d strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch0c strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch1 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch2 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch3 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch4 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch5 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-     <Sketch6 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch6 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch7 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch8 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
       <Sketch9 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
@@ -252,6 +296,7 @@ export default function Home() {
       <Sketch14  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
       <Sketch15  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
       <Sketch16  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+      <Sketch0e strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
     </section>
       </main>
     </>

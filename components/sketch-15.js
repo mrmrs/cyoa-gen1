@@ -5,7 +5,7 @@ import { randomInt} from '../lib/random'
 
 
 const Circle = ({ x, y, radius, fill, stroke, strokeWidth, strokeDasharray, ...props }) => {
-  return <circle cx={x} cy={y} r={radius} stroke={stroke} strokeWidth={strokeWidth} fill={fill} className='transitions' />;
+  return <circle cx={x} cy={y} r={radius} stroke={stroke} strokeWidth={strokeWidth} fill={fill} className='transitions animation-dash' />;
 };
 
 const CircleGridLayer = ({

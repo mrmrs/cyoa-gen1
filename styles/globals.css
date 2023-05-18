@@ -165,6 +165,12 @@ html {
   }
 }
 
+@keyframes dash1 {
+  to {
+    stroke-dasharray: 100%;
+  }
+}
+
 @keyframes backgroundPulse {
   0% {
     background-size: 100%;  
@@ -179,6 +185,10 @@ html {
 
 .animation-dash {
   animation: dash 10s alternate ease-in-out infinite forwards;
+}
+
+.animation-dash1 {
+  animation: dash1 10s alternate ease-in-out infinite forwards;
 }
 
 .transitions {
