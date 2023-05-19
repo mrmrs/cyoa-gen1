@@ -4,13 +4,60 @@ import Image from 'next/image'
 import randomColor from 'random-hex-color'
 import chroma from 'chroma-js'
 import {sample} from 'lodash'
-import { Cardo  as Font } from 'next/font/google'
 import { randomInt } from '../lib/random'
-import EnchantedBookCover from '../components/book-cover-enchanted-map'
-import EnchantedBookCover2 from '../components/book-cover-2'
+import Sketch0 from '../components/sketch-0'
+import Sketch0b from '../components/sketch-0b'
+import Sketch0c from '../components/sketch-0c'
+import Sketch0d from '../components/sketch-0d'
+import Sketch0e from '../components/sketch-0e'
+import Sketch1 from '../components/sketch-1'
+import Sketch1a from '../components/sketch-1a'
+import Sketch2 from '../components/sketch-2'
+import Sketch3 from '../components/sketch-3'
+import Sketch4 from '../components/sketch-4'
+import Sketch5 from '../components/sketch-5'
+import Sketch6 from '../components/sketch-6'
+import Sketch7 from '../components/sketch-7'
+import Sketch8 from '../components/sketch-8'
+import Sketch9 from '../components/sketch-9'
+import Sketch10 from '../components/sketch-10'
+import Sketch11 from '../components/sketch-11'
+import Sketch11a from '../components/sketch-11a'
+import Sketch12 from '../components/sketch-12'
+import Sketch14 from '../components/sketch-14'
+import Sketch15 from '../components/sketch-15'
+import Sketch16 from '../components/sketch-16'
+import Sketch20 from '../components/sketch-20'
 
+function generateGeometricPalette() {
+  const palette = [];
+  
+  // Generate random hue for the initial color
+  const initialHue = Math.floor(Math.random() * 360);
+  
+  for (let i = 0; i < 16; i++) {
+    // Generate random hue and saturation variations
+    const hueVariation = Math.random() * 180;
+    const saturationVariation = Math.random() * 70;
+    const lightnessVariation = Math.random() * 60;
+    
+    // Calculate hue, saturation, and lightness values
+    const hue = (initialHue + hueVariation + 180) % 360;
+    const saturation = 30 + saturationVariation;
+    const lightness = 30 + lightnessVariation;
+    
+    // Convert HSL to hexadecimal color code
+    const color = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    
+    // Push the color to the palette
+    palette.push(color);
+  }
+  
+  return palette;
+}
 const messages = [
-"As you touch the book you realize the possibilities ahead are endless...",
+"It seems the possibilities are endless...",
+"...this system can generate more unique art pieces than there are atoms in the universe",
 "There are three primary colors: red, blue, and yellow. All other colors can be created by mixing these three.",
 "Colors can affect our emotions and mood, with warm colors like red and orange evoking energy, while cool colors like blue and green promote calmness.",
 "The color wheel, invented by Sir Isaac Newton, is a visual representation of the relationships between colors.",
@@ -41,11 +88,15 @@ const messages = [
 "The Platonic solids are a group of five regular polyhedra, including the tetrahedron, cube, octahedron, dodecahedron, and icosahedron.",
 ]
 
-const font = Font({ weight: '400', subsets: ['latin'] })
-
 export default function Home() {
   const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
   const [messageIndex, setMessageIndex] = useState(-1)
+
+  const [rows, setRows] = useState(randomInt(2,16))
+  const [cols, setCols] = useState(randomInt(2,16))
+  const [symmetrical, setSymmetrical] = useState(false)
+  const [cellWidth, setCellWidth] = useState(1000/cols)
+  const [cellHeight, setCellHeight] = useState(1400/rows)
 
   // Book 1 & 2
   const [bgColor, setBgColor] = useState('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
@@ -83,46 +134,37 @@ export default function Home() {
       setMessageIndex((messageIndex + 1 ) % messages.length)
     }
 
-    //console.log(generatedDesignCount)
     setBgColor('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
     setBgColor2(randomColor())
     setMaxLimit(randomInt(50,400))
     setStrokeWidth(sample([4,4,4,4,6,8,8,8,8,16,64]))
+
+    //grid
+    setRows(randomInt(1,32))
+    setCols(randomInt(1,32))
     const baseColor = randomColor()
     setColorsInt(randomInt(1,100))
     const newPalette = sample([
-      chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
-      chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
-      chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
-      chroma.scale([randomColor(), baseColor, randomColor(), randomColor()]).mode(mode).colors(16),
-      chroma.scale([chroma(baseColor).darken(4), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16),
-      chroma.scale([chroma(baseColor).brighten(4), baseColor, chroma(baseColor).darken(4)]).mode(mode).colors(16),
-      chroma.scale(['#ff4f4f', baseColor, '#644fff']).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(208,100%,10%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(208,60%,10%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(260,100%,10%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([chroma('hsla(260,60%,10%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
-      chroma.scale([ '#FF4F4F', '#FF7A4F', '#7FFF4F', '#4FD8FF', '#644FFF' ]).mode(mode).colors(16),
+      //chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
+      //chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
+      //chroma.scale([randomColor(), randomColor(), randomColor()]).mode(mode).colors(32),
+      //chroma.scale([randomColor(), baseColor, randomColor(), randomColor()]).mode(mode).colors(16),
+      //chroma.scale([chroma(baseColor).darken(4), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16),
+      //chroma.scale([chroma(baseColor).brighten(4), baseColor, chroma(baseColor).darken(4)]).mode(mode).colors(16),
+      //chroma.scale(['#ff4f4f', baseColor, '#644fff']).mode(mode).colors(16),
+      //chroma.scale([chroma('hsla(208,100%,10%,1)'), chroma('hsla(216,100%,90%,1)')]).mode(mode).colors(16),
+      //chroma.scale([chroma('hsla(208,60%,10%,1)'), chroma('hsla(216,60%,90%,1)')]).mode(mode).colors(16),
+      //chroma.scale([chroma('hsla(290,100%,10%,1)'), chroma('hsla(320,100%,90%,1)')]).mode(mode).colors(16),
+      //chroma.scale([chroma('hsla(260,60%,10%,1)'), chroma('hsla(290,60%,90%,1)')]).mode(mode).colors(16),
+      //chroma.scale([ '#FF4F4F', '#FF7A4F', '#7FFF4F', '#4FD8FF', '#644FFF' ]).mode(mode).colors(16),
+      generateGeometricPalette(),
       [ '#FF355E', '#FD5B78', '#FF6037', '#FF9966', '#FFCC33', '#CCFF00', '#66FF66', '#AAF0D1', '#50BFE6', '#FF6EFF', '#732E6C', '#363958', '#5E2D79', '#4B0082', '#2E0854', '#FF9933'  ],
-      [ 
-        '#FF4F4F', 
-        '#644FFF', 
-        '#FF7A4F', 
-        '#4FD8FF', 
-        '#FFD84F', 
-        '#4FA7FF', 
-        '#E5FF4F', 
-        '#4FFFDF', 
-        '#B2FF4F', 
-        '#B24FFF', 
-        '#7FFF4F', 
-        '#FF4FF7', 
-        '#4FFF6B', 
-        '#4F76FF', 
-        '#4FFFA5', 
-        '#FFAE4F', 
-      ],
-  [ '#E63946', '#F1C453', '#A8DADC', '#457B9D', '#1D3557', '#FFB6B9', '#CB997E', '#6D6875', '#2A9D8F', '#E9C46A', '#F4A261', '#5EAAA8', '#DD6E42', '#4F5D75', '#9A8C98', '#C08497', ],
+      [ '#E63946', '#F1C453', '#A8DADC', '#457B9D', '#1D3557', '#FFB6B9', '#CB997E', '#6D6875', '#2A9D8F', '#E9C46A', '#F4A261', '#5EAAA8', '#DD6E42', '#4F5D75', '#9A8C98', '#C08497', ],
+      [ "#FCFAEE", "#FFFBF0", "#FEF8E6", "#FFEDD3", "#F9E0C7", "#F0D4BB", "#E2C8B0", "#D7BCA5", "#CAB09A", "#BDA48F", "#AF997F", "#A18E6F", "#927F5B", "#836F47", "#745F33", "#654E1F" ], // midsommar
+      [ "#FF5252", "#FF4081", "#E040FB", "#7C4DFF", "#536DFE", "#448AFF", "#40C4FF", "#18FFFF", "#64FFDA", "#69F0AE", "#B2FF59", "#EEFF41", "#FFFF00", "#FFD740", "#FFAB40", "#FF6E40" ],
+      [ "#F44336", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF9800", "#FF5722" ],
+      [ "#FF5252", "#E91E63", "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#00BCD4", "#009688", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF5722", "#795548", "#607D8B", "#9E9E9E" ]
+
     ])
     setMode(sample(['lch', 'lab']))
     setPalette(
@@ -173,169 +215,89 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={font.className} style={{ position: 'relative' }}>
-        <header className='header'>
-          <h1 className='book-title'>The Generative Enigma: A Castle of Creative Conundrums</h1>
-        </header>
-        <article className='chapter' style={{ paddingBottom: '256px' }}>
-          <header>
-            <h2 className='chapter-number'>Chapter 1</h2>       
-            <h3 className='chapter-title'>The Train, the Storm, &amp; the Bookshop</h3>       
-          </header>
-    <p>
-    The old woman smiles as she places two books on the timeworn desk between you. 
-    Both books have seen better days, their covers weathered and pages yellowed, yet each holds a distint allure. As you examping them more closely, you notice the covers appear to be alive, shifting in tandem as if connected by some otherworldly force.  
-    </p>
-    <p>
-      &quot;I&apos;ve always found books to be the best companions at times like these. You can take one of these with you, my dear, but only one,&quot; she says.
-    </p>
-    <p>
-      Which book do you take?
-    </p>
-    <div style={{ position: 'relative' }}>
-<section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '0rem' }} onClick={(e) => regenerateClick()}>
-    <div>
-      <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
-    </div>
-    <div>
-      <EnchantedBookCover2 maxLimit={maxLimit} strokeWidth={strokeWidth} bgColor={bgColor} colors={palette} />
-      <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
-    </div>
-  </section>
- {messageIndex >= 0 && <p style={{
-     position: 'sticky',
+      <main style={{ position: 'relative' }}>
+ {messageIndex >= 0 && <header style={{
+     position: 'fixed',
      right: 0,
      left: 0,
      top: 0,
-     padding: '16px',
      fontSize: '16px',
-     marginBottom: 0,
-     marginTop: '4em',
-     fontStyle: 'italic',
-     maxWidth: '34em',
-     marginLeft: 'auto', 
-     marginRight: 'auto',
+     margin: 0,
+     fontFamily: 'monospace',
+     color: 'black',
+     background: 'white',
+     display: 'flex',
+     alignItems: 'center',
+     borderBottom: '1px solid black',
+     zIndex: 999,
+
  }}>
-   {messages[messageIndex]}
-   </p>}
-    </div>
-
-<div style={{display: 'none'}}>
-<p>
-  You can&apos;t say the train conductor didn&apos;t warn you.
-</p> 
-<p>
-  &quot;It&apos;s going to be the storm of the century they say. Maybe the worst in a thousand years.&quot;
-</p>
-<p>
-  It was hardly drizzling when you left the station and walking hadn&apos;t seemed like the worst idea at the time. But now you&apos;re starting to think you had made a mistake. The light drizzle had turned into a downpour and you were getting soaked. 
-
-You pull your jacket closer around you. &quot;This is ridiculous,&quot; you mutter, &quot;I can&apos;t believe I brought an umbrella instead of a boat&quot;
-
-
-That&apos;s when you spotted the old bookshop, tucked away in a corner of the village. The lights were on, and through the rain-streaked windows, you could see the shadowy outline of the bookshelves and the flickering flames of a fireplace. Without a second thought, you pushed open the door and stepped inside.
-The air inside was musty and thick with the smell of old books, but it was warm and inviting, a welcome relief from the raging storm outside. You shook yourself like a wet dog, sending droplets of water flying in all directions.
-&quot;Goodness gracious me, what a sight!&quot; The voice came from behind a counter, and you turned to see an old woman peering at you through thick spectacles. She was small and plump, with a mass of gray hair tied up in a bun.
-&quot;Sorry,&quot; you said, feeling embarrassed. &quot;I didn&apos;t mean to make a mess.&quot;
-&quot;Nonsense,&quot; the woman said, her eyes twinkling. &quot;A bit of water never hurt anyone. Now come closer, my dear, and let me get a good look at you.&quot;
-You approached the counter, and the woman studied you intently. &quot;You&apos;re not from around here, are you?&quot;
-&quot;Can I help you with something?&quot; she asked, her eyes roving over the shelves behind her.
-&quot;I was just looking for a place to wait out the storm,&quot; you said. &quot;I don&apos;t want to be caught out in it.&quot;
-&quot;Ah, well, you&apos;ve come to the right place,&quot; she said, reaching under the counter and pulling out a thick woolen blanket. &quot;Wrap yourself up in this and make yourself comfortable. I&apos;ll put the kettle on and we can have a cup of tea while we wait for the storm to pass.&quot;
-You couldn&apos;t help but feel grateful for the woman&apos;s kindness. As you settled into a cozy armchair by the fire, she bustled about, making tea and bringing out plates of biscuits. You felt a sense of peace settle over you, and for a moment, the raging storm outside seemed like a world away.
-As you sipped your tea and nibbled on a biscuit, the old woman began to chat away, telling you all sorts of stories and anecdotes about the village and its inhabitants. You listened with rapt attention, fascinated by her colorful descriptions of the local characters and their exploits.
-    </p>
-
-
-<p>
-  &quot;I&apos;ve always found books to be the best companions in times like these. &quot;
-</p>
-
-Hello there, dear,&quot; the old woman behind the counter says, her eyes twinkling with amusement. &quot;What brings you out in this dreadful weather?&quot;
-&quot;My aunt&apos;s house is just up the road, and I didn&apos;t think the weather would be this bad,&quot; you reply.
-The old woman nods sympathetically. &quot;I know, dear. It&apos;s the storm of the century. But don&apos;t worry, you&apos;re safe here. Now, let me take your coat and dry it by the fire. And while you&apos;re here, would you like to browse some books? I have quite the selection.&quot;
-As you browse through the shelves, you can&apos;t help but notice the odd assortment of books. Some are old and tattered, while others seem to have been recently added. One book in particular catches your eye, a thick leather-bound tome with strange symbols etch
-
-You slip and slide, struggling to keep your footing
-
-&quot;Easy there,&quot; a voice says from the shadows. &quot;I&apos;m not here to hurt you.&quot; You squint into the darkness, trying to make out the stranger&apos;s face. &quot;I&apos;m just looking for some shelter from this damned storm.&quot;
-
-The old woman handed you the second book and pointed towards the back of the store. &quot;Take this path,&quot; she said, &quot;and follow it through the woods. It will lead you to where you need to go.&quot;
-You hesitated for a moment, but the storm outside was raging, and you had nowhere else to go. You took the book and followed the old woman&apos;s instructions. The path was narrow, the trees bending under the weight of the rain, but you could see just enough to keep moving forward.
-
-It&apos;s pouring down rain as you make your way towards your Aunt&apos;s house. The weather is so terrible that you can barely see two feet in front of you. You pull your coat closer to your body, wishing you had listened to your mother and brought an umbrella.
-As you walk, you notice a small, cozy bookstore on the corner of the street. The sign above the door reads &quot;Belladonna&apos;s Books.&quot; You decide to take refuge from the storm inside.
-
-Here&apos;s an expanded version as Shel Silverstein:
-You could tell it was going to be a big one from the way the sky was growling and the trees were swaying.
-
-You were startled by the sound of a voice behind you. &quot;Can I help you with anything?&quot; you turned to see an old woman peering at you curiously. Her eyes were bright and her smile was warm, but you sensed there was something unusual about her. &quot;I&apos;m just looking,&quot; you replied, trying to hide your curiosity.
-
-&quot;My mother used to always say that the secret to a good pie is a dash of cinnamon&quot;
-
-
-
-
-&quot;Welcome, dear,&quot; a voice calls from the back of the store. You make your way down the narrow aisle and find an elderly woman seated behind a counter, surrounded by stacks of books and various trinkets. &quot;The storm has caught you, hasn&apos;t it?&quot;
-
-&quot;I&apos;ve always found books to be the best companions in times like these.&quot;
-
-
-
-You meander through the store, running your fingers over the spines of books, pausing to read the titles and descriptions. As you reach the back of the store, your attention is drawn to a small section of books that appear older and more mysterious than the others. You reach out to take one of the books from the shelf, but before you can, the woman&apos;s voice interrupts you.
-&quot;Ah, those books are not for sale,&quot; she says, her eyes meeting yours. &quot;They are special. They hold secrets and stories that are not meant for just anyone.&quot;
-Intrigued, you ask her about the books. She leans in conspiratorially and tells you that they are books of magic and mystery, books that hold the power to transport the reader to other worlds and times. She tells you that she has lived a long life, and that she has been the keeper of these books for as long as she can remember.
-
-
-The old woman raises an eyebrow. &quot;You never know, dear. The storm has a way of bringing out the magic in things.&quot;
-You&apos;re not sure what she means by that, but you shrug it off and continue browsing. You&apos;re just about to leave when the old woman hands you two books.
-
-The old woman directs you to a narrow, winding path that leads through the forest. She tells you that it&apos;s a shortcut to your aunt&apos;s house, but warns you to be careful as the trail can be treacherous, especially in bad weather. She hands you a sturdy walking stick and tells you that it might come in handy.
-You set out down the path, the sound of raindrops pattering against the leaves overhead. The air is thick with the scent of damp earth and pine needles. As you round a bend in the trail, you see a figure up ahead, huddled under a tree. It&apos;s a young girl, no more than ten years old, and she&apos;s shivering in her soaking wet clothes.
-You ask the girl if she needs help, and she nods gratefully. She tells you that she was out playing in the woods when the storm hit, and she got separated from her family. You offer her your coat and the two of you set out together, the walking stick thudding against the muddy ground as you make your way deeper into the forest.
-
-
-As you make your way down the winding path, you hear the sound of rushing water in the distance. You follow the sound and soon come across a fast-flowing river, swollen with rainwater. There&apos;s no way to cross it, and you&apos;re stranded on the wrong side.
-Just when you think all is lost, you hear a voice calling out to you from across the river. It&apos;s a gruff, elderly man with a thick beard and a weather-beaten face. He tells you that he has a small boat that he can use to ferry you across the river, but warns you that the journey will be dangerous. You decide to take your chances, and soon find yourself clinging to the sides of the tiny boat as it bobs and weaves through the rapids.
-    </div>
-          <footer>
-
-          </footer>
-        </article>
-
-  
-        <article className='chapter' style={{display: 'none'}}>
-          <header>
-            <h2 className='chapter-number'>Chapter 2</h2>       
-            <h3 className='chapter-title'>The Enchanted Entrance</h3>       
-          </header>
-
-    <p>
-A dense fog enveloped the lonely road, as if to obscure the path of any curious traveler. The air hung heavy with an unseen weight, a palpable presence that tingled at the back of the neck, sending shivers down the spine. The silhouette of the castle loomed in the distance, its dark, brooding visage somehow alluring and foreboding simultaneously. Despite the tales and whispered warnings that shrouded this mysterious structure in fear, the intrepid adventurer could not resist the magnetic pull of the unknown.
-    </p>
-<p>
-Upon reaching the castle&apos;s entrance, the traveler noticed the stone walls adorned with intricate carvings, depicting scenes that seemed to dance and shimmer in the dim light of the setting sun. The iron gate groaned in protest as it swung open, revealing a grand foyer bathed in an ethereal glow. The air here was thick with age, the taste of a long-lost past lingering on every breath.
-</p>
-    <p>
-As the traveler ventured deeper into the castle, they were struck by the overwhelming sense of forgotten stories and hidden knowledge waiting to be discovered. The atmosphere of the castle seemed to hum with a creative energy, beckoning the visitor to unlock its secrets.
-</p>
-    <p>
-Before long, the traveler found themselves standing before a massive door, its surface etched with curious patterns and symbols. The designs seemed to writhe and contort before their very eyes, yet somehow, they could discern a single word: &quot;Color.&quot; Instinctively, they reached out to touch the word, and as their fingers made contact, the symbols began to glow, illuminating the room with vibrant hues.
-</p>
-    <p>
-A voice echoed through the chamber, deep and resonant, yet strangely soothing. &quot;To proceed, you must create a work of generative art using the element of color. Choose wisely, for your choice will determine your path through these ancient walls.&quot;
-    </p>
-
-Three options lay before the traveler:
-
-Create a vibrant mosaic, harnessing the full spectrum of colors to bring life to an otherwise dull castle room. (Pages 6-9)
-Paint a dull landscape, using muted tones and somber shades to reflect the oppressive atmosphere of the castle. (Pages 10-12)
-Assemble a monochrome portrait, capturing the essence of the forgotten souls that once dwelled within these walls. (Pages 13-15)
-As the traveler pondered their choice, they could not shake the feeling that unseen eyes were watching them, waiting to witness the first step of their journey into the heart of the castle. The weight of the decision bore down on them, and with a deep breath, they made their choice, setting in motion a chain of events that would lead them through the labyrinthine corridors of the castle, each choice forging the path to their ultimate fate.
-
-In the world of the Generative Enigma, the line between reality and imagination was blurred, and the traveler was about to embark on a journey that would challenge their creativity and reshape their understanding of the world. As the haunting melodies of the castle whispered their secrets, the traveler prepared to face the unknown, guided by the creative force that dwelled within these ancient walls.
-        </article>
+   <kbd style={{ padding: '16px',height: '64px', width: '96px', color: 'white', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{generatedDesignCount}</kbd> 
+   <p style={{ textAlign: 'right', flexGrow: 1, paddingRight: '16px', whiteSpace: 'nowrap', marginLeft: '4rem',  }}>{messages[messageIndex]}</p>
+   </header>}
+      <svg height='0' width='0'>
+      <defs>
+        <linearGradient id='Gradient0' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[0]}  />
+          <stop offset='100%' stopColor={palette[1]}  />
+        </linearGradient>
+        <linearGradient id='Gradient1' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[2]}  />
+          <stop offset='100%' stopColor={palette[3]}  />
+        </linearGradient>
+        <linearGradient id='Gradient2' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[4]}  />
+          <stop offset='100%' stopColor={palette[5]}  />
+        </linearGradient>
+        <linearGradient id='Gradient3' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[6]}  />
+          <stop offset='100%' stopColor={palette[7]}  />
+        </linearGradient>
+        <linearGradient id='Gradient4' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[8]}  />
+          <stop offset='100%' stopColor={palette[9]}  />
+        </linearGradient>
+        <linearGradient id='Gradient5' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[10]}  />
+          <stop offset='100%' stopColor={palette[11]}  />
+        </linearGradient>
+        <linearGradient id='Gradient6' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[12]}  />
+          <stop offset='100%' stopColor={palette[13]}  />
+        </linearGradient>
+        <linearGradient id='Gradient7' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[14]}  />
+          <stop offset='100%' stopColor={palette[15]}  />
+        </linearGradient>
+        <linearGradient id='Gradient8' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[0]}  />
+          <stop offset='100%' stopColor={palette[15]}  />
+        </linearGradient>
+      </defs>
+    </svg>    
+<section className='cols-2 cols-4-m cols-8-l' style={{ marginBottom: '4rem', marginTop: '5rem', display: 'grid', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
+      <Sketch0 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch0b strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch0d strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch0c strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch1 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch2 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch3 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch4 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch5 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch6 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch7 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch8 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch9 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch10 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <Sketch11 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+      <Sketch11a strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+      <Sketch12 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+      <Sketch14  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+      <Sketch15  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+      <Sketch16  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
+      <Sketch0e strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+    </section>
       </main>
     </>
   )
