@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import { Noise } from 'noisejs'
 import randomColor from 'random-hex-color'
 import { randomInt} from '../lib/random'
@@ -51,7 +52,7 @@ const TriangleGrid = ({
 
       triangles.push(
         <path
-          key={`up-${r}-${c}`}
+          key={uuidv4()}
           d={getTrianglePath(centerX, centerY, triangleSize, true)}
           fill={colors[randomInt(0,colors.length-1)]}
           stroke='rgba(0,0,0,.5)'
@@ -64,7 +65,7 @@ const TriangleGrid = ({
 
       triangles.push(
         <path
-          key={`down-${r}-${c}`}
+          key={uuidv4()}
           d={getTrianglePath(centerX, centerY, triangleSize, false)}
           fill="none"
           stroke="black"

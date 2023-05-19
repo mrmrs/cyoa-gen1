@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import RandomGrid from './random-grid'
 import { randomInt} from '../lib/random'
 
@@ -202,7 +203,7 @@ const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
       <g style={{color: colors[randomInt(0,colors.length-1)]}}><RandomGrid /></g>
       {[...Array(randomInt(1,16))].map((x,i) =>
       <path
-        key={i}
+        key={uuidv4()}
         d={generateRandomShape()}
         //strokeDasharray='100% 100% 100% 100%'
         //strokeDashoffset='-100%'
@@ -216,7 +217,7 @@ const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
       )}
       {[...Array(randomInt(1,16))].map((x,i) =>
       <path
-        key={x+i}
+        key={uuidv4()}
         d={generateRandomSmoothBezierPath()}
         strokeDasharray='100% 100% 100% 100%'
         strokeDashoffset='-100%'

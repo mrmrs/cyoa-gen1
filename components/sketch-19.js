@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import { Noise } from 'noisejs'
 import randomColor from 'random-hex-color'
 import { randomInt} from '../lib/random'
@@ -49,7 +50,7 @@ const HatchedCircleDelaunay = ({
         const hatchPattern = i % 3 === 0 ? "url(#hatch1)" : "url(#hatch2)";
         return (
           <polygon
-            key={i}
+            key={uuidv4()}
             points={`${p1[0]},${p1[1]} ${p2[0]},${p2[1]} ${p3[0]},${p3[1]}`}
             fill={hatchPattern}
             stroke='black'

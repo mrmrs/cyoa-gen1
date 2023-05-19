@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import { randomInt} from '../lib/random'
 
 const Sketch0d = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150), strokeWidth = randomInt(4,24)}) => {
@@ -25,7 +26,7 @@ const Sketch0d = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150)
 
       {[...Array(4)].map((x,i) =>
         <circle
-          key={i}
+          key={uuidv4()}
           strokeDasharray={randomInt(0,100)+'% '+randomInt(0,maxLimit*2)+'%'} 
           strokeDashoffset={randomInt(-200,200)+'%'} 
           r={width / 2.25 - (i+1)*16}

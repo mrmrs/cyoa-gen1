@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import { Noise } from 'noisejs'
 import randomColor from 'random-hex-color'
 import { Delaunay } from 'd3-delaunay';
@@ -31,7 +32,7 @@ const CubeGrid = ({
   return (
     <svg width="1000" height="1410" viewBox="0 0 1000 1410" xmlns="http://www.w3.org/2000/svg">
       {cubes.map((cube, i) => (
-        <g key={i} transform={`translate(${cube.x},${cube.y}) rotate(${cube.rotation})`}>
+        <g key={uuidv4()} transform={`translate(${cube.x},${cube.y}) rotate(${cube.rotation})`}>
           <rect x={-cubeSize/2} y={-cubeSize/2} width={cubeSize} height={cubeSize} fill="transparent" stroke={strokeColor} />
           <polygon points={`0,${-cubeSize/2} ${cubeSize/2},0 0,${cubeSize/2}`} fill="transparent" stroke={strokeColor} />
           <polygon points={`-${cubeSize/2},0 0,-${cubeSize/2} 0,${cubeSize/2}`} fill="transparent" stroke={strokeColor} />

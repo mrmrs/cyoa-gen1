@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuidv4 } from 'uuid'
 
 const PolarGraph = ({
   colors,
@@ -27,7 +28,7 @@ const PolarGraph = ({
     const currentRadius = (radius * (i + 1)) / circles;
     return (
       <circle
-        key={i}
+        key={uuidv4()}
         cx={centerX}
         cy={centerY}
         r={currentRadius}

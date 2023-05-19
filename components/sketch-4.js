@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import { randomInt} from '../lib/random'
 
 
@@ -15,7 +16,7 @@ const Sketch4 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
       <div className='transitions' style={{ backgroundColor: 'white', backgroundImage: 'url(https://mrmrs.github.io/photos/paper-3.jpg)', backgroundSize: 'cover', aspectRatio: '100/141', width: '100%', backgroundPosition: 'center center', backgroundBlendMode: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center',  }}> <svg className='transitions' viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' style={{ margin: '10%',  backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', opacity: 1, aspectRatio: '100/141' }}>
       {[...Array(96)].map((x,i) =>
         <line 
-          key={i}
+          key={uuidv4()}
           strokeDasharray={randomInt(50,100)+'% '+randomInt(0,maxLimit*2)+'%'} 
           strokeDashoffset={randomInt(0,200)+'%'} 
           x1={width}

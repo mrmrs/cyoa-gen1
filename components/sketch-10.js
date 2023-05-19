@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import { randomInt} from '../lib/random'
 
 function getRandom(min, max) {
@@ -184,7 +185,7 @@ const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
       <svg viewBox={'0 0 '+width+' '+height} stroke='white' width='1000' height='1410' className='transitions' style={{ margin: '10%', backgroundColor: 'rgba(250,250,24,0)',backgroundBlendMode: 'none',  mixBlendMode: 'darken', overflow: 'hidden', display: 'block', width: '100%', height: 'auto', }}>
       {[...Array(randomInt(1,16))].map((x,i) =>
       <path
-        key={i}
+        key={uuidv4()}
         d={generateRandomShape()}
         //strokeDasharray='100% 100% 100% 100%'
         //strokeDashoffset='-100%'
@@ -198,7 +199,7 @@ const Sketch9 = ({ colors, bgColor, color = 'red', maxLimit = randomInt(50,150),
       )}
       {[...Array(randomInt(1,16))].map((x,i) =>
       <path
-        key={x+i}
+        key={uuidv4()}
         d={generateRandomSmoothBezierPath()}
         strokeDasharray='100% 100% 100% 100%'
         strokeDashoffset='-100%'

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import { Noise } from 'noisejs'
 import randomColor from 'random-hex-color'
 import { randomInt} from '../lib/random'
@@ -38,7 +39,7 @@ const PolarGraphGrid = ({
       const y = r * (graphSize + verticalSpacing) + graphSize / 2;
 
       graphs.push(
-        <PolarGraph key={`graph-${r}-${c}`} x={x} y={y} size={graphSize} />,
+        <PolarGraph key={uuidv4()} x={x} y={y} size={graphSize} />,
       );
     }
   }

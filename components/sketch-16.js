@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import { Noise } from 'noisejs'
 import randomColor from 'random-hex-color'
 import { randomInt} from '../lib/random'
@@ -82,7 +83,7 @@ const ShapeGrid = ({
     const layerNoiseSeed = noiseSeed + i * 100;
     gridLayers.push(
       <ShapeGridLayer
-        key={`layer-${i}`}
+        key={uuidv4()}
         width={width}
         height={height}
         shapeSize={shapeSize}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'
 import { Noise } from 'noisejs'
 import randomColor from 'random-hex-color'
 import { randomInt} from '../lib/random'
@@ -32,7 +33,7 @@ const CircleGridLayer = ({
       const radius = circleRadius * (randomInt(4,60)/10 + noise.simplex2(x * scale, y * scale));
       const boolFill = randomInt(0,10)
 
-      circles.push(<Circle strokeWidth={1 * noise.simplex2(x*scale,y*scale)} key={`circle-${r}-${c}`} x={x} y={y} radius={radius} stroke={boolFill > 5? 'rgba(0,0,0,1)' : 'rgba(255,255,255,1)'} fill={boolFill < 5? 'transparent' : colors[randomInt(0,colors.length-1)]}/>);
+      circles.push(<Circle strokeWidth={1 * noise.simplex2(x*scale,y*scale)} key={uuidv4()} x={x} y={y} radius={radius} stroke={boolFill > 5? 'rgba(0,0,0,1)' : 'rgba(255,255,255,1)'} fill={boolFill < 5? 'transparent' : colors[randomInt(0,colors.length-1)]}/>);
     }
   }
 
@@ -58,7 +59,7 @@ const CircleGrid = ({
     gridLayers.push(
       <CircleGridLayer
         colors={colors}
-        key={`layer-${i}`}
+        key={uuidv4()}
         width={width}
         height={height}
         horizontalSpacing={horizontalSpacing}
