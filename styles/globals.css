@@ -192,7 +192,7 @@ html {
 }
 
 .transitions {
-  transition: fill 1s ease-in, stroke 1s ease-in, color 1s ease-in, background-color 1s ease-in;
+  transition: all 1s ease-in;
 }
 
 .chapter svg rect,
