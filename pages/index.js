@@ -5,29 +5,6 @@ import randomColor from 'random-hex-color'
 import chroma from 'chroma-js'
 import {sample} from 'lodash'
 import { randomInt } from '../lib/random'
-import Sketch0 from '../components/sketch-0'
-import Sketch0b from '../components/sketch-0b'
-import Sketch0c from '../components/sketch-0c'
-import Sketch0d from '../components/sketch-0d'
-import Sketch0e from '../components/sketch-0e'
-import Sketch1 from '../components/sketch-1'
-import Sketch1a from '../components/sketch-1a'
-import Sketch2 from '../components/sketch-2'
-import Sketch3 from '../components/sketch-3'
-import Sketch4 from '../components/sketch-4'
-import Sketch5 from '../components/sketch-5'
-import Sketch6 from '../components/sketch-6'
-import Sketch7 from '../components/sketch-7'
-import Sketch8 from '../components/sketch-8'
-import Sketch9 from '../components/sketch-9'
-import Sketch10 from '../components/sketch-10'
-import Sketch11 from '../components/sketch-11'
-import Sketch11a from '../components/sketch-11a'
-import Sketch12 from '../components/sketch-12'
-import Sketch14 from '../components/sketch-14'
-import Sketch15 from '../components/sketch-15'
-import Sketch16 from '../components/sketch-16'
-import Sketch20 from '../components/sketch-20'
 
 function generateGeometricPalette() {
   const palette = [];
@@ -56,42 +33,26 @@ function generateGeometricPalette() {
   return palette;
 }
 const messages = [
-"It seems the possibilities are endless...",
-"...this system can generate more unique art pieces than there are atoms in the universe",
-"There are three primary colors: red, blue, and yellow. All other colors can be created by mixing these three.",
-"Colors can affect our emotions and mood, with warm colors like red and orange evoking energy, while cool colors like blue and green promote calmness.",
-"The color wheel, invented by Sir Isaac Newton, is a visual representation of the relationships between colors.",
-"Complementary colors are those that are opposite each other on the color wheel, such as blue and orange or red and green.",
-"Colors can be described by their hue, saturation, and brightness, which are the main components of color theory.",
-"Tetrachromacy is a rare condition in which a person has four types of color receptors in their eyes, allowing them to see more colors than the average person.",
-"The most common geometric shapes are circles, squares, triangles, and rectangles.",
-"Polygons are shapes with straight sides, and the number of sides determines their specific name, such as pentagon (5 sides) or hexagon (6 sides).",
-"The golden ratio is a mathematical concept often found in nature and art, where the proportion of two quantities is approximately 1.618.",
-"Sacred geometry is the study of geometric shapes and their symbolic meanings in various spiritual and religious contexts.",
-"A Mobius strip is a shape with only one surface and one edge, often used as a symbol of infinity.",
-"Tessellations are patterns formed by repeating shapes that fit together perfectly without any gaps or overlaps.",
-"A fractal is a geometric shape that can be divided into smaller parts, each of which is a reduced-scale copy of the whole.",
-"The Fibonacci sequence is a series of numbers where each number is the sum of the two preceding ones, often found in nature and art.",
-"Anamorphic art uses geometric shapes and perspective to create illusions that can only be seen from specific viewpoints.",
-"The Pantone Color Matching System is a standardized system for identifying and matching colors used in various industries.",
-"Color blindness is a condition where a person has difficulty distinguishing certain colors, most commonly red and green.",
-"Negative space is the area surrounding the main subject of a design or artwork, often used to create interesting shapes and compositions.",
-"The rule of thirds is a compositional principle that divides an image into a 3x3 grid, suggesting that placing subjects along the lines or intersections creates a more balanced and visually appealing composition.",
-"The RGB color model is used in electronic displays and represents colors as a combination of red, green, and blue light.",
-"The CMYK color model is used in printing and represents colors as a combination of cyan, magenta, yellow, and black ink.",
-"Monochromatic color schemes use different shades, tints, and tones of a single color for a harmonious and visually appealing effect.",
-"Analogous color schemes use colors that are adjacent to each other on the color wheel, creating a sense of harmony and unity.",
-"A trapezoid is a quadrilateral with at least one pair of parallel sides.",
-"The study of shapes and their properties is called geometry, a branch of mathematics.",
-"A sphere is a three-dimensional shape with all points equidistant from a central point.",
-"A cube is a three-dimensional shape with six equal square faces.",
-"The Platonic solids are a group of five regular polyhedra, including the tetrahedron, cube, octahedron, dodecahedron, and icosahedron.",
+"Click or tap anywhere to continue...",
+"A color appears",
+"automatically generating colors is one of the quickest and easiest ways to start dabbling with generative design",
+"you can generate two colors to create a gradient",
+"we can add a line",
+"or a bunch of lines",
+"or a shape",
+"or a bunch of shapes",
+"we can generate grids",
+"we can randomize coordinates and cluster them in different ways",
 ]
 
 export default function Home() {
+  const height = 4096
+  const width = 4096
+  const gridUnits = [4, 8, 16, 24, 32, 48, 64]
   const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
-  const [messageIndex, setMessageIndex] = useState(-1)
+  const [messageIndex, setMessageIndex] = useState(0)
 
+  const [gridUnit, setGridUnit] = useState(gridUnits[randomInt(0,gridUnits.length-1)])
   const [rows, setRows] = useState(randomInt(2,16))
   const [cols, setCols] = useState(randomInt(2,16))
   const [symmetrical, setSymmetrical] = useState(false)
@@ -99,47 +60,30 @@ export default function Home() {
   const [cellHeight, setCellHeight] = useState(1400/rows)
 
   // Book 1 & 2
-  const [bgColor, setBgColor] = useState('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
+  const [bgColor, setBgColor] = useState('white')
+  const [textColor, setTextColor] = useState('black')
   const [bgColor2, setBgColor2] = useState(randomColor())
   const [maxLimit, setMaxLimit] = useState(randomInt(50,400))
   const [strokeWidth, setStrokeWidth] = useState(sample([4,4,4,4,6,6,6,6,6,8,8,16,64]))
   const [colorsInt, setColorsInt] = useState(randomInt(0,100))
   const [mode, setMode] = useState(sample(['lab', 'lch']))
-  const [palette, setPalette] = useState(
-    [
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-      bgColor,
-    ]
-  )
+  const [palette, setPalette] = useState( generateGeometricPalette())
 
   const regenerateClick = () => {
     const newCount = generatedDesignCount +1
     setGeneratedDesignCount(newCount)
-
-    if (newCount % 10 === 0 || newCount === 1) {
+    if (newCount === 1 || newCount % 3 === 0) {
       setMessageIndex((messageIndex + 1 ) % messages.length)
     }
-
-    setBgColor('hsla('+randomInt(0,360)+'deg, '+randomInt(60,100)+'%, '+randomInt(50,98)+'%, 1)')
+    const newBgColor = palette[randomInt(0,palette.length-1)]
+    setBgColor(newBgColor)
     setBgColor2(randomColor())
     setMaxLimit(randomInt(50,400))
     setStrokeWidth(sample([4,4,4,4,6,8,8,8,8,16,64]))
+    setTextColor(chroma.contrast(newBgColor, '#ffffff') > 4 ? 'white' : 'black' )
 
     //grid
+    setGridUnit(gridUnits[randomInt(0,gridUnits.length-1)])
     setRows(randomInt(1,32))
     setCols(randomInt(1,32))
     const baseColor = randomColor()
@@ -210,32 +154,27 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Generative Choose Your Own Adventure</title>
-        <meta name="description" content="Generated by create next app" />
+        <title>A Journey Through Generative Space</title>
+        <meta name="description" content="Generated by Components AI" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name='theme-color' content={palette[15]} />
       </Head>
-      <main style={{ position: 'relative' }}>
- {messageIndex >= 0 && <header style={{
-     position: 'fixed',
-     right: 0,
-     left: 0,
-     top: 0,
-     fontSize: '16px',
-     margin: 0,
+      <main style={{ position: 'relative', width: '100%', height: '100%', }} onClick={(e) => regenerateClick()}>
+ <header style={{
+     padding: '16px',
      fontFamily: 'monospace',
-     color: 'black',
-     background: 'white',
      display: 'flex',
      alignItems: 'center',
-     borderBottom: '1px solid black',
-     zIndex: 999,
+     zIndex: 9,
 
  }}>
-   <kbd style={{ padding: '16px',height: '64px', width: '96px', color: 'white', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{generatedDesignCount}</kbd> 
-   <p style={{ textAlign: 'right', flexGrow: 1, paddingRight: '16px', whiteSpace: 'nowrap', marginLeft: '4rem',  }}>{messages[messageIndex]}</p>
-   </header>}
-      <svg height='0' width='0'>
+   <kbd style={{ padding: '16px', height: '64px', width: '96px', color: 'white', background: 'black', display: 'none', alignItems: 'center', justifyContent: 'center' }}>{generatedDesignCount}</kbd> 
+
+   <p className='transitions' style={{ lineHeight: 1.5, fontFamily: 'georgia', fontSize: '32px', margin: 0, flexGrow: 1, padding: '16px', color: textColor, maxWidth: '80ch' }}>{messages[messageIndex]}</p>
+
+   </header>
+    <svg height='0' width='0'>
       <defs>
         <linearGradient id='Gradient0' x1='0' x2='0' y1='0' y2='1'>
           <stop offset='0%' stopColor={palette[0]}  />
@@ -275,29 +214,43 @@ export default function Home() {
         </linearGradient>
       </defs>
     </svg>    
-<section className='cols-2 cols-4-m cols-8-l' style={{ marginBottom: '4rem', marginTop: '5rem', display: 'grid', padding: '0 1rem', gap: '1rem' }} onClick={(e) => regenerateClick()}>
-      <Sketch0 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch0b strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch0d strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch0c strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch1 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch2 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch3 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch4 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch5 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch6 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch7 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch8 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch9 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch10 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-      <Sketch11 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch11a strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch12 strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch14  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch15  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch16  strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette} rows={rows} cols={cols} /> 
-      <Sketch0e strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
-    </section>
+    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: bgColor, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: '100%', minWidth: '100%', height: '4096px', width: '4096px' }}>
+    <g style={{display: 'none'}}>
+      <rect x={0} y={0} height={32} width={width/16} style={{ fill: palette[0] }} />
+      <rect x={width / 16} y={0} height={32} width={width/16} style={{ fill: palette[1] }} />
+      <rect x={width / 16 * 2} y={0} height={32} width={width/16} style={{ fill: palette[2] }} />
+      <rect x={width / 16 * 3} y={0} height={32} width={width/16} style={{ fill: palette[3] }} />
+      <rect x={width / 16 * 4} y={0} height={32} width={width/16} style={{ fill: palette[4] }} />
+      <rect x={width / 16 * 5} y={0} height={32} width={width/16} style={{ fill: palette[5] }} />
+      <rect x={width / 16 * 6} y={0} height={32} width={width/16} style={{ fill: palette[6] }} />
+      <rect x={width / 16 * 7} y={0} height={32} width={width/16} style={{ fill: palette[7] }} />
+      <rect x={width / 16 * 8} y={0} height={32} width={width/16} style={{ fill: palette[8] }} />
+      <rect x={width / 16 * 9} y={0} height={32} width={width/16} style={{ fill: palette[9] }} />
+      <rect x={width / 16 * 10} y={0} height={32} width={width/16} style={{ fill: palette[10] }} />
+      <rect x={width / 16 * 11} y={0} height={32} width={width/16} style={{ fill: palette[11] }} />
+      <rect x={width / 16 * 12} y={0} height={32} width={width/16} style={{ fill: palette[12] }} />
+      <rect x={width / 16 * 13} y={0} height={32} width={width/16} style={{ fill: palette[13] }} />
+      <rect x={width / 16 * 14} y={0} height={32} width={width/16} style={{ fill: palette[14] }} />
+      <rect x={width / 16 * 15} y={0} height={32} width={width/16} style={{ fill: palette[15] }} />
+    </g>
+      <rect style={{ transition: 'all 1s ease-in', x:0,  y: 0, height: height, width: width,  fill: 'url(#Gradient7)'}} />
+      {[...Array(512)].map((x,i) =>
+        <line x1='0' x2={width}  
+        y1={Number(i) * Number(gridUnit)} stroke='black' 
+        y2={Number(i) * Number(gridUnit)} stroke='black' 
+        stroke={palette[0]}
+        className='transitions'
+        />
+      )}
+      {[...Array(512)].map((x,i) =>
+        <line x1={i * gridUnit} x2={i * gridUnit}  
+        y1={0} stroke='black' 
+        y2={height} stroke='black' 
+        stroke={palette[0]}
+        className='transitions'
+        />
+      )}
+    </svg>
       </main>
     </>
   )
