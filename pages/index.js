@@ -185,9 +185,9 @@ export default function Home() {
 
 
   const actions = [
-    <button key={uuidv4()} onClick={regenerateMonochrome} children='Generate Monochrome Palette' />,
-    <button key={uuidv4()} onClick={regenerateColor} children='Generate Palette' />,
-    <button key={uuidv4()} onClick={regenerateRandomColors} children='Random Colors Palette' />,
+    <button key={uuidv4()} onClick={regenerateMonochrome}>Generate Monochrome Palette</button>,
+    <button key={uuidv4()} onClick={regenerateColor}>Generate Palette</button>,
+    <button key={uuidv4()} onClick={regenerateRandomColors}>Random Colors Palette</button>,
   ]
 
 
