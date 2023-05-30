@@ -92,7 +92,7 @@ export default function Home() {
     const newCount = generatedDesignCount +1
     setGeneratedDesignCount(newCount)
     if (generatedDesignCount === 1) {
-      setCoords(generateCoordinates(0,width,0,height,128))
+      setCoords(generateCoordinates(0,width,0,height,512))
     }
     if (newCount === 1 || newCount % 3 === 0) {
       setMessageIndex((messageIndex + 1 ) % messages.length)
@@ -185,9 +185,9 @@ export default function Home() {
 
 
   const actions = [
-    <button onClick={regenerateMonochrome} children='Generate Monochrome Palette' />,
-    <button onClick={regenerateColor} children='Generate Palette' />,
-    <button onClick={regenerateRandomColors} children='Random Colors Palette' />,
+    <button key={uuidv4()} onClick={regenerateMonochrome} children='Generate Monochrome Palette' />,
+    <button key={uuidv4()} onClick={regenerateColor} children='Generate Palette' />,
+    <button key={uuidv4()} onClick={regenerateRandomColors} children='Random Colors Palette' />,
   ]
 
 
@@ -293,20 +293,20 @@ export default function Home() {
       }} />
       {[...Array(rows)].map((x,i) =>
         <line 
-        key={uuidv4()}
-        x1='0' x2={width}  
-        y1={Number(i) * Number(gridUnit)} stroke='black' 
-        y2={Number(i) * Number(gridUnit)} stroke='black' 
-        stroke={palette[0]}
-        className='transitions'
+          key={uuidv4()}
+          x1='0' x2={width}  
+          y1={Number(i) * Number(gridUnit)} 
+          y2={Number(i) * Number(gridUnit)} 
+          stroke={palette[0]}
+          className='transitions'
         />
       )}
       {[...Array(cols)].map((x,i) =>
         <line 
         key={uuidv4()}
         x1={i * gridUnit} x2={i * gridUnit}  
-        y1={0} stroke='black' 
-        y2={height} stroke='black' 
+        y1={0}
+        y2={height} 
         stroke={palette[0]}
         className='transitions'
         />
@@ -356,7 +356,7 @@ export default function Home() {
           {[...Array(generatedDesignCount - 8)].map((x,i) =>
             <rect 
         key={uuidv4()}
-            x={coords[i+4].x1} y={coords[i+4].y1} width={randomInt(0,128)} height={randomInt(0,128)} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidthArray[randomInt(0,strokeWidthArray.length-1)]} 
+            x={coords[i+8].x1} y={coords[i+8].y1} width={randomInt(0,128)} height={randomInt(0,128)} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidthArray[randomInt(0,strokeWidthArray.length-1)]} 
           //fill={'url(#Gradient'+randomInt(0,16)+')'}
           fill='transparent'
             className='transitions' />
