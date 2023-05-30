@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import Head from 'next/head'
 import Image from 'next/image'
 import randomColor from 'random-hex-color'
@@ -84,11 +85,15 @@ export default function Home() {
   const [colorsInt, setColorsInt] = useState(randomInt(0,100))
   const [mode, setMode] = useState(sample(['lab', 'lch']))
   const [palette, setPalette] = useState( generateGeometricPalette())
-  const [coords, setCoords] = useState(generateCoordinates(0,width,0,height,128))
+  const [coords, setCoords] = useState(undefined)
 
   const regenerateClick = () => {
+     
     const newCount = generatedDesignCount +1
     setGeneratedDesignCount(newCount)
+    if (generatedDesignCount === 1) {
+      setCoords(generateCoordinates(0,width,0,height,128))
+    }
     if (newCount === 1 || newCount % 3 === 0) {
       setMessageIndex((messageIndex + 1 ) % messages.length)
     }
@@ -287,7 +292,9 @@ export default function Home() {
           fill: 'url(#Gradient'+randomInt(0,16)+')'
       }} />
       {[...Array(rows)].map((x,i) =>
-        <line x1='0' x2={width}  
+        <line 
+        key={uuidv4()}
+        x1='0' x2={width}  
         y1={Number(i) * Number(gridUnit)} stroke='black' 
         y2={Number(i) * Number(gridUnit)} stroke='black' 
         stroke={palette[0]}
@@ -295,7 +302,9 @@ export default function Home() {
         />
       )}
       {[...Array(cols)].map((x,i) =>
-        <line x1={i * gridUnit} x2={i * gridUnit}  
+        <line 
+        key={uuidv4()}
+        x1={i * gridUnit} x2={i * gridUnit}  
         y1={0} stroke='black' 
         y2={height} stroke='black' 
         stroke={palette[0]}
@@ -323,25 +332,31 @@ export default function Home() {
       {(generatedDesignCount > 1 && generatedDesignCount < 24) &&
         <>
           {[...Array(generatedDesignCount)].map((x,i) =>
-            <line x1={coords[i].x1} y1={coords[i].y1} x2={coords[i].x2} y2={coords[i].y2} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidth} 
+            <line 
+        key={uuidv4()}
+            x1={coords[i].x1} y1={coords[i].y1} x2={coords[i].x2} y2={coords[i].y2} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidth} 
             className='transitions' />
            )}
         </>
       }
-      {(generatedDesignCount > 12 && generatedDesignCount < 24) &&
+      {(generatedDesignCount > 4 && generatedDesignCount < 24) &&
         <>
-          {[...Array(generatedDesignCount - 12)].map((x,i) =>
-            <circle cx={coords[i].x1} cy={coords[i].y1} r={randomInt(0,128)} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidthArray[randomInt(0,strokeWidthArray.length-1)]} 
+          {[...Array(generatedDesignCount - 4)].map((x,i) =>
+            <circle 
+        key={uuidv4()}
+            cx={coords[i].x1} cy={coords[i].y1} r={randomInt(0,128)} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidthArray[randomInt(0,strokeWidthArray.length-1)]} 
           //fill={'url(#Gradient'+randomInt(0,16)+')'}
           fill='transparent'
             className='transitions' />
            )}
         </>
       }
-      {(generatedDesignCount > 16 && generatedDesignCount < 24) &&
+      {(generatedDesignCount > 8 && generatedDesignCount < 24) &&
         <>
-          {[...Array(generatedDesignCount - 12)].map((x,i) =>
-            <rect x={coords[i+4].x1} y={coords[i+4].y1} width={randomInt(0,128)} height={randomInt(0,128)} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidthArray[randomInt(0,strokeWidthArray.length-1)]} 
+          {[...Array(generatedDesignCount - 8)].map((x,i) =>
+            <rect 
+        key={uuidv4()}
+            x={coords[i+4].x1} y={coords[i+4].y1} width={randomInt(0,128)} height={randomInt(0,128)} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidthArray[randomInt(0,strokeWidthArray.length-1)]} 
           //fill={'url(#Gradient'+randomInt(0,16)+')'}
           fill='transparent'
             className='transitions' />
@@ -382,6 +397,7 @@ function useWindowSize() {
         width: window.innerWidth,
         height: window.innerHeight,
       });
+
     }
     
     // Add event listener
