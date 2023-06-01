@@ -98,10 +98,12 @@ export default function Home() {
   const [messageIndex, setMessageIndex] = useState(0)
   const [gap, setGap] = useState(gapUnits[randomInt(0,gapUnits.length-1)])
   const [lines, setLines] = useState(linesArray[randomInt(0,linesArray.length-1)])
+  const [rowsMax, setRowsMax] = useState(32)
+  const [colsMax, setColsMax] = useState(32)
 
   const [gridUnit, setGridUnit] = useState(gridUnits[randomInt(0,gridUnits.length-1)])
-  const [rows, setRows] = useState(randomInt(4,16))
-  const [cols, setCols] = useState(randomInt(4,16))
+  const [rows, setRows] = useState(randomInt(4,rowsMax))
+  const [cols, setCols] = useState(randomInt(4,colsMax))
   const [symmetrical, setSymmetrical] = useState(false)
   const [cellWidth, setCellWidth] = useState(1000/cols)
   const [cellHeight, setCellHeight] = useState(1400/rows)
@@ -279,8 +281,6 @@ export default function Home() {
         cy={height / 2}
         style={{ transition: 'all 1s ease-in', x:0,  y: 0, height: height, width: width, 
             fill: gradient,
-            filter: 'drop-shadow( 0px 0px 16px rgba(0,0,0,.125))',
-            mixBlendMode: 'multiply'
         }} />
         
         </>
@@ -296,59 +296,42 @@ export default function Home() {
         style={{ 
             transition: 'all 1s ease-in', 
             fill: gradient,
-            filter: 'drop-shadow( 0px 0px 16px rgba(0,0,0,.125))',
-            mixBlendMode: 'multiply'
         }} />
         
         </>
       }
       {generatedDesignCount > 11 && generatedDesignCount < 16 &&
         <EquilateralTriangle canvasWidth={width} canvasHeight={height} size={width/3} fill={gradient} 
-        style={{ 
-            filter: 'drop-shadow( 0px 0px 16px rgba(0,0,0,.125))',
-            mixBlendMode: 'multiply'
-        }}
           />
       }
-      {(generatedDesignCount > 10000 && generatedDesignCount < 24) &&                  
-        <>
-          {[...Array(generatedDesignCount)].map((x,i) =>
-            <line 
-        key={uuidv4()}
-            x1={coords[i].x1} y1={coords[i].y1} x2={coords[i].x2} y2={coords[i].y2} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidth} 
-            className='transitions' />
-           )}
-        </>
+      {generatedDesignCount === 16 &&
+          <line x1={width/2} x2={width/2} y1={height/3} y2={height/3*2} stroke='black' strokeWidth={strokeWidth} />
       }
-      {(generatedDesignCount > 4000 && generatedDesignCount < 24) &&
-        <>
-          {[...Array(generatedDesignCount - 4)].map((x,i) =>
-            <circle 
-        key={uuidv4()}
-            cx={coords[i+4].x1} cy={coords[i+4].y1} r={randomInt(0,width / 2)} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidthArray[randomInt(0,strokeWidthArray.length-1)]} 
-          fill='transparent'
-            className='transitions' />
-           )}
-        </>
+      {generatedDesignCount === 17 &&
+          <>
+          <line x1={width/2} x2={width/2} y1={height/3} y2={height/3*2} stroke='black' strokeWidth={strokeWidth} />
+          <line x1={width/2+16} x2={width/2+16} y1={height/3} y2={height/3*2} stroke='black' strokeWidth={strokeWidth} />
+          <line x1={width/2-16} x2={width/2-16} y1={height/3} y2={height/3*2} stroke='black' strokeWidth={strokeWidth} />
+          </>
       }
-      {(generatedDesignCount > 80 && generatedDesignCount < 24) &&
-        <>
-          {[...Array(generatedDesignCount - 8)].map((x,i) =>
-            <rect 
-        key={uuidv4()}
-            x={coords[i+8].x1} y={coords[i+8].y1} width={randomInt(0,128)} height={randomInt(0,128)} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidthArray[randomInt(0,strokeWidthArray.length-1)]} 
-          fill='transparent'
-            className='transitions' />
-           )}
-        </>
+      {generatedDesignCount === 18 &&
+          <>
+          <line x1={width/2} x2={width/2} y1={height/3} y2={height/3*2} stroke='black' strokeWidth={strokeWidth} />
+          <line x1={width/2+16} x2={width/2+16} y1={height/3} y2={height/3*2} stroke='black' strokeWidth={strokeWidth} />
+          <line x1={width/2-16} x2={width/2-16} y1={height/3} y2={height/3*2} stroke='black' strokeWidth={strokeWidth} />
+          <line x1={width/2+32} x2={width/2+32} y1={height/3} y2={height/3*2} stroke='black' strokeWidth={strokeWidth} />
+          <line x1={width/2-32} x2={width/2-32} y1={height/3} y2={height/3*2} stroke='black' strokeWidth={strokeWidth} />
+          </>
       }
-      {generatedDesignCount === 1000 &&
-          <LineGridVertical lines={1} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} />
-      }
-      {((generatedDesignCount > 1000 && generatedDesignCount< 12) || generatedDesignCount > 16 && generatedDesignCount < 20) &&
+      {(generatedDesignCount > 18 && generatedDesignCount < 23) &&
           <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={generatedDesignCount > 12? strokeDashArray : 'none'} />
       }
-      {generatedDesignCount < 100 && generatedDesignCount > 32 &&
+      {generatedDesignCount > 22 && generatedDesignCount < 27 &&
+          <>
+          <LineGridHorizontal lines={rows * density} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} strokeDashArray={strokeDashArray} />
+          </>
+      }
+      {generatedDesignCount > 1000 && generatedDesignCount < 27 &&
           <>
           <LineGridVertical lines={cols * 4} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
           <LineGridHorizontal lines={cols * 4} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} strokeDashArray={strokeDashArray} />

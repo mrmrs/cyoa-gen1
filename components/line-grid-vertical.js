@@ -31,7 +31,7 @@ const LineGridVertical = ({ gap = 16, width = 64, height = 64, lines = 16, xOffs
               y1={yOffset} 
               x2={unit * i + strokeWidth / 2 + xOffset} 
               y2={yOffset + height} 
-              stroke={strokeBool > 50? stroke : palette[randomInt(0,palette.length-1)]} strokeWidth={strokeWidth} 
+              stroke={strokeBool > 4? stroke : palette[randomInt(0,palette.length-1)]} strokeWidth={strokeWidth} 
               strokeDasharray={animated ? strokeDashArray : 'none'}
               strokeDashoffset={animated? randomInt(0,50)+'%' : 0}
               className='animation-dash'
