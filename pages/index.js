@@ -95,6 +95,9 @@ export default function Home() {
   const gapUnits = [2,4,8, 16, 24, 32, 48, 64, 128]
   const strokeWidthArray = [0,1,2,3,6,8,16,32,64,128,256]
   const linesArray = [2,3,4,8,12,16,32]
+  const [octaves, setOctaves] = useState(randomInt(1,4))
+  const [scale, setScale] = useState(randomInt(1,200))
+  const [baseFrequency, setBaseFrequency] = useState(randomInt(0,10000) / 10000)
   const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
   const [messageIndex, setMessageIndex] = useState(0)
   const [gap, setGap] = useState(gapUnits[randomInt(0,gapUnits.length-1)])
@@ -123,10 +126,19 @@ export default function Home() {
   const [strokeDashArray, setStrokeDashArray] = useState(generateRandomStrokeDashArray())
   const [gradient,setGradient] = useState('url(#Gradient'+randomInt(0,15)+')')
   const [gradient2,setGradient2] = useState('url(#Gradient'+randomInt(0,15)+')')
+  const [channelY,setChannelY] = useState(sample(['R','G','B']))
+  const [channelX,setChannelX] = useState(sample(['R','G','B']))
+  const [turbType,setTurbType] = useState(sample(['fractalNoise','turbulence']))
 
   const regenerateClick = () => {
     
     const newCount = generatedDesignCount +1
+    setChannelX(sample(['R','G','B']))
+    setChannelY(sample(['R','G','B']))
+    setTurbType(sample(['fractalNoise', 'turbulence']))
+    setOctaves(randomInt(1,8))
+    setScale(randomInt(1,200))
+    setBaseFrequency(randomInt(1,10000) / 10000)
     setGridUnit(gridUnits[randomInt(0,gridUnits.length-1)])
     setGeneratedDesignCount(newCount)
     setCols(randomInt(2,32))
@@ -260,7 +272,8 @@ export default function Home() {
       </div>
     }
     {generatedDesignCount > 0 &&
-    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, minHeight: '100%', minWidth: '100%', mixBlendMode: 'multiply' }}>
+    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, minHeight: '100%', minWidth: '100%',}}>
+
       {generatedDesignCount > 1 &&
         <rect 
         x={0}
@@ -274,6 +287,7 @@ export default function Home() {
           fill: gradient
         }} />
       }
+        <g style={{ filter: generatedDesignCount % 2 ? 'url(#displacementFilter)' : 'none' }}>
       {generatedDesignCount > 3 && generatedDesignCount < 8 &&
         <>
         <circle 
@@ -353,6 +367,7 @@ export default function Home() {
             fill={generatedDesignCount % 3 === 0 ? gradient : palette[randomInt(0,15)]}
           />
       }
+      </g>
     </svg>
     }
     {generatedDesignCount > 0 &&
@@ -426,6 +441,19 @@ export default function Home() {
           <stop offset='0%' stopColor={palette[randomInt(0,15)]}  />
           <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
         </linearGradient>
+  <filter id="displacementFilter">
+    <feTurbulence
+      type={turbType}
+      baseFrequency={baseFrequency}
+      numOctaves={octaves}
+      result="turbulence" />
+    <feDisplacementMap
+      in2="turbulence"
+      in="SourceGraphic"
+      scale={scale}
+      xChannelSelector={channelX}
+      yChannelSelector={channelY} />
+  </filter>
       </defs>
     </svg>    
     }
