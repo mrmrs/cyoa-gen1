@@ -249,7 +249,7 @@ export default function Home() {
    <kbd style={{ padding: '16px', color: 'white', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'absolute', bottom: 0, right: 0,  }}>{generatedDesignCount}</kbd> 
 
     {generatedDesignCount >0 &&
-   <p className='' style={{ lineHeight: 1.5, fontFamily: 'georgia', fontSize: '20px', margin: 0, flexGrow: 1, padding: '16px', color: textColor, maxWidth: '45ch' }}><span style={{ padding: '16px', display: 'inline-block', width: '100%', background: 'black', color: 'white'}}>{messages[messageIndex]}</span></p>
+   <p className='' style={{ display: 'none', lineHeight: 1.5, fontFamily: 'georgia', fontSize: '20px', margin: 0, flexGrow: 1, padding: '16px', color: textColor, maxWidth: '45ch' }}><span style={{ padding: '16px', display: 'inline-block', width: '100%', background: 'black', color: 'white'}}>{messages[messageIndex]}</span></p>
     }
     {generatedDesignCount === 0 &&
        <p style={{ height: '100%', position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, lineHeight: 1.5, fontFamily: 'georgia', fontSize: '24px', margin: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', flexGrow: 1, padding: '16px', color: textColor, }}><span style={{ maxWidth: '45ch', padding: '16px', display: 'inline-block', width: '100%', background: 'white', color: 'black', textAlign: 'center', }}>{introMessage}</span></p>
@@ -410,7 +410,6 @@ export default function Home() {
             <circle 
         key={uuidv4()}
             cx={coords[i+4].x1} cy={coords[i+4].y1} r={randomInt(0,width / 2)} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidthArray[randomInt(0,strokeWidthArray.length-1)]} 
-          //fill={'url(#Gradient'+randomInt(0,16)+')'}
           fill='transparent'
             className='transitions' />
            )}
@@ -443,7 +442,9 @@ export default function Home() {
 
 
       {generatedDesignCount > 100 &&
-          <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} />
+          <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} 
+            fill={generatedDesignCount % 3 === 0 ? 'url(#Gradient'+randomInt(0,15)+')': palette[randomInt(0,15)]}
+          />
       }
     </svg>
     <footer style={{ position: 'absolute', bottom: '32px', left: 0, right: 0, background: 'transparent', padding: '16px', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
