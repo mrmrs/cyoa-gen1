@@ -7,6 +7,23 @@ import chroma from 'chroma-js'
 import {sample} from 'lodash'
 import PoissonDiskSampling from 'poisson-disk-sampling'
 import { randomInt } from '../lib/random'
+import LineGridVertical from '../components/line-grid-vertical'
+import LineGridHorizontal from '../components/line-grid-horizontal'
+import ShapeGrid from '../components/shape-grid'
+
+
+function generateRandomStrokeDashArray() {
+  const numSegments = Math.floor(Math.random() * 8) + 2; // Generate a random number of segments between 3 and 7
+  const maxValue = 500; // Maximum length for each segment
+  const dashArray = [];
+
+  for (let i = 0; i < numSegments; i++) {
+    const segmentLength = Math.random() * maxValue;
+    dashArray.push(segmentLength.toFixed(2));
+  }
+
+  return dashArray.join(', ');
+}
 
 const Button = ({...props}) => {
   return (
@@ -56,9 +73,10 @@ function generateGeometricPalette() {
 const introMessage = "Click or tap anywhere to continue..."
 
 const messages = [
-"A color appears",
-"automatically generating colors is one of the quickest and easiest ways to start dabbling with generative design",
-"you can generate two colors to create a gradient",
+"A color is generated",
+"Another color is generated creating a gradient",
+"We can add a line",
+"or a bunch of lines",
 "we can add a line",
 "or a bunch of lines",
 "or a shape",
@@ -71,14 +89,18 @@ export default function Home() {
   const size = useWindowSize()
   const height = size.height
   const width = size.width
-  const gridUnits = [2, 4, 8, 16, 24, 32, 48, 64, 128]
+  const gridUnits = [8, 16, 24, 32, 48, 64, 128, 256]
+  const gapUnits = [2,4,8, 16, 24, 32, 48, 64, 128]
   const strokeWidthArray = [0,1,2,3,6,8,16,32,64,128]
+  const linesArray = [2,3,4,8,12,16,32]
   const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
   const [messageIndex, setMessageIndex] = useState(0)
+  const [gap, setGap] = useState(gapUnits[randomInt(0,gapUnits.length-1)])
+  const [lines, setLines] = useState(linesArray[randomInt(0,linesArray.length-1)])
 
   const [gridUnit, setGridUnit] = useState(gridUnits[randomInt(0,gridUnits.length-1)])
-  const [rows, setRows] = useState(parseInt(Number(1920) / Number(gridUnit)))
-  const [cols, setCols] = useState(parseInt(Number(2560) / Number(gridUnit)))
+  const [rows, setRows] = useState(randomInt(4,16))
+  const [cols, setCols] = useState(randomInt(4,16))
   const [symmetrical, setSymmetrical] = useState(false)
   const [cellWidth, setCellWidth] = useState(1000/cols)
   const [cellHeight, setCellHeight] = useState(1400/rows)
@@ -93,11 +115,16 @@ export default function Home() {
   const [mode, setMode] = useState(sample(['lab', 'lch']))
   const [palette, setPalette] = useState( generateGeometricPalette())
   const [coords, setCoords] = useState(undefined)
+  const [density, setDensity] = useState(2)
+  const [strokeDashArray, setStrokeDashArray] = useState(generateRandomStrokeDashArray())
 
   const regenerateClick = () => {
      
     const newCount = generatedDesignCount +1
+    setGridUnit(gridUnits[randomInt(0,gridUnits.length-1)])
     setGeneratedDesignCount(newCount)
+    setCols(randomInt(2,32))
+    setRows(randomInt(2,32))
     if (generatedDesignCount === 1) {
       setCoords(generateCoordinates(0,width,0,height,512))
     }
@@ -110,11 +137,10 @@ export default function Home() {
     setMaxLimit(randomInt(50,400))
     setStrokeWidth(sample([4,4,4,4,6,8,8,8,8,16,64]))
     setTextColor(chroma.contrast(newBgColor, '#ffffff') > 4 ? 'white' : 'black' )
+    setStrokeDashArray(generateRandomStrokeDashArray())
 
     //grid
-    setGridUnit(gridUnits[randomInt(0,gridUnits.length-1)])
-    setRows(parseInt(Number(1920) / Number(gridUnit)))
-    setCols(parseInt(Number(2560) / Number(gridUnit)))
+    setLines(linesArray[randomInt(0,linesArray.length-1)])
     setBaseColor(randomColor())
     setColorsInt(randomInt(1,100))
     const newPalette = sample([
@@ -304,11 +330,12 @@ export default function Home() {
       </defs>
     </svg>    
     <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: '100%', minWidth: '100%', height: height+'px', width: width+'px' }}>
-      {generatedDesignCount > 0 &&
+      {generatedDesignCount > 2 &&
         <>
         <rect style={{ transition: 'all 1s ease-in', x:0,  y: 0, height: height, width: width, 
             fill: 'url(#Gradient'+randomInt(0,16)+')'
         }} />
+        <g style={{ display: 'none'}}>
       {[...Array(rows)].map((x,i) =>
         <line 
           key={uuidv4()}
@@ -329,7 +356,8 @@ export default function Home() {
         className='transitions'
         />
       )}
-    <g style={{display: 'block'}}>
+        </g>
+    <g style={{display: 'none'}}>
       <rect x={width / 18 * 1} y={64} height={16} width={width/16} style={{ fill: palette[0] }} />
       <rect x={width / 18 * 2} y={64} height={16} width={width/16} style={{ fill: palette[1] }} />
       <rect x={width / 18 * 3} y={64} height={16} width={width/16} style={{ fill: palette[2] }} />
@@ -346,8 +374,6 @@ export default function Home() {
       <rect x={width / 18 * 14} y={64} height={16} width={width/16} style={{ fill: palette[13] }} />
       <rect x={width / 18 * 15} y={64} height={16} width={width/16} style={{ fill: palette[14] }} />
       <rect x={width / 18 * 16} y={64} height={16} width={width/16} style={{ fill: palette[15] }} />
-    </g>
-    <g style={{display: 'block'}}>
       <rect x={width / 18 * 1} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient0)' }} />
       <rect x={width / 18 * 2} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient1)' }} />
       <rect x={width / 18 * 3} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient2)'}} />
@@ -368,7 +394,7 @@ export default function Home() {
     </g>                                                                           
         </>
       }
-      {(generatedDesignCount > 1 && generatedDesignCount < 24) &&                  
+      {(generatedDesignCount > 100 && generatedDesignCount < 24) &&                  
         <>
           {[...Array(generatedDesignCount)].map((x,i) =>
             <line 
@@ -378,7 +404,7 @@ export default function Home() {
            )}
         </>
       }
-      {(generatedDesignCount > 4 && generatedDesignCount < 24) &&
+      {(generatedDesignCount > 40 && generatedDesignCount < 24) &&
         <>
           {[...Array(generatedDesignCount - 4)].map((x,i) =>
             <circle 
@@ -390,7 +416,7 @@ export default function Home() {
            )}
         </>
       }
-      {(generatedDesignCount > 8 && generatedDesignCount < 24) &&
+      {(generatedDesignCount > 80 && generatedDesignCount < 24) &&
         <>
           {[...Array(generatedDesignCount - 8)].map((x,i) =>
             <rect 
@@ -402,8 +428,25 @@ export default function Home() {
            )}
         </>
       }
+      {generatedDesignCount === 8 &&
+          <LineGridVertical lines={1} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} />
+      }
+      {((generatedDesignCount > 8 && generatedDesignCount< 12) || generatedDesignCount > 16 && generatedDesignCount < 20) &&
+          <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={generatedDesignCount > 12? strokeDashArray : 'none'} />
+      }
+      {generatedDesignCount > 20 &&
+          <>
+          <LineGridVertical lines={cols * 4} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
+          <LineGridHorizontal lines={cols * 4} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} strokeDashArray={strokeDashArray} />
+          </>
+      }
+
+
+      {generatedDesignCount > 100 &&
+          <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} />
+      }
     </svg>
-    <footer style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'transparent', padding: '16px', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
+    <footer style={{ position: 'absolute', bottom: '32px', left: 0, right: 0, background: 'transparent', padding: '16px', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
       {generatedDesignCount % 8 === 0 && generatedDesignCount !== 0 &&
         <>
           {actions[randomInt(0,actions.length-1)]}

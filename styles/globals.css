@@ -231,8 +231,10 @@ main {
   background-color: black;
   color: white;
   transition: background-color .5s ease-in; 
+  cursor: pointer;
 }
 
 .button:hover {
   background-color: purple;
+
 }
