@@ -121,6 +121,7 @@ export default function Home() {
   const [density, setDensity] = useState(2)
   const [strokeDashArray, setStrokeDashArray] = useState(generateRandomStrokeDashArray())
   const [gradient,setGradient] = useState('url(#Gradient'+randomInt(0,15)+')')
+  const [gradient2,setGradient2] = useState('url(#Gradient'+randomInt(0,15)+')')
 
 
   const regenerateClick = () => {
@@ -339,9 +340,9 @@ export default function Home() {
       }
 
 
-      {generatedDesignCount > 100 &&
+      {generatedDesignCount > 40  &&
           <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} strokeWidth={strokeWidth} 
-            fill={generatedDesignCount % 3 === 0 ? 'url(#Gradient'+randomInt(0,15)+')': palette[randomInt(0,15)]}
+            fill={generatedDesignCount % 3 === 0 ? gradient : palette[randomInt(0,15)]}
           />
       }
     </svg>
