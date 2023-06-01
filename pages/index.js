@@ -406,14 +406,12 @@ export default function Home() {
            )}
         </>
       }
-     // Not using for now
       {(generatedDesignCount > 80 && generatedDesignCount < 24) &&
         <>
           {[...Array(generatedDesignCount - 8)].map((x,i) =>
             <rect 
         key={uuidv4()}
             x={coords[i+8].x1} y={coords[i+8].y1} width={randomInt(0,128)} height={randomInt(0,128)} stroke={palette[palette.length % i+1]} strokeWidth={strokeWidthArray[randomInt(0,strokeWidthArray.length-1)]} 
-          //fill={'url(#Gradient'+randomInt(0,16)+')'}
           fill='transparent'
             className='transitions' />
            )}
