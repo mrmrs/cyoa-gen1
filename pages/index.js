@@ -27,7 +27,7 @@ function generateRandomStrokeDashArray() {
 
 const Button = ({...props}) => {
   return (
-    <button className='button' {...props}>
+    <button className='button' key={uuidv4()} {...props}>
       {props.children}
     </button>
   )
