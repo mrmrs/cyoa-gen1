@@ -71,6 +71,7 @@ function generateGeometricPalette() {
   return palette;
 }
 const introMessage = "Click or tap anywhere to continue..."
+const introMessage2 = "...keep clicking"
 
 const messages = [
 "A color is generated",
@@ -227,7 +228,6 @@ export default function Home() {
       setCoords(generateCoordinates(0,width,0,height,512))
   }
 
-
   const actions = [
     <Button key={uuidv4()} onClick={regenerateMonochrome}>Monochrome Palette</Button>,
     <Button key={uuidv4()} onClick={regenerateColor}>Geometric Palette</Button>,
@@ -245,104 +245,27 @@ export default function Home() {
         <meta name='theme-color' content={palette[15]} />
       </Head>
       <main style={{ position: 'relative', width: '100%', height: '100%', }} onClick={(e) => regenerateClick()}>
- <header style={{
-     fontFamily: 'monospace',
-     display: generatedDesignCount === 0? 'flex' : 'none',
-     alignItems: 'center',
-     zIndex: 9,
-
- }}>
-
-    {generatedDesignCount >0 &&
-   <p className='' style={{ display: 'none', lineHeight: 1.5, fontFamily: 'georgia', fontSize: '20px', margin: 0, flexGrow: 1, padding: '16px', color: textColor, maxWidth: '45ch' }}><span style={{ padding: '16px', display: 'inline-block', width: '100%', background: 'black', color: 'white'}}>{messages[messageIndex]}</span></p>
+    {generatedDesignCount < 1 &&
+      <div style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <p>{introMessage}</p>
+      </div>
     }
-    {generatedDesignCount === 0 &&
-       <p style={{ height: '100%', position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, lineHeight: 1.5, fontFamily: 'georgia', fontSize: '24px', margin: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', flexGrow: 1, padding: '16px', color: textColor, }}><span style={{ maxWidth: '45ch', padding: '16px', display: 'inline-block', width: '100%', background: 'white', color: 'black', textAlign: 'center', }}>{introMessage}</span></p>
-    }
-
-
-   </header>
-    {generatedDesignCount > 0 &&
-    <svg height='0' width='0' style={{ height: 0, width: 0, display: 'block'}}>
-      <defs>
-        <linearGradient id='Gradient0' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[0]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient1' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[1]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]} />
-        </linearGradient>
-        <linearGradient id='Gradient2' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[2]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient3' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[3]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient4' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[4]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient5' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[5]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient6' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[6]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient7' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[7]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient8' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[8]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient9' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[9]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient10' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[10]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient11' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[11]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient12' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[12]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient13' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[13]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient14' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[14]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient15' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[15]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-        <linearGradient id='Gradient16' x1='0' x2='0' y1='0' y2='1'>
-          <stop offset='0%' stopColor={palette[randomInt(0,15)]}  />
-          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
-        </linearGradient>
-      </defs>
-    </svg>    
+ 
+    {generatedDesignCount === 1 &&
+      <div style={{ position: 'absolute', top: 0, bottom: 0, right: 0, left: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        <p>{introMessage2}</p>
+      </div>
     }
     {generatedDesignCount > 0 &&
-    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: '100%', minWidth: '100%', mixBlendMode: 'darken'}}>
+    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, minHeight: '100%', minWidth: '100%' }}>
       {generatedDesignCount > 2 &&
-        <rect style={{ 
+        <rect 
+        x={0}
+        y={0}
+        height='100%'
+        width='100%'
+        style={{ 
           transition: 'all 1s ease-in', 
-          x:0,  
-          y: 0, 
           height: height, 
           width: width, 
           fill: gradient
@@ -438,6 +361,81 @@ export default function Home() {
       }
     </svg>
     }
+    {generatedDesignCount > 0 &&
+    <svg height='0' width='0' style={{ height: 0, width: 0, display: 'block'}}>
+      <defs>
+        <linearGradient id='Gradient0' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[0]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient1' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[1]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]} />
+        </linearGradient>
+        <linearGradient id='Gradient2' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[2]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient3' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[3]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient4' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[4]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient5' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[5]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient6' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[6]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient7' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[7]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient8' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[8]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient9' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[9]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient10' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[10]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient11' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[11]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient12' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[12]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient13' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[13]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient14' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[14]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient15' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[15]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+        <linearGradient id='Gradient16' x1='0' x2='0' y1='0' y2='1'>
+          <stop offset='0%' stopColor={palette[randomInt(0,15)]}  />
+          <stop offset='100%' stopColor={palette[randomInt(0,15)]}  />
+        </linearGradient>
+      </defs>
+    </svg>    
+    }
+   <kbd style={{ padding: '16px', color: 'white', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: 0, right: 0,  }}>{generatedDesignCount}</kbd> 
     <footer style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'transparent', padding: '16px', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
       {generatedDesignCount % 8 === 0 && generatedDesignCount !== 0 &&
         <>
@@ -445,7 +443,6 @@ export default function Home() {
           {actions[randomInt(0,actions.length-1)]}
         </>
       }
-   <kbd style={{ padding: '16px', color: 'white', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'absolute', bottom: 0, right: 0,  }}>{generatedDesignCount}</kbd> 
     </footer>
       </main>
     </>
