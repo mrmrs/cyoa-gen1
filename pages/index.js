@@ -10,7 +10,7 @@ import { randomInt } from '../lib/random'
 import LineGridVertical from '../components/line-grid-vertical'
 import LineGridHorizontal from '../components/line-grid-horizontal'
 import ShapeGrid from '../components/shape-grid'
-
+import EquilateralTriangle from '../components/equilateral-triangle'
 
 function generateRandomStrokeDashArray() {
   const numSegments = Math.floor(Math.random() * 8) + 2; // Generate a random number of segments between 3 and 7
@@ -257,8 +257,8 @@ export default function Home() {
       </div>
     }
     {generatedDesignCount > 0 &&
-    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, minHeight: '100%', minWidth: '100%' }}>
-      {generatedDesignCount > 2 &&
+    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, minHeight: '100%', minWidth: '100%', mixBlendMode: 'multiply' }}>
+      {generatedDesignCount > 1 &&
         <rect 
         x={0}
         y={0}
@@ -271,42 +271,44 @@ export default function Home() {
           fill: gradient
         }} />
       }
-      {generatedDesignCount > 6 && generatedDesignCount < 10 &&
+      {generatedDesignCount > 3 && generatedDesignCount < 8 &&
         <>
         <circle 
-        r={width / 4}
+        r={width / 6}
         cx={width / 2}
         cy={height / 2}
         style={{ transition: 'all 1s ease-in', x:0,  y: 0, height: height, width: width, 
-            fill: gradient
+            fill: gradient,
+            filter: 'drop-shadow( 0px 0px 16px rgba(0,0,0,.125))',
+            mixBlendMode: 'multiply'
         }} />
         
         </>
       }
-      {generatedDesignCount > 9 && generatedDesignCount < 13 &&
+      {generatedDesignCount > 7 && generatedDesignCount < 12 &&
         <>
         <rect 
         x={width/3}
         y={(height - (width/3)) /2}
         width={width / 3}
         height={width / 3}
+        rx={generatedDesignCount > 9? randomInt(1,32) : 0}
         style={{ 
             transition: 'all 1s ease-in', 
-            fill: gradient
+            fill: gradient,
+            filter: 'drop-shadow( 0px 0px 16px rgba(0,0,0,.125))',
+            mixBlendMode: 'multiply'
         }} />
         
         </>
       }
-      {generatedDesignCount > 12 && generatedDesignCount < 16 &&
-        <>
-        <polygon 
-        points={width/3+' '+height/2+', '+width/2+' '+height/3+', '+width/3*2+' '+height/2}  // xy, xy, xy
+      {generatedDesignCount > 11 && generatedDesignCount < 16 &&
+        <EquilateralTriangle canvasWidth={width} canvasHeight={height} size={width/3} fill={gradient} 
         style={{ 
-            transition: 'all 1s ease-in', 
-            fill: gradient
-        }} />
-        
-        </>
+            filter: 'drop-shadow( 0px 0px 16px rgba(0,0,0,.125))',
+            mixBlendMode: 'multiply'
+        }}
+          />
       }
       {(generatedDesignCount > 10000 && generatedDesignCount < 24) &&                  
         <>
