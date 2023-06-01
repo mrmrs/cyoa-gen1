@@ -282,6 +282,7 @@ export default function Home() {
         cy={height / 2}
         style={{ transition: 'all 1s ease-in', x:0,  y: 0, height: height, width: width, 
             fill: gradient,
+            stroke: 'rgba(0,0,0,.05)',
         }} />
         
         </>
@@ -297,12 +298,14 @@ export default function Home() {
         style={{ 
             transition: 'all 1s ease-in', 
             fill: gradient,
+            stroke: 'rgba(0,0,0,.05)',
         }} />
         
         </>
       }
       {generatedDesignCount > 11 && generatedDesignCount < 16 &&
         <EquilateralTriangle canvasWidth={width} canvasHeight={height} size={width/3} fill={gradient} 
+        stroke='rgba(0,0,0,.05)'
           />
       }
       {generatedDesignCount === 16 &&
@@ -325,17 +328,17 @@ export default function Home() {
           </>
       }
       {(generatedDesignCount > 18 && generatedDesignCount < 23) &&
-          <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={generatedDesignCount > 12? strokeDashArray : 'none'} />
+          <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} animate={generatedDesignCount > 20? true : false} width={width} height={height} strokeDashArray={generatedDesignCount > 12? strokeDashArray : 'none'} />
       }
       {generatedDesignCount > 22 && generatedDesignCount < 27 &&
           <>
-          <LineGridHorizontal lines={rows * density} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} strokeDashArray={strokeDashArray} />
+          <LineGridHorizontal lines={rows * density} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} animate={generatedDesignCount > 24? true : false} strokeDashArray={strokeDashArray} />
           </>
       }
-      {generatedDesignCount > 1000 && generatedDesignCount < 27 &&
+      {generatedDesignCount > 25 && generatedDesignCount < 40 &&
           <>
-          <LineGridVertical lines={cols * 4} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
-          <LineGridHorizontal lines={cols * 4} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} strokeDashArray={strokeDashArray} />
+          <LineGridVertical lines={cols * 4} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
+          <LineGridHorizontal lines={cols * 4} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} strokeDashArray={strokeDashArray} />
           </>
       }
 

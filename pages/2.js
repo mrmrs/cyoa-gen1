@@ -6,7 +6,7 @@ import chroma from 'chroma-js'
 import {sample} from 'lodash'
 import { Cardo  as Font } from 'next/font/google'
 import { randomInt } from '../lib/random'
-import EnchantedBookCover from '../components/book-cover-enchanted-map'
+import OrganicBlob from '../components/blob'
 import EnchantedBookCover2 from '../components/book-cover-2'
 
 
@@ -127,7 +127,7 @@ export default function Home() {
     </p>
   <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '1em' }} onClick={(e) => regenerateClick()}>
     <div>
-      <EnchantedBookCover strokeWidth={strokeWidth} bgColor={bgColor} maxLimit={maxLimit} colors={palette}/>
+      <OrganicBlob  />
       <a style={{ display: 'block', padding: '8px 0', fontSize: '18px' }} href='#'>Take this book</a>
     </div>
     <div>

@@ -18,7 +18,7 @@ function generateRandomStrokeDashArray() {
   return dashArray.join(', ');
 }
 
-const LineGridVertical = ({ gap = 16, width = 64, height = 64, lines = 16, xOffset = 0, yOffset = 0, palette, bgColor, color, stroke = 'black', strokeWidth, cols, rows,strokeDashArray,animated = false}) => {
+const LineGridVertical = ({ gap = 16, width = 64, height = 64, lines = 16, xOffset = 0, yOffset = 0, palette, bgColor, color, stroke = 'black', strokeWidth, cols, rows,strokeDashArray,animate = false}) => {
     const unit = (width - strokeWidth) / (lines -1) 
     const strokeBool = randomInt(0,100)
     
@@ -32,8 +32,8 @@ const LineGridVertical = ({ gap = 16, width = 64, height = 64, lines = 16, xOffs
               x2={unit * i + strokeWidth / 2 + xOffset} 
               y2={yOffset + height} 
               stroke={strokeBool > 4? stroke : palette[randomInt(0,palette.length-1)]} strokeWidth={strokeWidth} 
-              strokeDasharray={animated ? strokeDashArray : 'none'}
-              strokeDashoffset={animated? randomInt(0,50)+'%' : 0}
+              strokeDasharray={animate ? strokeDashArray : 'none'}
+              strokeDashoffset={animate? randomInt(0,50)+'%' : 0}
               className='animation-dash'
             />
           )}
