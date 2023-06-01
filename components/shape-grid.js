@@ -28,7 +28,7 @@ const ShapeGrid = ({ palette, gap = 16, width = 64, height = 64, lines = 16, xOf
     return (
       <>
         {[...Array(cols)].map((y,j) =>
-          <>
+          <g key={uuidv4()}>
             {[...Array(parseInt(height / cols +1 ))].map((x,i) =>
             <g key={uuidv4()} stroke={palette[randomInt(0,palette.length-1)]} strokeWidth={strokeWidth}>
               <circle cx={j * (width / cols) + (width /cols/2) } 
@@ -40,7 +40,7 @@ const ShapeGrid = ({ palette, gap = 16, width = 64, height = 64, lines = 16, xOf
               <rect x={j * (width / cols) + strokeWidth} y={i * height / rows + strokeWidth * 2} height={height/rows - strokeWidth*2} width={width/cols - strokeWidth * 2} />
             </g>
             )}
-          </>
+          </g>
         )}
       </>
   );
