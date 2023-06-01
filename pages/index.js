@@ -262,6 +262,7 @@ export default function Home() {
 
 
    </header>
+    {generatedDesignCount > 0 &&
     <svg height='0' width='0' style={{ height: 0, width: 0, display: 'block'}}>
       <defs>
         <linearGradient id='Gradient0' x1='0' x2='0' y1='0' y2='1'>
@@ -334,6 +335,8 @@ export default function Home() {
         </linearGradient>
       </defs>
     </svg>    
+    }
+    {generatedDesignCount > 0 &&
     <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: '100%', minWidth: '100%', height: height+'px', width: width+'px'}}>
       {generatedDesignCount > 2 &&
         <rect style={{ 
@@ -382,7 +385,7 @@ export default function Home() {
         
         </>
       }
-      {(generatedDesignCount > 100 && generatedDesignCount < 24) &&                  
+      {(generatedDesignCount > 10000 && generatedDesignCount < 24) &&                  
         <>
           {[...Array(generatedDesignCount)].map((x,i) =>
             <line 
@@ -392,7 +395,7 @@ export default function Home() {
            )}
         </>
       }
-      {(generatedDesignCount > 40 && generatedDesignCount < 24) &&
+      {(generatedDesignCount > 4000 && generatedDesignCount < 24) &&
         <>
           {[...Array(generatedDesignCount - 4)].map((x,i) =>
             <circle 
@@ -403,6 +406,7 @@ export default function Home() {
            )}
         </>
       }
+     // Not using for now
       {(generatedDesignCount > 80 && generatedDesignCount < 24) &&
         <>
           {[...Array(generatedDesignCount - 8)].map((x,i) =>
@@ -421,7 +425,7 @@ export default function Home() {
       {((generatedDesignCount > 1000 && generatedDesignCount< 12) || generatedDesignCount > 16 && generatedDesignCount < 20) &&
           <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={generatedDesignCount > 12? strokeDashArray : 'none'} />
       }
-      {generatedDesignCount > 1000 &&
+      {generatedDesignCount < 100 && generatedDesignCount > 32 &&
           <>
           <LineGridVertical lines={cols * 4} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
           <LineGridHorizontal lines={cols * 4} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} strokeDashArray={strokeDashArray} />
@@ -429,47 +433,13 @@ export default function Home() {
       }
 
 
-      {generatedDesignCount > 1000 &&
+      {generatedDesignCount > 100 &&
           <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} 
             fill={generatedDesignCount % 3 === 0 ? 'url(#Gradient'+randomInt(0,15)+')': palette[randomInt(0,15)]}
           />
       }
-    <g style={{display: 'none'}}>
-      <rect x={width / 18 * 1} y={64} height={16} width={width/16} style={{ fill: palette[0] }} />
-      <rect x={width / 18 * 2} y={64} height={16} width={width/16} style={{ fill: palette[1] }} />
-      <rect x={width / 18 * 3} y={64} height={16} width={width/16} style={{ fill: palette[2] }} />
-      <rect x={width / 18 * 4} y={64} height={16} width={width/16} style={{ fill: palette[3] }} />
-      <rect x={width / 18 * 5} y={64} height={16} width={width/16} style={{ fill: palette[4] }} />
-      <rect x={width / 18 * 6} y={64} height={16} width={width/16} style={{ fill: palette[5] }} />
-      <rect x={width / 18 * 7} y={64} height={16} width={width/16} style={{ fill: palette[6] }} />
-      <rect x={width / 18 * 8} y={64} height={16} width={width/16} style={{ fill: palette[7] }} />
-      <rect x={width / 18 * 9} y={64} height={16} width={width/16} style={{ fill: palette[8] }} />
-      <rect x={width / 18 * 10} y={64} height={16} width={width/16} style={{ fill: palette[9] }} />
-      <rect x={width / 18 * 11} y={64} height={16} width={width/16} style={{ fill: palette[10] }} />
-      <rect x={width / 18 * 12} y={64} height={16} width={width/16} style={{ fill: palette[11] }} />
-      <rect x={width / 18 * 13} y={64} height={16} width={width/16} style={{ fill: palette[12] }} />
-      <rect x={width / 18 * 14} y={64} height={16} width={width/16} style={{ fill: palette[13] }} />
-      <rect x={width / 18 * 15} y={64} height={16} width={width/16} style={{ fill: palette[14] }} />
-      <rect x={width / 18 * 16} y={64} height={16} width={width/16} style={{ fill: palette[15] }} />
-      <rect x={width / 18 * 1} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient0)' }} />
-      <rect x={width / 18 * 2} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient1)' }} />
-      <rect x={width / 18 * 3} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient2)'}} />
-      <rect x={width / 18 * 4} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient3)'}} />
-      <rect x={width / 18 * 5} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient4)'}} />
-      <rect x={width / 18 * 6} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient5)'}} />
-      <rect x={width / 18 * 7} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient6)'}} />
-      <rect x={width / 18 * 8} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient7)'}} />
-      <rect x={width / 18 * 9} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient8)'}} />
-      <rect x={width / 18 * 10} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient9)'}} />
-      <rect x={width / 18 * 11} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient10)'}} />
-      <rect x={width / 18 * 12} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient11)'}} />
-      <rect x={width / 18 * 13} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient12)'}} />
-      <rect x={width / 18 * 14} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient13)'}} />
-      <rect x={width / 18 * 15} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient14)'}} />
-      <rect x={width / 18 * 16} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient15)'}} />
-      <rect x={width / 18 * 16} y={96} height={64} width={width/16} style={{ fill: 'url(#Gradient16)'}} />
-    </g>                                                                           
     </svg>
+    }
     <footer style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'transparent', padding: '16px', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
       {generatedDesignCount % 8 === 0 && generatedDesignCount !== 0 &&
         <>
