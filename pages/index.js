@@ -247,7 +247,7 @@ export default function Home() {
       <main style={{ position: 'relative', width: '100%', height: '100%', }} onClick={(e) => regenerateClick()}>
  <header style={{
      fontFamily: 'monospace',
-     display: 'flex',
+     display: generatedDesignCount === 0? 'flex' : 'none',
      alignItems: 'center',
      zIndex: 9,
 
@@ -262,7 +262,7 @@ export default function Home() {
 
 
    </header>
-    <svg height='0' width='0'>
+    <svg height='0' width='0' style={{ height: 0, width: 0, display: 'block'}}>
       <defs>
         <linearGradient id='Gradient0' x1='0' x2='0' y1='0' y2='1'>
           <stop offset='0%' stopColor={palette[0]}  />
