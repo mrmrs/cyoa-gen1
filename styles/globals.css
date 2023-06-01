@@ -227,7 +227,7 @@ main {
 .button {
   appearance: none;
   border: 0;
-  padding: 12px 24px;
+  padding: 16px 32px;
   background-color: black;
   color: white;
   transition: background-color .5s ease-in; 
