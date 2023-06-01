@@ -337,7 +337,7 @@ export default function Home() {
     </svg>    
     }
     {generatedDesignCount > 0 &&
-    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: '100%', minWidth: '100%', height: height+'px', width: width+'px', mixBlendMode: 'darken'}}>
+    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: '100%', minWidth: '100%', mixBlendMode: 'darken'}}>
       {generatedDesignCount > 2 &&
         <rect style={{ 
           transition: 'all 1s ease-in', 
