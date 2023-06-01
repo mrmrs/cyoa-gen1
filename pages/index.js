@@ -27,7 +27,7 @@ function generateRandomStrokeDashArray() {
 
 const Button = ({...props}) => {
   return (
-    <button className='button' key={uuidv4()} {...props}>
+    <button className='button'  {...props}>
       {props.children}
     </button>
   )
@@ -229,10 +229,9 @@ export default function Home() {
 
 
   const actions = [
-    <Button onClick={regenerateMonochrome}>Generate Monochrome Palette</Button>,
-    <Button onClick={regenerateColor}>Generate Palette</Button>,
-    <Button onClick={regenerateRandomColors}>Random Colors Palette</Button>,
-    <Button onClick={regenerateCoordinates}>New Coordinates</Button>,
+    <Button key={uuidv4()} onClick={regenerateMonochrome}>Monochrome Palette</Button>,
+    <Button key={uuidv4()} onClick={regenerateColor}>Geometric Palette</Button>,
+    <Button key={uuidv4()} onClick={regenerateRandomColors}>Random Palette</Button>,
   ]
 
 
