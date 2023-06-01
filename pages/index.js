@@ -221,10 +221,10 @@ export default function Home() {
 
 
   const actions = [
-    <Button onClick={regenerateMonochrome}>Generate Monochrome Palette</Button>,
-    <Button onClick={regenerateColor}>Generate Palette</Button>,
-    <Button onClick={regenerateRandomColors}>Random Colors Palette</Button>,
-    <Button onClick={regenerateCoordinates}>New Coordinates</Button>,
+    <Button key={uuidv4()} onClick={regenerateMonochrome}>Generate Monochrome Palette</Button>,
+    <Button key={uuidv4()} onClick={regenerateColor}>Generate Palette</Button>,
+    <Button key={uuidv4()} onClick={regenerateRandomColors}>Random Colors Palette</Button>,
+    <Button key={uuidv4()} onClick={regenerateCoordinates}>New Coordinates</Button>,
   ]
 
 
