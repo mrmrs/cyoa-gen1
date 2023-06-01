@@ -10,6 +10,7 @@ import { randomInt } from '../lib/random'
 import LineGridVertical from '../components/line-grid-vertical'
 import LineGridHorizontal from '../components/line-grid-horizontal'
 import ShapeGrid from '../components/shape-grid'
+import RectGrid from '../components/rect-grid'
 import EquilateralTriangle from '../components/equilateral-triangle'
 
 function generateRandomStrokeDashArray() {
@@ -92,7 +93,7 @@ export default function Home() {
   const width = size.width
   const gridUnits = [8, 16, 24, 32, 48, 64, 128, 256]
   const gapUnits = [2,4,8, 16, 24, 32, 48, 64, 128]
-  const strokeWidthArray = [0,1,2,3,6,8,16,32,64,128]
+  const strokeWidthArray = [0,1,2,3,6,8,16,32,64,128,256]
   const linesArray = [2,3,4,8,12,16,32]
   const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
   const [messageIndex, setMessageIndex] = useState(0)
@@ -102,8 +103,8 @@ export default function Home() {
   const [colsMax, setColsMax] = useState(32)
 
   const [gridUnit, setGridUnit] = useState(gridUnits[randomInt(0,gridUnits.length-1)])
-  const [rows, setRows] = useState(randomInt(4,rowsMax))
-  const [cols, setCols] = useState(randomInt(4,colsMax))
+  const [rows, setRows] = useState(randomInt(3,rowsMax))
+  const [cols, setCols] = useState(randomInt(3,colsMax))
   const [symmetrical, setSymmetrical] = useState(false)
   const [cellWidth, setCellWidth] = useState(1000/cols)
   const [cellHeight, setCellHeight] = useState(1400/rows)
@@ -113,7 +114,7 @@ export default function Home() {
   const [textColor, setTextColor] = useState('white')
   const [bgColor2, setBgColor2] = useState(randomColor())
   const [maxLimit, setMaxLimit] = useState(randomInt(50,400))
-  const [strokeWidth, setStrokeWidth] = useState(sample([4,4,4,4,6,6,6,6,6,8,8,16,64]))
+  const [strokeWidth, setStrokeWidth] = useState(sample([0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,4,4,4,4,6,6,6,6,6,8,8,16,32,64,96,128]))
   const [colorsInt, setColorsInt] = useState(randomInt(0,100))
   const [mode, setMode] = useState(sample(['lab', 'lch']))
   const [palette, setPalette] = useState( generateGeometricPalette())
@@ -122,7 +123,6 @@ export default function Home() {
   const [strokeDashArray, setStrokeDashArray] = useState(generateRandomStrokeDashArray())
   const [gradient,setGradient] = useState('url(#Gradient'+randomInt(0,15)+')')
   const [gradient2,setGradient2] = useState('url(#Gradient'+randomInt(0,15)+')')
-
 
   const regenerateClick = () => {
     
@@ -343,7 +343,12 @@ export default function Home() {
       }
 
 
-      {generatedDesignCount > 40  &&
+      {generatedDesignCount > 39 && generatedDesignCount < 45  &&
+          <RectGrid palette={palette} cols={cols} rows={rows} width={width} height={height} strokeWidth={strokeWidth} 
+            fill={generatedDesignCount % 4 === 0 ? gradient : palette[randomInt(0,15)]}
+          />
+      }
+      {generatedDesignCount > 44 && generatedDesignCount < 10000  &&
           <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} strokeWidth={strokeWidth} 
             fill={generatedDesignCount % 3 === 0 ? gradient : palette[randomInt(0,15)]}
           />
