@@ -118,8 +118,9 @@ export default function Home() {
   const [density, setDensity] = useState(2)
   const [strokeDashArray, setStrokeDashArray] = useState(generateRandomStrokeDashArray())
 
+
   const regenerateClick = () => {
-     
+    
     const newCount = generatedDesignCount +1
     setGridUnit(gridUnits[randomInt(0,gridUnits.length-1)])
     setGeneratedDesignCount(newCount)
@@ -138,6 +139,11 @@ export default function Home() {
     setStrokeWidth(sample([4,4,4,4,6,8,8,8,8,16,64]))
     setTextColor(chroma.contrast(newBgColor, '#ffffff') > 4 ? 'white' : 'black' )
     setStrokeDashArray(generateRandomStrokeDashArray())
+
+    //setSeed(Math.random());
+    //setBaseFrequency(Math.random());
+    //setNumOctaves(Math.floor(Math.random() * 10));
+
 
     //grid
     setLines(linesArray[randomInt(0,linesArray.length-1)])
@@ -329,7 +335,7 @@ export default function Home() {
         </linearGradient>
       </defs>
     </svg>    
-    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: '100%', minWidth: '100%', height: height+'px', width: width+'px' }}>
+    <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, minHeight: '100%', minWidth: '100%', height: height+'px', width: width+'px'}}>
       {generatedDesignCount > 2 &&
         <>
         <rect style={{ transition: 'all 1s ease-in', x:0,  y: 0, height: height, width: width, 
@@ -441,7 +447,7 @@ export default function Home() {
       }
 
 
-      {generatedDesignCount > 100 &&
+      {generatedDesignCount > 60 &&
           <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} 
             fill={generatedDesignCount % 3 === 0 ? 'url(#Gradient'+randomInt(0,15)+')': palette[randomInt(0,15)]}
           />

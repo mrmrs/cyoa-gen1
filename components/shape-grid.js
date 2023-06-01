@@ -35,7 +35,8 @@ const ShapeGrid = ({ palette, gap = 16, width = 64, height = 64, lines = 16, xOf
               cy={i * width/cols} 
               r={randomInt(0,parseInt(width/cols/2 - 1))} 
               fill={fillBool > 50? fill : 'url(#Gradient'+randomInt(0,15)+')'}
-              strokeWidth={0} />
+              strokeWidth={0} 
+              />
               <rect x={j * (width / cols) + strokeWidth} y={i * height / rows + strokeWidth * 2} height={height/rows - strokeWidth*2} width={width/cols - strokeWidth * 2} />
             </g>
             )}
