@@ -12,6 +12,7 @@ import LineGridHorizontal from '../components/line-grid-horizontal'
 import ShapeGrid from '../components/shape-grid'
 import RectGrid from '../components/rect-grid'
 import EquilateralTriangle from '../components/equilateral-triangle'
+import Circles from '../components/circles'
 
 function generateRandomStrokeDashArray() {
   const numSegments = Math.floor(Math.random() * 8) + 2; // Generate a random number of segments between 3 and 7
@@ -53,13 +54,13 @@ function generateGeometricPalette() {
   
   for (let i = 0; i < 16; i++) {
     // Generate random hue and saturation variations
-    const hueVariation = Math.random() * 180;
-    const saturationVariation = Math.random() * 70;
-    const lightnessVariation = Math.random() * 60;
+    const hueVariation = Math.random() * randomInt(90,360);
+    const saturationVariation = Math.random() * randomInt(0,100);
+    const lightnessVariation = Math.random() * randomInt(0,70);
     
     // Calculate hue, saturation, and lightness values
     const hue = (initialHue + hueVariation + 180) % 360;
-    const saturation = 30 + saturationVariation;
+    const saturation = 40 + saturationVariation;
     const lightness = 30 + lightnessVariation;
     
     // Convert HSL to hexadecimal color code
@@ -96,7 +97,7 @@ export default function Home() {
   const strokeWidthArray = [0,1,2,3,6,8,16,32,64,128,256]
   const linesArray = [2,3,4,8,12,16,32]
   const [octaves, setOctaves] = useState(randomInt(1,4))
-  const [scale, setScale] = useState(randomInt(1,200))
+  const [scale, setScale] = useState(sample([0,5,10,20,40,80,160,320,640,1000]))
   const [baseFrequency, setBaseFrequency] = useState(randomInt(0,10000) / 10000)
   const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
   const [messageIndex, setMessageIndex] = useState(0)
@@ -122,7 +123,7 @@ export default function Home() {
   const [mode, setMode] = useState(sample(['lab', 'lch']))
   const [palette, setPalette] = useState( generateGeometricPalette())
   const [coords, setCoords] = useState(undefined)
-  const [density, setDensity] = useState(2)
+  const [density, setDensity] = useState(8)
   const [strokeDashArray, setStrokeDashArray] = useState(generateRandomStrokeDashArray())
   const [gradient,setGradient] = useState('url(#Gradient'+randomInt(0,15)+')')
   const [gradient2,setGradient2] = useState('url(#Gradient'+randomInt(0,15)+')')
@@ -137,7 +138,7 @@ export default function Home() {
     setChannelY(sample(['R','G','B']))
     setTurbType(sample(['fractalNoise', 'turbulence']))
     setOctaves(randomInt(1,8))
-    setScale(randomInt(1,200))
+    setScale(randomInt(1,1000))
     setBaseFrequency(randomInt(1,10000) / 10000)
     setGridUnit(gridUnits[randomInt(0,gridUnits.length-1)])
     setGeneratedDesignCount(newCount)
@@ -153,7 +154,7 @@ export default function Home() {
     setBgColor(newBgColor)
     setBgColor2(randomColor())
     setMaxLimit(randomInt(50,400))
-    setStrokeWidth(sample([4,4,4,4,6,8,8,8,8,16,64]))
+    setStrokeWidth(sample([0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,4,4,4,4,6,6,6,6,6,8,8,16,32,64,96,128]))
     setTextColor(chroma.contrast(newBgColor, '#ffffff') > 4 ? 'white' : 'black' )
     setStrokeDashArray(generateRandomStrokeDashArray())
 
@@ -351,8 +352,8 @@ export default function Home() {
       }
       {generatedDesignCount > 25 && generatedDesignCount < 40 &&
           <>
-          <LineGridVertical lines={cols * 4} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
-          <LineGridHorizontal lines={cols * 4} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} strokeDashArray={strokeDashArray} />
+          <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
+          <LineGridHorizontal lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} strokeDashArray={strokeDashArray} />
           </>
       }
 
@@ -362,10 +363,55 @@ export default function Home() {
             fill={generatedDesignCount % 4 === 0 ? gradient : palette[randomInt(0,15)]}
           />
       }
-      {generatedDesignCount > 44 && generatedDesignCount < 10000  &&
+      {generatedDesignCount > 44 && generatedDesignCount < 100 &&
+          <>
           <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} strokeWidth={strokeWidth} 
             fill={generatedDesignCount % 3 === 0 ? gradient : palette[randomInt(0,15)]}
           />
+          </>
+      }
+      {generatedDesignCount > 99 && generatedDesignCount < 10000  &&
+          <g>
+          <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
+          <Circles width={width} height={height} stroke={gradient2} />
+          </g>
+      }
+      {(generatedDesignCount % 6 === 0 && generatedDesignCount !== 0) &&
+<g>
+      <rect x={width / 18 * 1} y={height - 192} height={16} width={width/16} style={{ fill: palette[0] }} />
+      <rect x={width / 18 * 2} y={height - 192} height={16} width={width/16} style={{ fill: palette[1] }} />
+      <rect x={width / 18 * 3} y={height - 192} height={16} width={width/16} style={{ fill: palette[2] }} />
+      <rect x={width / 18 * 4} y={height - 192} height={16} width={width/16} style={{ fill: palette[3] }} />
+      <rect x={width / 18 * 5} y={height - 192} height={16} width={width/16} style={{ fill: palette[4] }} />
+      <rect x={width / 18 * 6} y={height - 192} height={16} width={width/16} style={{ fill: palette[5] }} />
+      <rect x={width / 18 * 7} y={height - 192} height={16} width={width/16} style={{ fill: palette[6] }} />
+      <rect x={width / 18 * 8} y={height - 192} height={16} width={width/16} style={{ fill: palette[7] }} />
+      <rect x={width / 18 * 9} y={height - 192} height={16} width={width/16} style={{ fill: palette[8] }} />
+      <rect x={width / 18 * 10} y={height - 192} height={16} width={width/16} style={{ fill: palette[9] }} />
+      <rect x={width / 18 * 11} y={height - 192} height={16} width={width/16} style={{ fill: palette[10] }} />
+      <rect x={width / 18 * 12} y={height - 192} height={16} width={width/16} style={{ fill: palette[11] }} />
+      <rect x={width / 18 * 13} y={height - 192} height={16} width={width/16} style={{ fill: palette[12] }} />
+      <rect x={width / 18 * 14} y={height - 192} height={16} width={width/16} style={{ fill: palette[13] }} />
+      <rect x={width / 18 * 15} y={height - 192} height={16} width={width/16} style={{ fill: palette[14] }} />
+      <rect x={width / 18 * 16} y={height - 192} height={16} width={width/16} style={{ fill: palette[15] }} />
+      <rect x={width / 18 * 1}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient0)' }} />
+      <rect x={width / 18 * 2}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient1)' }} />
+      <rect x={width / 18 * 3}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient2)'}} />
+      <rect x={width / 18 * 4}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient3)'}} />
+      <rect x={width / 18 * 5}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient4)'}} />
+      <rect x={width / 18 * 6}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient5)'}} />
+      <rect x={width / 18 * 7}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient6)'}} />
+      <rect x={width / 18 * 8}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient7)'}} />
+      <rect x={width / 18 * 9}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient8)'}} />
+      <rect x={width / 18 * 10} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient9)'}} />
+      <rect x={width / 18 * 11} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient10)'}} />
+      <rect x={width / 18 * 12} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient11)'}} />
+      <rect x={width / 18 * 13} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient12)'}} />
+      <rect x={width / 18 * 14} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient13)'}} />
+      <rect x={width / 18 * 15} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient14)'}} />
+      <rect x={width / 18 * 16} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient15)'}} />
+      <rect x={width / 18 * 16} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient16)'}} />
+    </g>
       }
       </g>
     </svg>
@@ -459,7 +505,7 @@ export default function Home() {
     }
    <kbd style={{ padding: '16px', color: 'white', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: 0, right: 0,  }}>{generatedDesignCount}</kbd> 
     <footer style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'transparent', padding: '16px', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-      {generatedDesignCount % 8 === 0 && generatedDesignCount !== 0 &&
+      {generatedDesignCount % 6 === 0 && generatedDesignCount !== 0 &&
         <>
           {actions[randomInt(0,actions.length-1)]}
           {actions[randomInt(0,actions.length-1)]}

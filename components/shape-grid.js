@@ -36,7 +36,6 @@ const ShapeGrid = ({ palette, gap = 16, width = 64, height = 64, lines = 16, xOf
               r={randomInt(0,parseInt(width/cols/2 - 1))} 
               fill={fillBool > 70? fill : 'url(#Gradient'+randomInt(0,15)+')'}
               strokeWidth={fillBool > 50? 1 : 0}
-              style={{ zIndex: 9999 }}
               />
               <rect x={j * (width / cols) + strokeWidth} y={i * height / rows + strokeWidth * 2} height={height/rows - strokeWidth*2} width={width/cols - strokeWidth * 2} strokeWidth={1} fill='transparent' style={{ zIndex: -9999}}/>
             </g>
