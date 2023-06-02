@@ -15,6 +15,25 @@ import EquilateralTriangle from '../components/equilateral-triangle'
 import Circles from '../components/circles'
 import PolarGraph from '../components/polar-graph'
 
+const curated = [
+  [
+  "#f5f5f5", "#a9b399", "#616b6d", "#181010", 
+  "#80bedb", "#8d022e", "#e71861", "#ffa995", 
+  "#c6924f", "#885818", "#dc6f0f", "#f6d714",
+  "#0bdb52", "#138e7d", "#2b4555", "#7161de"
+  ],
+  ['#1a1c2c', '#5d275d', '#b13e53', '#ef7d57', '#ffcd75', '#a7f070', '#38b764', '#257179', '#29366f', '#3b5dc9', '#41a6f6', '#73eff7', '#f4f4f4', '#94b0c2', '#566c86', '#333c57',],
+  ['#000000', '#1D2B53', '#7E2553', '#008751', '#AB5236', '#5F574F', '#C2C3C7', '#FFF1E8', '#FF004D', '#FFA300', '#FFEC27', '#00E436', '#29ADFF', '#83769C', '#FF77A8', '#FFCCAA',],
+  ['#8c8fae', '#584563', '#3e2137', '#9a6348', '#d79b7d', '#f5edba', '#c0c741', '#647d34', '#e4943a', '#9d303b', '#d26471', '#70377f', '#7ec4c1', '#34859d', '#17434b', '#1f0e1c',],
+  ['#213b25', '#3a604a', '#4f7754', '#a19f7c', '#77744f', '#775c4f', '#603b3a', '#3b2137', '#170e19', '#2f213b', '#433a60', '#4f5277', '#65738c', '#7c94a1', '#a0b9ba', '#c0d1cc',],
+  ['#ffffff', '#6df7c1', '#11adc1', '#606c81', '#393457', '#1e8875', '#5bb361', '#a1e55a', '#f7e476', '#f99252', '#cb4d68', '#6a3771', '#c92464', '#f48cb6', '#f7b69e', '#9b9c82',],
+  ['#e4a672', '#b86f50', '#743f39', '#3f2832', '#9e2835', '#e53b44', '#fb922b', '#ffe762', '#63c64d', '#327345', '#193d3f', '#4f6781', '#afbfd2', '#ffffff', '#2ce8f4', '#0484d1',],
+  ['#d1b187', '#c77b58', '#ae5d40', '#79444a', '#4b3d44', '#ba9158', '#927441', '#4d4539', '#77743b', '#b3a555', '#d2c9a5', '#8caba1', '#4b726e', '#574852', '#847875', '#ab9b8e',],
+  ['#16171a', '#7f0622', '#d62411', '#ff8426', '#ffd100', '#fafdff', '#ff80a4', '#ff2674', '#94216a', '#430067', '#234975', '#68aed4', '#bfff3c', '#10d275', '#007899', '#002859',],
+  ['#000000', '#626262', '#898989', '#adadad', '#ffffff', '#9f4e44', '#cb7e75', '#6d5412', '#a1683c', '#c9d487', '#9ae29b', '#5cab5e', '#6abfc6', '#887ecb', '#50459b', '#a057a3',],
+  ['#140c1c', '#442434', '#30346d', '#4e4a4e', '#854c30', '#346524', '#d04648', '#757161', '#597dce', '#d27d2c', '#8595a1', '#6daa2c', '#d2aa99', '#6dc2ca', '#dad45e', '#deeed6',],
+]
+
 function generateRandomStrokeDashArray() {
   const numSegments = Math.floor(Math.random() * 8) + 2; // Generate a random number of segments between 3 and 7
   const maxValue = 500; // Maximum length for each segment
@@ -122,7 +141,7 @@ export default function Home() {
   const [strokeWidth, setStrokeWidth] = useState(sample([0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,4,4,4,4,6,6,6,6,6,8,8,16,32,64,96,128]))
   const [colorsInt, setColorsInt] = useState(randomInt(0,100))
   const [mode, setMode] = useState(sample(['lab', 'lch']))
-  const [palette, setPalette] = useState( generateGeometricPalette())
+  const [palette, setPalette] = useState(sample(curated))
   const [coords, setCoords] = useState(undefined)
   const [density, setDensity] = useState(8)
   const [strokeDashArray, setStrokeDashArray] = useState(generateRandomStrokeDashArray())
@@ -229,6 +248,9 @@ export default function Home() {
     //  ]
     //)
   }
+  const regenerateCuratedPalette = () => {
+    setPalette(sample(curated))
+  }
 
   const regenerateColor = () => {
     setPalette(generateGeometricPalette())
@@ -249,6 +271,7 @@ export default function Home() {
     <Button key={uuidv4()} onClick={regenerateMonochrome}>Monochrome Palette</Button>,
     <Button key={uuidv4()} onClick={regenerateColor}>Geometric Palette</Button>,
     <Button key={uuidv4()} onClick={regenerateRandomColors}>Random Palette</Button>,
+    <Button key={uuidv4()} onClick={regenerateCuratedPalette}>Curated Palette</Button>,
   ]
 
 
@@ -289,7 +312,7 @@ export default function Home() {
           fill: gradient
         }} />
       }
-        <g style={{ filter: generatedDesignCount % 2 ? 'url(#displacementFilter)' : 'none' }}>
+        <g style={{ filter: generatedDesignCount % 3 ? 'url(#displacementFilter)' : 'none' }}>
       {generatedDesignCount > 3 && generatedDesignCount < 8 &&
         <>
         <circle 
