@@ -13,6 +13,7 @@ import ShapeGrid from '../components/shape-grid'
 import RectGrid from '../components/rect-grid'
 import EquilateralTriangle from '../components/equilateral-triangle'
 import Circles from '../components/circles'
+import PolarGraph from '../components/polar-graph'
 
 function generateRandomStrokeDashArray() {
   const numSegments = Math.floor(Math.random() * 8) + 2; // Generate a random number of segments between 3 and 7
@@ -363,55 +364,21 @@ export default function Home() {
             fill={generatedDesignCount % 4 === 0 ? gradient : palette[randomInt(0,15)]}
           />
       }
-      {generatedDesignCount > 44 && generatedDesignCount < 100 &&
+      {generatedDesignCount > 44 && generatedDesignCount < 10000 &&
           <>
           <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} strokeWidth={strokeWidth} 
             fill={generatedDesignCount % 3 === 0 ? gradient : palette[randomInt(0,15)]}
           />
           </>
       }
-      {generatedDesignCount > 99 && generatedDesignCount < 10000  &&
+      {generatedDesignCount > 44 && generatedDesignCount < 128  &&
           <g>
           <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
           <Circles width={width} height={height} stroke={gradient2} />
           </g>
       }
-      {(generatedDesignCount % 6 === 0 && generatedDesignCount !== 0) &&
-<g>
-      <rect x={width / 18 * 1} y={height - 192} height={16} width={width/16} style={{ fill: palette[0] }} />
-      <rect x={width / 18 * 2} y={height - 192} height={16} width={width/16} style={{ fill: palette[1] }} />
-      <rect x={width / 18 * 3} y={height - 192} height={16} width={width/16} style={{ fill: palette[2] }} />
-      <rect x={width / 18 * 4} y={height - 192} height={16} width={width/16} style={{ fill: palette[3] }} />
-      <rect x={width / 18 * 5} y={height - 192} height={16} width={width/16} style={{ fill: palette[4] }} />
-      <rect x={width / 18 * 6} y={height - 192} height={16} width={width/16} style={{ fill: palette[5] }} />
-      <rect x={width / 18 * 7} y={height - 192} height={16} width={width/16} style={{ fill: palette[6] }} />
-      <rect x={width / 18 * 8} y={height - 192} height={16} width={width/16} style={{ fill: palette[7] }} />
-      <rect x={width / 18 * 9} y={height - 192} height={16} width={width/16} style={{ fill: palette[8] }} />
-      <rect x={width / 18 * 10} y={height - 192} height={16} width={width/16} style={{ fill: palette[9] }} />
-      <rect x={width / 18 * 11} y={height - 192} height={16} width={width/16} style={{ fill: palette[10] }} />
-      <rect x={width / 18 * 12} y={height - 192} height={16} width={width/16} style={{ fill: palette[11] }} />
-      <rect x={width / 18 * 13} y={height - 192} height={16} width={width/16} style={{ fill: palette[12] }} />
-      <rect x={width / 18 * 14} y={height - 192} height={16} width={width/16} style={{ fill: palette[13] }} />
-      <rect x={width / 18 * 15} y={height - 192} height={16} width={width/16} style={{ fill: palette[14] }} />
-      <rect x={width / 18 * 16} y={height - 192} height={16} width={width/16} style={{ fill: palette[15] }} />
-      <rect x={width / 18 * 1}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient0)' }} />
-      <rect x={width / 18 * 2}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient1)' }} />
-      <rect x={width / 18 * 3}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient2)'}} />
-      <rect x={width / 18 * 4}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient3)'}} />
-      <rect x={width / 18 * 5}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient4)'}} />
-      <rect x={width / 18 * 6}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient5)'}} />
-      <rect x={width / 18 * 7}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient6)'}} />
-      <rect x={width / 18 * 8}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient7)'}} />
-      <rect x={width / 18 * 9}  y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient8)'}} />
-      <rect x={width / 18 * 10} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient9)'}} />
-      <rect x={width / 18 * 11} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient10)'}} />
-      <rect x={width / 18 * 12} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient11)'}} />
-      <rect x={width / 18 * 13} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient12)'}} />
-      <rect x={width / 18 * 14} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient13)'}} />
-      <rect x={width / 18 * 15} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient14)'}} />
-      <rect x={width / 18 * 16} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient15)'}} />
-      <rect x={width / 18 * 16} y={height - 160} height={64} width={width/16} style={{ fill: 'url(#Gradient16)'}} />
-    </g>
+      {generatedDesignCount > 99 && generatedDesignCount < 129  &&
+      <PolarGraph width={width}  strokeWidth={strokeWidth} height={height} bgColor={bgColor} circles={cols} radialLines={rows} style={{ mixBlendMode: 'multiply'}}/>
       }
       </g>
     </svg>

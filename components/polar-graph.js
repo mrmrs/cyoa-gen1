@@ -10,10 +10,11 @@ const PolarGraph = ({
   circles = 5,
   radialLineColor = 'black',
   circleLineColor = 'black',
+  strokeWidth,
 }) => {
   const centerX = width / 2;
   const centerY = height / 2;
-  const radius = Math.min(centerX, centerY);
+  const radius = Math.min(centerX, centerY) / 1.5;
 
   const radialLinesArray = Array.from({ length: radialLines }, (_, i) => {
     const angle = (2 * Math.PI * i) / radialLines;
@@ -34,14 +35,14 @@ const PolarGraph = ({
         r={currentRadius}
         fill="none"
         stroke={bgColor}
-        strokeWidth={1}
+        strokeWidth={strokeWidth}
       />
     );
   });
 
   return (
     <g>
-      <path d={radialLinesArray.join(' ')} stroke={bgColor} strokeWidth={1} fill="none" />
+      <path d={radialLinesArray.join(' ')} stroke={bgColor} strokeWidth={strokeWidth} fill="none" />
       {circlesArray}
     </g>
   );
