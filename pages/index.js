@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import randomColor from 'random-hex-color'
 import chroma from 'chroma-js'
-import {sample} from 'lodash'
+import {sample, sampleSize} from 'lodash'
 import PoissonDiskSampling from 'poisson-disk-sampling'
 import { randomInt } from '../lib/random'
 import LineGridVertical from '../components/line-grid-vertical'
@@ -356,13 +356,12 @@ export default function Home() {
       setCoords(generateCoordinates(0,width,0,height,512))
   }
 
-  const actions = [
+  const actions = sampleSize([
     <Button key={uuidv4()} onClick={regenerateMonochrome}>Monochrome Palette</Button>,
     <Button key={uuidv4()} onClick={regenerateColor}>Geometric Palette</Button>,
     <Button key={uuidv4()} onClick={regenerateRandomColors}>Random Palette</Button>,
     <Button key={uuidv4()} onClick={regenerateCuratedPalette}>Curated Palette</Button>,
-  ]
-
+  ], 2);
 
   return (
     <>
@@ -587,12 +586,7 @@ export default function Home() {
     }
    <kbd style={{ padding: '16px', color: 'white', background: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'absolute', top: 0, right: 0,  }}>{generatedDesignCount}</kbd> 
     <footer style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'transparent', padding: '16px', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-      {generatedDesignCount % 6 === 0 && generatedDesignCount !== 0 &&
-        <>
-          {actions[randomInt(0,actions.length-1)]}
-          {actions[randomInt(0,actions.length-1)]}
-        </>
-      }
+      {generatedDesignCount % 6 === 0 && generatedDesignCount !== 0 && actions}
     </footer>
       </main>
     </>
