@@ -13,7 +13,35 @@ import ShapeGrid from '../components/shape-grid'
 import RectGrid from '../components/rect-grid'
 import EquilateralTriangle from '../components/equilateral-triangle'
 import Circles from '../components/circles'
+import CirclesFullStack from '../components/circle-full-stack'
 import PolarGraph from '../components/polar-graph'
+import Penrose from '../components/penrose'
+import PenroseGrid from '../components/penrose-grid'
+
+const RandomRightAngleShape = ({ width, height, minSegments, maxSegments }) => {
+  const segments = Math.floor(Math.random() * (maxSegments - minSegments + 1)) + minSegments;
+  
+  let points = [];
+  let x = Math.random() * width;
+  let y = Math.random() * height;
+
+  points.push([x, y]);
+
+  for (let i = 0; i < segments; i++) {
+    x += (Math.random() - 0.5) * width;
+    y += (Math.random() - 0.5) * height;
+    points.push([Math.max(0, Math.min(width, x)), Math.max(0, Math.min(height, y))]);
+  }
+
+  return (
+    <polygon
+      points={points.map(point => point.join(',')).join(' ')}
+      fill="red"
+      stroke="black"
+      strokeWidth={24}
+    />
+  );
+};
 
 const curated = [
   ['#f5f5f5', '#a9b399', '#616b6d', '#181010', '#80bedb', '#8d022e', '#e71861', '#ffa995', '#c6924f', '#885818', '#dc6f0f', '#f6d714', '#0bdb52', '#138e7d', '#2b4555', '#7161de' ],
@@ -181,6 +209,10 @@ function generateGeometricPalette() {
 const introMessage = "Click or tap anywhere to continue..."
 const introMessage2 = "...keep clicking"
 
+const SVGScales = [
+  0,1,2,3,4,5,8,16,24,32,48,64,128,256,512,1024,2048,4096,9192
+]
+
 export default function Home() {
   const size = useWindowSize()
   const height = size.height
@@ -189,9 +221,11 @@ export default function Home() {
   const gapUnits = [2,4,8, 16, 24, 32, 48, 64, 128]
   const strokeWidthArray = [0,1,2,3,6,8,16,32,64,128,256]
   const linesArray = [2,3,4,8,12,16,32]
+  const marginArray = [0,0,0,0,0,32,64,128,128,128,128,128]
+  const [margin, setMargin] = useState(sample(marginArray))
   const [randomInteger, setRandomInteger] = useState(randomInt(1,100))
-  const [octaves, setOctaves] = useState(randomInt(1,4))
-  const [scale, setScale] = useState(sample([0,5,10,20,40,80,160,320,640,1000]))
+  const [octaves, setOctaves] = useState(randomInt(1,10))
+  const [scale, setScale] = useState(sample(SVGScales))
   const [baseFrequency, setBaseFrequency] = useState(randomInt(0,randomInt(10,randomInt(20,10000))) / 100000)
   const [generatedDesignCount, setGeneratedDesignCount] = useState(0)
   const [messageIndex, setMessageIndex] = useState(0)
@@ -233,15 +267,12 @@ export default function Home() {
     setChannelY(sample(['R','G','B']))
     setTurbType(sample(['fractalNoise', 'turbulence']))
     setOctaves(randomInt(1,8))
-    setScale(randomInt(randomInt(1,500),2000))
+    setScale(sample(SVGScales))
     setBaseFrequency(randomInt(0,randomInt(10,randomInt(20,10000))) / 100000)
     setGridUnit(gridUnits[randomInt(0,gridUnits.length-1)])
     setGeneratedDesignCount(newCount)
     setCols(randomInt(2,32))
     setRows(randomInt(2,32))
-    if (generatedDesignCount === 1) {
-      setCoords(generateCoordinates(0,width,0,height,512))
-    }
     const newBgColor = palette[randomInt(0,palette.length-1)]
     setBgColor(newBgColor)
     setBgColor2(randomColor())
@@ -338,7 +369,7 @@ export default function Home() {
       setPalette(chroma.scale([chroma(baseColor).darken(4), baseColor, chroma(baseColor).brighten(4)]).mode(mode).colors(16))
   }
   const regenerateCoordinates = () => {
-      setCoords(generateCoordinates(0,width,0,height,512))
+
   }
 
   const actions = sampleSize([
@@ -346,6 +377,7 @@ export default function Home() {
     <Button key={uuidv4()} onClick={regenerateColor}>Geometric Palette</Button>,
     <Button key={uuidv4()} onClick={regenerateRandomColors}>Random Palette</Button>,
     <Button key={uuidv4()} onClick={regenerateCuratedPalette}>Curated Palette</Button>,
+    <Button key={uuidv4()} onClick={regenerateCoordinates}>New Coordinates</Button>,
   ], 2);
 
   return (
@@ -373,6 +405,7 @@ export default function Home() {
     <svg id='canvas' height={height} viewBox={'0 0 '+width+ ' '+height} width={width} style={{ transition: 'all 1s ease-in', zIndex: -9, background: generatedDesignCount < 1? 'white': bgColor, minHeight: '100%', minWidth: '100%',}}>
 
       {generatedDesignCount > 1 &&
+        <>
         <rect 
         x={0}
         y={0}
@@ -384,8 +417,30 @@ export default function Home() {
           width: width, 
           fill: gradient
         }} />
+        </>
       }
         <g style={{ filter: generatedDesignCount % 3 === 0 ? 'url(#displacementFilter)' : 'none' }}>
+      {generatedDesignCount > 48 && generatedDesignCount % 27 === 0 &&
+        <Penrose height={height} width={width} depth={randomInt(2,6)} initialPoints={[
+          {x: randomInt(-width,0), y:randomInt(-height,0)}, 
+          {x:randomInt(width/2,width+128), y:randomInt(-height,height)}, 
+          {x:randomInt(0,width), y:randomInt(0,height*2)}, 
+        ]} 
+        colors={palette} 
+        strokeWidth={strokeWidth}
+        />
+      }
+      {generatedDesignCount > 64 && generatedDesignCount % 9 === 0 &&
+        <circle 
+        r={width / randomInt(1,8)}
+        cx={width / 2}
+        cy={height / 2}
+        style={{ transition: 'all 1s ease-in', x:0,  y: 0, height: height, width: width, 
+            fill: randomInteger > 90? gradient : randomInteger > 40? 'white' : 'black',
+            stroke: 'rgba(0,0,0,.05)',
+            filter: 'url(#displacementFilter)'
+        }} />
+      }
       {generatedDesignCount > 3 && generatedDesignCount < 8 &&
         <>
         <circle 
@@ -440,27 +495,33 @@ export default function Home() {
           </>
       }
       {(generatedDesignCount > 18 && generatedDesignCount < 23) &&
-          <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} animate={generatedDesignCount % 9 === 0? true : false} width={width} height={height} strokeDashArray={generatedDesignCount > 12? strokeDashArray : 'none'} xOffset={128} yOffset={128} />
+          <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} animate={generatedDesignCount % 9 === 0? true : false} width={width} height={height} strokeDashArray={generatedDesignCount > 12? strokeDashArray : 'none'} xOffset={margin} yOffset={margin} />
       }
       {generatedDesignCount > 22 && generatedDesignCount < 27 &&
           <>
-          <LineGridHorizontal lines={rows * density} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} animate={generatedDesignCount % 9 ===0? true : false} strokeDashArray={strokeDashArray} />
+          <LineGridHorizontal lines={rows * density} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} xOffset={margin} yOffset={margin} animate={generatedDesignCount % 9 ===0? true : false} strokeDashArray={strokeDashArray} />
           </>
       }
-      {generatedDesignCount > 25 && generatedDesignCount < 40 &&
+      {generatedDesignCount > 25 && generatedDesignCount < 31 &&
           <>
-          <LineGridVertical lines={cols * density} strokeWidth={strokeWidth + 1} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
-          <LineGridHorizontal lines={cols * density} strokeWidth={strokeWidth + 1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={0} strokeDashArray={strokeDashArray} />
+          <LineGridVertical lines={cols * density} strokeWidth={strokeWidth + 1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={margin} xOffset={margin} strokeDashArray={strokeDashArray} />
+          <LineGridHorizontal lines={cols * density} strokeWidth={strokeWidth + 1} palette={palette} cols={cols} rows={rows} width={width} height={height} yOffset={margin} xOffset={margin} strokeDashArray={strokeDashArray} />
           </>
       }
 
 
-      {generatedDesignCount > 39 && generatedDesignCount < 45  &&
+      {generatedDesignCount > 30 && generatedDesignCount < 38  &&
           <RectGrid palette={palette} cols={cols} rows={rows} width={width} height={height} strokeWidth={strokeWidth} 
             fill={generatedDesignCount % 4 === 0 ? gradient : palette[randomInt(0,15)]}
           />
       }
-      {generatedDesignCount > 44 && generatedDesignCount < 10000 &&
+
+      {generatedDesignCount > 37 && generatedDesignCount < 44 &&
+          <PenroseGrid palette={palette} cols={cols} rows={rows} width={width} height={height} strokeWidth={strokeWidth}
+            fill={generatedDesignCount % 3 === 0 ? gradient : palette[randomInt(0,15)]}
+          />
+      }
+      {generatedDesignCount > 43 && generatedDesignCount < 10000 &&
           <>
           <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} strokeWidth={strokeWidth} 
             fill={generatedDesignCount % 3 === 0 ? gradient : palette[randomInt(0,15)]}
@@ -469,7 +530,7 @@ export default function Home() {
       }
       {generatedDesignCount > 90 && generatedDesignCount < 94  &&
           <g>
-          <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
+          <LineGridVertical xOffset={margin} yOffset={margin} lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
           <Circles width={width} height={height} stroke={gradient2} />
           </g>
       }

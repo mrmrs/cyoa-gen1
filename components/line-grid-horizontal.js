@@ -19,7 +19,7 @@ function generateRandomStrokeDashArray() {
 }
 
 const LineGridHorizontal = ({ gap = 16, width = 64, height = 64, lines = 16, xOffset = 0, yOffset = 0, palette, bgColor, color, stroke = 'black', strokeDashArray, strokeWidth, strokeDashOffset = randomInt(0,50)+'%', cols, rows,}) => {
-    const unit = (height - strokeWidth) / (lines -1) 
+    const unit = (height - yOffset - yOffset - strokeWidth) / (lines -1) 
     const strokeBool = randomInt(0,100)
 
     return (
@@ -29,7 +29,7 @@ const LineGridHorizontal = ({ gap = 16, width = 64, height = 64, lines = 16, xOf
               y1={unit * i + strokeWidth / 2 + yOffset} 
               x1={xOffset} 
               y2={unit * i + strokeWidth / 2 + yOffset} 
-              x2={xOffset + width} 
+              x2={width - xOffset} 
               stroke={strokeBool > 50? stroke : palette[randomInt(0,palette.length-1)]} strokeWidth={strokeWidth} 
               strokeDasharray={strokeDashArray}
               strokeDashoffset={randomInt(0,50)+'%'}
