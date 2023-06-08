@@ -17,31 +17,10 @@ import CirclesFullStack from '../components/circle-full-stack'
 import PolarGraph from '../components/polar-graph'
 import Penrose from '../components/penrose'
 import PenroseGrid from '../components/penrose-grid'
+import CliffordAttractor from '../components/clifford-attractor'
+import LorenzAttractor from '../components/lorenz-attractor'
+import DeJongAttractor from '../components/dejong-attractor'
 
-const RandomRightAngleShape = ({ width, height, minSegments, maxSegments }) => {
-  const segments = Math.floor(Math.random() * (maxSegments - minSegments + 1)) + minSegments;
-  
-  let points = [];
-  let x = Math.random() * width;
-  let y = Math.random() * height;
-
-  points.push([x, y]);
-
-  for (let i = 0; i < segments; i++) {
-    x += (Math.random() - 0.5) * width;
-    y += (Math.random() - 0.5) * height;
-    points.push([Math.max(0, Math.min(width, x)), Math.max(0, Math.min(height, y))]);
-  }
-
-  return (
-    <polygon
-      points={points.map(point => point.join(',')).join(' ')}
-      fill="red"
-      stroke="black"
-      strokeWidth={24}
-    />
-  );
-};
 
 const curated = [
   ['#f5f5f5', '#a9b399', '#616b6d', '#181010', '#80bedb', '#8d022e', '#e71861', '#ffa995', '#c6924f', '#885818', '#dc6f0f', '#f6d714', '#0bdb52', '#138e7d', '#2b4555', '#7161de' ],
@@ -237,8 +216,8 @@ export default function Home() {
   const [colsMax, setColsMax] = useState(32)
 
   const [gridUnit, setGridUnit] = useState(gridUnits[randomInt(0,gridUnits.length-1)])
-  const [rows, setRows] = useState(randomInt(3,rowsMax))
-  const [cols, setCols] = useState(randomInt(3,colsMax))
+  const [rows, setRows] = useState(randomInt(2,rowsMax))
+  const [cols, setCols] = useState(randomInt(2,colsMax))
   const [symmetrical, setSymmetrical] = useState(false)
   const [cellWidth, setCellWidth] = useState(1000/cols)
   const [cellHeight, setCellHeight] = useState(1400/rows)
@@ -265,6 +244,7 @@ export default function Home() {
   const regenerateClick = () => {
     
     const newCount = generatedDesignCount +1
+    setRandomInteger(randomInt(0,100))
     setMargin(sample(marginArray))
     setStdDeviation(randomInt(1,90))
     setEdgeMode(sample(['wrap', 'none', 'duplicate']))
@@ -282,7 +262,7 @@ export default function Home() {
     setBgColor(newBgColor)
     setBgColor2(randomColor())
     setMaxLimit(randomInt(50,400))
-    setStrokeWidth(sample([0,0,0,0,1,1,1,1,1,2,2,2,2,3,3,4,4,4,4,6,6,6,6,6,8,8,16,32,64,96,128]))
+    setStrokeWidth(sample([1,1,1,1,1,2,2,2,2,3,3,4,4,4,4,6,6,6,6,6,8,8,16,32,128]))
     setTextColor(chroma.contrast(newBgColor, '#ffffff') > 4 ? 'white' : 'black' )
     setStrokeDashArray(generateRandomStrokeDashArray())
 
@@ -440,7 +420,8 @@ export default function Home() {
         style={{ transition: 'all 1s ease-in', x:0,  y: 0, height: height, width: width, 
             fill: randomInteger > 90? gradient : randomInteger > 40? 'white' : 'black',
             stroke: 'rgba(0,0,0,.05)',
-            filter: 'url(#displacementFilter)'
+            filter: 'url(#displacementFilter), drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4))'
+
         }} />
       }
       {generatedDesignCount > 3 && generatedDesignCount < 8 &&
@@ -450,8 +431,10 @@ export default function Home() {
         cx={width / 2}
         cy={height / 2}
         style={{ transition: 'all 1s ease-in', x:0,  y: 0, height: height, width: width, 
-            fill: gradient,
-            stroke: 'rgba(0,0,0,.05)',
+            fill: randomInteger > 50 ? gradient : randomInteger > 30? 'rgba(255,255,255,.9)' : 'transparent' ,
+            stroke: randomInteger < 30? 'white' : 'rgba(0,0,0,.25)',
+            strokeDasharray: randomInteger < 30? randomInt(1,128)+' '+randomInt(1,128) : 0,
+            strokeWidth: randomInteger < 30 ? 8 : 1
         }} />
         
         </>
@@ -466,15 +449,23 @@ export default function Home() {
         rx={generatedDesignCount > 9? randomInt(1,32) : 0}
         style={{ 
             transition: 'all 1s ease-in', 
-            fill: gradient,
-            stroke: 'rgba(0,0,0,.05)',
+            fill: randomInteger > 50 ? gradient : randomInteger > 30? 'rgba(255,255,255,.9)' : 'transparent' ,
+            stroke: randomInteger < 30? 'white' : 'rgba(0,0,0,.25)',
+            strokeDasharray: randomInteger < 30? randomInt(1,128)+' '+randomInt(1,128) : 0,
+            strokeWidth: randomInteger < 30 ? 8 : 1
         }} />
         
         </>
       }
       {generatedDesignCount > 11 && generatedDesignCount < 16 &&
-        <EquilateralTriangle canvasWidth={width} canvasHeight={height} size={width/2} fill={gradient} 
-        stroke='rgba(0,0,0,.05)'
+        <EquilateralTriangle canvasWidth={width} canvasHeight={height} size={width/2}
+        style={{
+            transition: 'all 1s ease-in', 
+            fill: randomInteger > 50 ? gradient : randomInteger > 30? 'rgba(255,255,255,.9)' : 'transparent' ,
+            stroke: randomInteger < 30? 'white' : 'rgba(0,0,0,.25)',
+            strokeDasharray: randomInteger < 30? randomInt(1,128)+' '+randomInt(1,128) : 0,
+            strokeWidth: randomInteger < 30 ? 8 : 1
+        }}
           />
       }
       {generatedDesignCount === 16 &&
@@ -499,7 +490,7 @@ export default function Home() {
       {(generatedDesignCount > 18 && generatedDesignCount < 23) &&
           <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} animate={generatedDesignCount % 9 === 0? true : false} width={width} height={height} strokeDashArray={generatedDesignCount > 12? strokeDashArray : 'none'} xOffset={margin} yOffset={margin} />
       }
-      {generatedDesignCount > 22 && generatedDesignCount < 27 &&
+      {generatedDesignCount > 22 && generatedDesignCount < 26 &&
           <>
           <LineGridHorizontal lines={rows * density} strokeWidth={1} palette={palette} cols={cols} rows={rows} width={width} height={height} xOffset={margin} yOffset={margin} animate={generatedDesignCount % 9 ===0? true : false} strokeDashArray={strokeDashArray} />
           </>
@@ -518,12 +509,12 @@ export default function Home() {
           />
       }
 
-      {generatedDesignCount > 37 && generatedDesignCount < 46 &&
+      {generatedDesignCount > 37 && generatedDesignCount < 42 &&
           <PenroseGrid palette={palette} cols={cols} rows={rows} width={width} height={height} strokeWidth={strokeWidth}
             fill={generatedDesignCount % 3 === 0 ? gradient : palette[randomInt(0,15)]}
           />
       }
-      {generatedDesignCount > 45 && generatedDesignCount < 10000 &&
+      {generatedDesignCount > 41 && generatedDesignCount < 10000 &&
           <>
           <ShapeGrid palette={palette} cols={cols} rows={rows} width={width} height={height} strokeWidth={strokeWidth} 
             fill={generatedDesignCount % 3 === 0 ? gradient : palette[randomInt(0,15)]}
@@ -536,12 +527,19 @@ export default function Home() {
           <Circles width={width} height={height} stroke={gradient2} />
           </g>
       }
-      {generatedDesignCount > 99 && generatedDesignCount < 129  &&
+      {generatedDesignCount > 99 && generatedDesignCount < 110  &&
           <>
         <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
       <PolarGraph width={width}  strokeWidth={strokeWidth} height={height} bgColor={bgColor} circles={cols} radialLines={rows} style={{ mixBlendMode: 'multiply'}}/>
           </>
       }
+      {generatedDesignCount > 109 && generatedDesignCount < 129  &&
+          <>
+        <LineGridVertical lines={cols * density} strokeWidth={strokeWidth} palette={palette} cols={cols} rows={rows} width={width} height={height} strokeDashArray={strokeDashArray} />
+        <CliffordAttractor strokeWidth={1} stroke={radGradient} colors={palette} height={height} width={width} a={randomInt(-300,300) / 100} b={randomInt(-300,300) / 100} c={randomInt(-300,300) / 100} iterations={randomInt(10000,40000)} />
+          </>
+      }
+
       </g>
         </g>
     </svg>

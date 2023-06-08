@@ -33,7 +33,7 @@ const PolarGraph = ({
         cx={centerX}
         cy={centerY}
         r={currentRadius}
-        fill="none"
+        fill='transparent'
         stroke={bgColor}
         strokeWidth={strokeWidth}
       />

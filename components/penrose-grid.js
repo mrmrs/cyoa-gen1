@@ -16,8 +16,8 @@ const PenroseGrid = ({ palette, gap = 16, width = 64, height = 64, lines = 16, x
         {[...Array(cols)].map((y,j) =>
           <g key={uuidv4()}>
             {[...Array(parseInt(height / cols +1 ))].map((x,i) =>
-            <g key={uuidv4()} stroke={ fillBool > 95? palette[randomInt(0,palette.length-1)] : fill} strokeWidth={strokeWidth}>
-              <Penrose colors={palette} strokeWidth={strokeWidth} height={height/rows-strokeWidth*2} width={width/cols-strokeWidth*2} depth={randomInt(1,3)} initialPoints={[
+            <g key={uuidv4()} stroke={ fillBool > 95? palette[randomInt(0,palette.length-1)] : fill} strokeWidth={1}>
+              <Penrose colors={palette} strokeWidth={1} height={height/rows-strokeWidth*2} width={width/cols-strokeWidth*2} depth={randomInt(0,2)} initialPoints={[
                  {
                    x: j*(width/cols),
                    y: i*height/rows,
@@ -31,7 +31,7 @@ const PenroseGrid = ({ palette, gap = 16, width = 64, height = 64, lines = 16, x
                    y: i*height/rows+height/rows
                  },
               ]}/>
-              <Penrose strokeWidth={strokeWidth} colors={palette} height={height/rows-strokeWidth*2} width={width/cols-strokeWidth*2} depth={randomInt(1,3)} initialPoints={[
+              <Penrose strokeWidth={1} colors={palette} height={height/rows-strokeWidth*2} width={width/cols-strokeWidth*2} depth={randomInt(0,2)} initialPoints={[
                  {
                    x: j*(width/cols),
                    y: i*height/rows,

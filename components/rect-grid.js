@@ -29,7 +29,7 @@ const ShapeGrid = ({ palette, gap = 16, width = 64, height = 64, lines = 16, xOf
           <g key={uuidv4()}>
             {[...Array(parseInt(height / cols +1 ))].map((x,i) =>
             <g key={uuidv4()} stroke={ fillBool > 95? palette[randomInt(0,palette.length-1)] : palette[0]} strokeWidth={strokeWidth}>
-              <rect x={j * (width / cols) + strokeWidth} y={i * height / rows + strokeWidth * 2} height={height/rows - strokeWidth*2} width={width/cols - strokeWidth * 2} fill={ fillBool > 80? fill : fillBool < 50? 'transparent': 'url(#Gradient'+randomInt(0,15)+')' } style={{ zIndex: -9999}}/>
+              <rect x={j * (width / cols) + strokeWidth} y={i * height / rows + strokeWidth * 2} height={height/rows - strokeWidth*2} width={width/cols - strokeWidth * 2} fill={ fillBool > 80? fill : fillBool < 50? 'transparent': 'url(#Gradient'+randomInt(0,15)+')' } strokeWidth={strokeWidth} style={{ zIndex: -9999}}/>
 
             </g>
             )}
