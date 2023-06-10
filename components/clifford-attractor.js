@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { scaleLinear } from "d3-scale";
 import { randomInt } from '../lib/random'
 
-const CliffordAttractor = ({ strokeWidth, stroke, colors, width = 1000, height = 1000, a = -1.4, b = 1.6, c = 1.0, d = 0.7, iterations = 100000 }) => {
+const CliffordAttractor = ({ margin = 128, strokeWidth, stroke, colors, width = 1000, height = 1000, a = -1.4, b = 1.6, c = 1.0, d = 0.7, iterations = 100000 }) => {
     const [points, setPoints] = useState([]);
 
     useEffect(() => {
@@ -19,11 +19,11 @@ const CliffordAttractor = ({ strokeWidth, stroke, colors, width = 1000, height =
 
     const scaleX = scaleLinear()
         .domain([Math.min(...points.map(([x]) => x)), Math.max(...points.map(([x]) => x))])
-        .range([0, width]);
+        .range([margin, width-margin]);
 
     const scaleY = scaleLinear()
         .domain([Math.min(...points.map(([, y]) => y)), Math.max(...points.map(([, y]) => y))])
-        .range([height, 0]);
+        .range([height-margin, margin]);
 
     // Create the quadratic Bézier curve path
     const linePath = points
