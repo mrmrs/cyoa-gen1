@@ -177,6 +177,7 @@ export default function Home() {
                 {[...Array(rows+1)].map((y,j) =>
                   <Triangle 
                   type='static' 
+                  canvasHeight={height-margin*2}
                   key={uuidv4()} 
                   x={i * (width-margin*2)/cols + margin} 
                   size={(width-margin*2-strokeWidth*cols)/cols} 
